@@ -53,10 +53,6 @@ class Infection {
 
     }
 
-
-
-
-
 }; 
 
 #endif
