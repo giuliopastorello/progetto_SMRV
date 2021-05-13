@@ -63,8 +63,12 @@ class Infection {
     os << '+' << std::string(N, '-') << "+\n";
   }
 
+<<<<<<< HEAD
 
 
 };
+=======
+}; 
+>>>>>>> ae943cfed4b531f9c820791245205f865d537ce2
 
 #endif
