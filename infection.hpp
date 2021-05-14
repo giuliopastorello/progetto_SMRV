@@ -1,10 +1,11 @@
-#ifndef INFECTION_PROJECT_HPP
-#define INFECTION_PROJECT_HPP
+#ifndef INFECTION_HPP
+#define INFECTION_HPP
 
 #include <math.h>
 #include <iostream>
 #include <cassert>
 #include <vector>
+
 
 struct State {
   int S;  // suscettibili
@@ -15,16 +16,16 @@ struct State {
 
 class Infection {
   int m_duration_analysis_indays;  // durata analisi dati
-  State m_initial_state;
+  State init_state; //stato iniziale giorno:0
   int const m_N; // abitanti
 
  public:
   Infection(int duration_analysis_indays, State initial_state, int N)
       : m_duration_analysis_indays{duration_analysis_indays},
-        m_initial_state{initial_state},
+        init_state{initial_state},
         m_N{N} {}
 
-  std::vector<State> SMRV() const {
+  std::vector<State> SMRV_evolve() const {
     // double beta, double gamma, int non_vaccinabl, int M_t0, int V_t0, double
     // vel_vaccini, double eff_vaccino, int R_t0
     double const beta = 0.056;
@@ -33,7 +34,7 @@ class Infection {
     double const vel_vaccini = 0.05;   // mu
     double const eff_vaccino = 0.839;  // efficacia vaccino pesata sui vaccini distribuiti
 
-    std::vector<State> result{m_initial_state};
+    std::vector<State> result{init_state};
 
     State support = result.back();
 
@@ -51,24 +52,21 @@ class Infection {
     return result;
   }
 
-  void tabulate(std::ostream& os, Infection const& inf) {
-    std::vector<State> datas=inf.SMRV();
+  void tabulate(std::ostream& os, std::vector<State> inf) {
     int const N= 52;
+    int const L= inf.size();
     
     os << '+' << std::string(N, '-') << "+\n";
     os << "| DAYS | MALATI | RIMOSSI | VACCINATI | SUSCETTIBILI |\n";
-    for (int r = 0; r < inf.m_duration_analysis_indays; ++r) {
-      os << "| " << r+1 << " | " << datas[r].M << " | " << datas[r].R << " | " << datas[r].V << " | " << datas[r].S << " |\n";
+    for (int r = 0; r < L; ++r) {
+      os << "| " << r+1 << " | " << inf[r].M << " | " << inf[r].R << " | " << inf[r].V << " | " << inf[r].S << " |\n";
     }
     os << '+' << std::string(N, '-') << "+\n";
   }
 
-<<<<<<< HEAD
 
 
 };
-=======
-}; 
->>>>>>> ae943cfed4b531f9c820791245205f865d537ce2
+
 
 #endif
