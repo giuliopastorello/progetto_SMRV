@@ -52,21 +52,23 @@ class Infection {
     return result;
   }
 
-  void tabulate(std::ostream& os, std::vector<State> inf) {
-    int const N= 52;
+  
+
+
+
+};
+
+inline void tabulate(std::ostream& os, std::vector<State> inf) {  //ancora problemi di formattazione della tabella: trovare dato più lungo : m_N abitanti
+    int const N= 52;                                              // meglio mettere la funzione dentro e utilizzare come membro un std::vector<State>
     int const L= inf.size();
     
     os << '+' << std::string(N, '-') << "+\n";
     os << "| DAYS | MALATI | RIMOSSI | VACCINATI | SUSCETTIBILI |\n";
     for (int r = 0; r < L; ++r) {
-      os << "| " << r+1 << " | " << inf[r].M << " | " << inf[r].R << " | " << inf[r].V << " | " << inf[r].S << " |\n";
+      os << "|     " << r+1 << "    |    " << inf[r].M << "    |    " << inf[r].R << "    |    " << inf[r].V << "    |    " << inf[r].S << "    |\n";
     }
     os << '+' << std::string(N, '-') << "+\n";
   }
-
-
-
-};
 
 
 #endif
