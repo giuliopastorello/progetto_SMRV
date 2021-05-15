@@ -1,4 +1,5 @@
 #include "infection.hpp"
+#include <iostream>
 
 
 
@@ -10,8 +11,11 @@ int main() {
     int const R_t0=320000;
     int const S_t0= people - M_t0 - V_t0 - R_t0;
     State init {S_t0 , M_t0, R_t0 , V_t0};
-    Infection prova{100, init, people};
-    std::vector<State> evolution= prova.SMRV_evolve();
-    tabulate(std::cout, prova.SMRV_evolve());
+    Infection Emilia_Romagna1{100, init, people};
+    Emilia_Romagna1.SMRV_evolve();
+    Emilia_Romagna1.tabulate(std::cout);
+
+    std::cout << "analisi malati giorno start: " << Emilia_Romagna1.get_state(0).M;
+    
 
 }
