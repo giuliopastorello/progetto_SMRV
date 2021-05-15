@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cassert>
 #include <vector>
+#include <string>
 
 
 struct State {
@@ -16,40 +17,56 @@ struct State {
 
 class Infection {
   int m_duration_analysis_indays;  // durata analisi dati
-  State init_state; //stato iniziale giorno:0
+  std::vector<State> analysis; //stato iniziale giorno:0
   int const m_N; // abitanti
 
  public:
   Infection(int duration_analysis_indays, State initial_state, int N)
       : m_duration_analysis_indays{duration_analysis_indays},
-        init_state{initial_state},
+        analysis{initial_state},
         m_N{N} {}
 
-  std::vector<State> SMRV_evolve() const {
+  void SMRV_evolve() {
     // double beta, double gamma, int non_vaccinabl, int M_t0, int V_t0, double
     // vel_vaccini, double eff_vaccino, int R_t0
     double const beta = 0.056;
     double const gamma = 0.045;
-    int const non_vaccinabl = 118292;  // eta
+    int const non_vaccinabl = 118292;  // etdaa
     double const vel_vaccini = 0.05;   // mu
     double const eff_vaccino = 0.839;  // efficacia vaccino pesata sui vaccini distribuiti
 
-    std::vector<State> result{init_state};
-
-    State support = result.back();
+    State support = analysis.back();
 
     for (int i = 1; i < m_duration_analysis_indays; ++i) {
-      assert(result.back().S + result.back().M + result.back().R + result.back().V == m_N);  // assert con vincolo
+      assert(analysis.back().S + analysis.back().M + analysis.back().R + analysis.back().V == m_N);  // assert con vincolo
 
-      support.V = round(result.back().V + vel_vaccini * (result.back().V / eff_vaccino) * (1 - result.back().V / (eff_vaccino * (m_N - non_vaccinabl))));
-      support.M = round(result.back().M + beta * (result.back().S / m_N) * result.back().M - gamma * result.back().M);
-      support.S = round(result.back().S - beta * (result.back().S / m_N) * result.back().M - vel_vaccini * (result.back().V / eff_vaccino) *
-                  (1 - result.back().V / (eff_vaccino * (m_N - non_vaccinabl))));
-      support.R = round(result.back().R + gamma * result.back().M);
-      result.push_back(support);
+      support.V = round(analysis.back().V + vel_vaccini * (analysis.back().V / eff_vaccino) * (1 - analysis.back().V / (eff_vaccino * (m_N - non_vaccinabl))));
+      support.M = round(analysis.back().M + beta * (analysis.back().S / m_N) * analysis.back().M - gamma * analysis.back().M);
+      support.S = round(analysis.back().S - beta * (analysis.back().S / m_N) * analysis.back().M - vel_vaccini * (analysis.back().V / eff_vaccino) *
+                  (1 - analysis.back().V / (eff_vaccino * (m_N - non_vaccinabl))));
+      support.R = round(analysis.back().R + gamma * analysis.back().M);
+      analysis.push_back(support);
     }
 
-    return result;
+  }
+
+
+
+  State get_state(int day) const{
+    return analysis[day];
+  }
+
+  void tabulate(std::ostream& os) {  //ancora problemi di formattazione della tabella: trovare dato più lungo : m_N abitanti
+    int const N= 52;                                              // meglio mettere la funzione dentro e utilizzare come membro un std::vector<State>
+    int const L= analysis.size();
+    std::string space = std::to_string(m_N);
+
+    os << '+' << std::string(N, '-') << "+\n";
+    os << "| DAYS | MALATI | RIMOSSI | VACCINATI | SUSCETTIBILI |\n";
+    for (int r = 0; r < L; ++r) {
+      os << "|     " << r+1 << "    |    " << analysis[r].M << "    |    " << analysis[r].R << "    |    " << analysis[r].V << "    |    " << analysis[r].S << "    |\n";
+    } //r+1 così inizia da 1 e finisce a L il processo
+    os << '+' << std::string(N, '-') << "+\n";
   }
 
   
@@ -58,17 +75,7 @@ class Infection {
 
 };
 
-inline void tabulate(std::ostream& os, std::vector<State> inf) {  //ancora problemi di formattazione della tabella: trovare dato più lungo : m_N abitanti
-    int const N= 52;                                              // meglio mettere la funzione dentro e utilizzare come membro un std::vector<State>
-    int const L= inf.size();
-    
-    os << '+' << std::string(N, '-') << "+\n";
-    os << "| DAYS | MALATI | RIMOSSI | VACCINATI | SUSCETTIBILI |\n";
-    for (int r = 0; r < L; ++r) {
-      os << "|     " << r+1 << "    |    " << inf[r].M << "    |    " << inf[r].R << "    |    " << inf[r].V << "    |    " << inf[r].S << "    |\n";
-    }
-    os << '+' << std::string(N, '-') << "+\n";
-  }
+
 
 
 #endif
