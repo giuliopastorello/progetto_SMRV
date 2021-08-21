@@ -1,0 +1,308 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10962,        298]
+NotebookOptionsPosition[     10580,        284]
+NotebookOutlinePosition[     10915,        299]
+CellTagsIndexPosition[     10872,        296]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"maxT", "=", "150"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"seqn", "[", "\[Alpha]_", "]"}], ":=", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"s", "'"}], "[", "t", "]"}], "\[Equal]", 
+     RowBox[{
+      RowBox[{"-", "\[Alpha]"}], " ", 
+      RowBox[{"s", "[", "t", "]"}], " ", 
+      RowBox[{"i", "[", "t", "]"}]}]}], ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ieqn", "[", 
+    RowBox[{"\[Alpha]_", ",", "\[Beta]_"}], "]"}], ":=", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"i", "'"}], "[", "t", "]"}], "\[Equal]", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"\[Alpha]", " ", 
+         RowBox[{"s", "[", "t", "]"}]}], "-", "\[Beta]"}], ")"}], " ", 
+      RowBox[{"i", "[", "t", "]"}]}]}], ")"}]}], ";"}]}], "Input",ExpressionUU\
+ID->"962ca577-4917-45e8-98a2-1f58080e6f88"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "soln", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"immune", "=", 
+        RowBox[{"Clip", "[", 
+         RowBox[{"immune", ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0.9"}], "}"}]}], "]"}]}], ";", 
+       RowBox[{"hint", "=", 
+        RowBox[{"Clip", "[", 
+         RowBox[{"hint", ",", 
+          RowBox[{"{", 
+           RowBox[{"1", ",", "maxT"}], "}"}]}], "]"}]}], ";", 
+       RowBox[{"vint", "=", 
+        RowBox[{"Clip", "[", 
+         RowBox[{"vint", ",", 
+          RowBox[{"{", 
+           RowBox[{"0.05", ",", "1"}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"hpos", "=", 
+        RowBox[{"Clip", "[", 
+         RowBox[{"hpos", ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", 
+            RowBox[{"maxT", "-", "hint"}]}], "}"}]}], "]"}]}], ";", 
+       RowBox[{"vpos", "=", 
+        RowBox[{"Clip", "[", 
+         RowBox[{"vpos", ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", 
+            RowBox[{"1", "-", "vint"}]}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"immune", "+", "infect"}], ")"}], ">", "1.0"}], ",", 
+         RowBox[{"infect", "=", 
+          RowBox[{"1.0", "-", "immune"}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"soln", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NDSolve", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"seqn", "[", 
+               RowBox[{"#", "*", "\[Gamma]"}], "]"}], ",", 
+              RowBox[{"ieqn", "[", 
+               RowBox[{
+                RowBox[{"#", "*", "\[Gamma]"}], ",", "#"}], "]"}], ",", 
+              RowBox[{
+               RowBox[{"s", "[", "0", "]"}], "\[Equal]", 
+               RowBox[{"1.0", "-", "immune", "-", "infect"}]}], ",", 
+              RowBox[{
+               RowBox[{"i", "[", "0", "]"}], "\[Equal]", "infect"}]}], "}"}], 
+            ",", 
+            RowBox[{"{", 
+             RowBox[{"s", ",", "i"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"t", ",", "0", ",", "maxT"}], "}"}]}], "]"}], "&"}], "[", 
+         RowBox[{"1", "/", "Duration"}], "]"}]}], ";", " ", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{"\[Beta]", "=", 
+          RowBox[{"1", "/", "Duration"}]}], ";", " ", 
+         RowBox[{"\[Alpha]", "=", 
+          RowBox[{
+           RowBox[{"\[Beta]", "*", "\[Gamma]"}], "=", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "/", "Duration"}], ")"}], "*", "\[Gamma]"}]}]}]}], 
+        " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"Plot", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"s", "[", "t", "]"}], "/.", 
+            RowBox[{"soln", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "1"}], "]"}], "]"}]}], ",", 
+           RowBox[{
+            RowBox[{"i", "[", "t", "]"}], "/.", 
+            RowBox[{"soln", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", "2"}], "]"}], "]"}]}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "hpos", ",", 
+           RowBox[{"hpos", "+", "hint"}]}], "}"}], "\[IndentingNewLine]", ",", 
+         RowBox[{"AxesOrigin", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"hpos", ",", "vpos"}], "}"}]}], ",", 
+         RowBox[{"PlotRange", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"hpos", ",", 
+              RowBox[{"hpos", "+", "hint"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"vpos", ",", 
+              RowBox[{"vpos", "+", "vint"}]}], "}"}]}], "}"}]}], ",", 
+         RowBox[{"PlotStyle", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Lighter", "[", "Blue", "]"}], ",", 
+              RowBox[{"Thickness", "[", "0.007", "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Lighter", "[", "Red", "]"}], ",", 
+              RowBox[{"Thickness", "[", "0.007", "]"}]}], "}"}]}], "}"}]}], 
+         ",", 
+         RowBox[{"AspectRatio", "\[Rule]", "Full"}], ",", " ", 
+         RowBox[{"ImageSize", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"350", ",", "300"}], "}"}]}], ",", 
+         RowBox[{"ImagePadding", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"40", ",", "10"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"40", ",", "10"}], "}"}]}], "}"}]}], ",", 
+         RowBox[{"FrameLabel", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<time (days)\>\"", ",", "\"\<proportion of population\>\""}], 
+           "}"}]}], ",", 
+         RowBox[{"Frame", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"True", ",", "False"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"True", ",", "False"}], "}"}]}], "}"}]}]}], 
+        "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{"manipulation", " ", "controls"}], " ", "*)"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"Style", "[", 
+     RowBox[{"\"\<disease information\>\"", ",", "Bold"}], "]"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Gamma]", ",", "5", ",", "\"\<contact number\>\""}], "}"}], 
+      ",", "0", ",", "20", ",", "0.05", ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}], ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Duration", ",", "10", ",", "\"\<duration of infection\>\""}], 
+       "}"}], ",", "0.5", ",", "20", ",", "0.5", ",", " ", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}], ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+    "\[IndentingNewLine]", ",", "Delimiter", "\[IndentingNewLine]", ",", 
+    RowBox[{"Style", "[", 
+     RowBox[{"\"\<population information\>\"", ",", "Bold"}], "]"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"immune", ",", "0", ",", "\"\<initially immune\>\""}], "}"}], 
+      ",", "0", ",", "0.9", ",", "0.01", ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}], ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"infect", ",", "0.01", ",", "\"\<initially infected\>\""}], 
+       "}"}], ",", "0", ",", 
+      RowBox[{"1", "-", "immune"}], ",", "0.01", ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}], ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], 
+    "\[IndentingNewLine]", ",", "Delimiter", "\[IndentingNewLine]", ",", 
+    RowBox[{"Style", "[", 
+     RowBox[{"\"\<time scale\>\"", ",", "Bold"}], "]"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"hint", ",", "maxT", ",", "\"\<interval\>\""}], "}"}], ",", 
+      "1", ",", "maxT", ",", "0.1", ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"hpos", ",", "0", ",", "\"\<window\>\""}], "}"}], ",", "0", 
+      ",", 
+      RowBox[{"maxT", "-", "hint"}], ",", "0.1", ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], 
+    "\[IndentingNewLine]", ",", "Delimiter", "\[IndentingNewLine]", ",", 
+    RowBox[{"Style", "[", 
+     RowBox[{"\"\<proportion scale\>\"", ",", "Bold"}], "]"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"vint", ",", "1", ",", "\"\<interval\>\""}], "}"}], ",", 
+      "0.05", ",", "1", ",", "0.01", ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"vpos", ",", "0", ",", "\"\<window\>\""}], "}"}], ",", "0", 
+      ",", 
+      RowBox[{"1", "-", "vint"}], ",", "0.01", ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], 
+    "\[IndentingNewLine]", ",", 
+    RowBox[{"ControlPlacement", "\[Rule]", "Left"}], ",", 
+    RowBox[{"SaveDefinitions", "\[Rule]", "True"}], ",", 
+    RowBox[{"TrackedSymbols", "\[Rule]", "Manipulate"}], ",", 
+    RowBox[{"AutorunSequencing", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "3", ",", "4", ",", "5", ",", "7"}], 
+      "}"}]}]}], "]"}], " "}]], "Input",
+ CellChangeTimes->{{3.829137939293303*^9, 
+  3.8291379395709963`*^9}},ExpressionUUID->"6d8e42d0-d28a-4043-b961-\
+a3ca1eafd000"]
+},
+WindowSize->{808, 747},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 918, 28, 73, "Input",ExpressionUUID->"962ca577-4917-45e8-98a2-1f58080e6f88"],
+Cell[1479, 50, 9097, 232, 829, "Input",ExpressionUUID->"6d8e42d0-d28a-4043-b961-a3ca1eafd000"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
