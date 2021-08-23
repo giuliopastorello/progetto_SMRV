@@ -31,6 +31,7 @@ class World
         assert(index >= 0 && index < static_cast<int>(m_grid.size()));
         return m_grid[index];
     }
+    
  
 };
 
