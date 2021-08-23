@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     92157,       1855]
-NotebookOptionsPosition[     91502,       1835]
-NotebookOutlinePosition[     91838,       1850]
-CellTagsIndexPosition[     91795,       1847]
+NotebookDataLength[     90934,       1819]
+NotebookOptionsPosition[     90313,       1801]
+NotebookOutlinePosition[     90649,       1816]
+CellTagsIndexPosition[     90606,       1813]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -148,7 +148,7 @@ ju3WF0KOb55y2GFqg/b6JhW8Sx3InSV9YwokkBfvVEOC4PdC6Yp/upl0QRdB
 +Su5Fy+Rnrg5OdDzaMyDFUOsIliwKDRYSEtqBUbIdspPCOw9+yRgjmLvHFY8
 XFEOcmUXME1RdguTG1maV/zheNPBf7lUDgw=
   "],
- CellLabel->"In[23]:=",ExpressionUUID->"20b6157e-7b32-436d-b9bc-05c30d3a9f0c"],
+ CellLabel->"In[1]:=",ExpressionUUID->"20b6157e-7b32-436d-b9bc-05c30d3a9f0c"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -171,9 +171,8 @@ Cell[BoxData[
                   None, Evaluator -> Automatic, Method -> "Preemptive"], 
                  Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}]], 
+                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -205,7 +204,7 @@ b00zQYPekiY/UmdAKZXLjwpNM0FVhiGniLpnQPFNo+W5TDNBh/kLwZgraEAj
 KXweb0wzQUW62AcqlWhAeAcKSTNMM0E+GeT4//9oQMK3yfn+SzNBkTKbfQ==
 
                     "]]}, 
-                    Annotation[#, "Charting`Private`Tag$25071#1"]& ]}}, {}}, {
+                    Annotation[#, "Charting`Private`Tag$2453#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 1.2646389757342194`*^6}, 
                   FrameTicks -> {{{}, {}}, {{}, {}}}, 
@@ -228,9 +227,8 @@ KXweb0wzQUW62AcqlWhAeAcKSTNMM0E+GeT4//9oQMK3yfn+SzNBkTKbfQ==
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}], 
+                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -294,9 +292,8 @@ KXweb0wzQUW62AcqlWhAeAcKSTNMM0E+GeT4//9oQMK3yfn+SzNBkTKbfQ==
                   None, Evaluator -> Automatic, Method -> "Preemptive"], 
                  Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}]], 
+                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -328,7 +325,7 @@ b00zQYPekiY/UmdAKZXLjwpNM0FVhiGniLpnQPFNo+W5TDNBh/kLwZgraEAj
 KXweb0wzQUW62AcqlWhAeAcKSTNMM0E+GeT4//9oQMK3yfn+SzNBkTKbfQ==
 
                     "]]}, 
-                    Annotation[#, "Charting`Private`Tag$25071#1"]& ]}}, {}}, {
+                    Annotation[#, "Charting`Private`Tag$2453#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 1.2646389757342194`*^6}, 
                   FrameTicks -> {{{}, {}}, {{}, {}}}, 
@@ -351,9 +348,8 @@ KXweb0wzQUW62AcqlWhAeAcKSTNMM0E+GeT4//9oQMK3yfn+SzNBkTKbfQ==
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}], 
+                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -503,9 +499,8 @@ Dxfy39hzVFLTEP8FO4qgdA==
                   None, Evaluator -> Automatic, Method -> "Preemptive"], 
                  Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}]], 
+                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -536,8 +531,7 @@ EHgqRIhekulf1E5A77s/51y7LsDU77plDTcBrGzpMGtZCHfBz/eyniYgqa2b
 WGoiQNHjq4c8ghIxRtCcV2fzEVJs3nixPxG2fRZKsQEPF/56f+SaLRs6A6+l
 b6MKQO3/Udumkg3xCO/Gmvo8KKRnm1tbbAyVj1bQbuXiX+eTt44=
                     "]]},
-                     Annotation[#, 
-                    "Charting`Private`Tag$25142#1"]& ]}}, {}}, {
+                     Annotation[#, "Charting`Private`Tag$2593#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 0}, FrameTicks -> {{{}, {}}, {{}, {}}}, 
                   GridLines -> {None, None}, DisplayFunction -> Identity, 
@@ -559,9 +553,8 @@ b6MKQO3/Udumkg3xCO/Gmvo8KKRnm1tbbAyVj1bQbuXiX+eTt44=
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}], 
+                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -624,9 +617,8 @@ b6MKQO3/Udumkg3xCO/Gmvo8KKRnm1tbbAyVj1bQbuXiX+eTt44=
                   None, Evaluator -> Automatic, Method -> "Preemptive"], 
                  Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}]], 
+                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -657,8 +649,7 @@ EHgqRIhekulf1E5A77s/51y7LsDU77plDTcBrGzpMGtZCHfBz/eyniYgqa2b
 WGoiQNHjq4c8ghIxRtCcV2fzEVJs3nixPxG2fRZKsQEPF/56f+SaLRs6A6+l
 b6MKQO3/Udumkg3xCO/Gmvo8KKRnm1tbbAyVj1bQbuXiX+eTt44=
                     "]]},
-                     Annotation[#, 
-                    "Charting`Private`Tag$25142#1"]& ]}}, {}}, {
+                     Annotation[#, "Charting`Private`Tag$2593#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 0}, FrameTicks -> {{{}, {}}, {{}, {}}}, 
                   GridLines -> {None, None}, DisplayFunction -> Identity, 
@@ -680,9 +671,8 @@ b6MKQO3/Udumkg3xCO/Gmvo8KKRnm1tbbAyVj1bQbuXiX+eTt44=
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}], 
+                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -832,9 +822,8 @@ Z9FM9VxVhDzP2Mf0RMPDzHaTru8qKHLlcKBt8w2IqHV/P1GsjP4DEr+cmA==
                   None, Evaluator -> Automatic, Method -> "Preemptive"], 
                  Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}]], 
+                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -866,7 +855,7 @@ ycQWQYPekiY/UmdAoSRPRCLGFkFVhiGniLpnQAdsyrJKxxZBh/kLwZgraEC4
 ywPRcsgWQUW62AcqlWhAJkOabXHJFkE+GeT4//9oQAjRr0dfyhZBJpyXlw==
 
                     "]]}, 
-                    Annotation[#, "Charting`Private`Tag$25200#1"]& ]}}, {}}, {
+                    Annotation[#, "Charting`Private`Tag$2652#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 320000.00167064427`}, 
                   FrameTicks -> {{{}, {}}, {{}, {}}}, 
@@ -889,9 +878,8 @@ ywPRcsgWQUW62AcqlWhAJkOabXHJFkE+GeT4//9oQAjRr0dfyhZBJpyXlw==
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}], 
+                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -955,9 +943,8 @@ ywPRcsgWQUW62AcqlWhAJkOabXHJFkE+GeT4//9oQAjRr0dfyhZBJpyXlw==
                   None, Evaluator -> Automatic, Method -> "Preemptive"], 
                  Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}]], 
+                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -989,7 +976,7 @@ ycQWQYPekiY/UmdAoSRPRCLGFkFVhiGniLpnQAdsyrJKxxZBh/kLwZgraEC4
 ywPRcsgWQUW62AcqlWhAJkOabXHJFkE+GeT4//9oQAjRr0dfyhZBJpyXlw==
 
                     "]]}, 
-                    Annotation[#, "Charting`Private`Tag$25200#1"]& ]}}, {}}, {
+                    Annotation[#, "Charting`Private`Tag$2652#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 320000.00167064427`}, 
                   FrameTicks -> {{{}, {}}, {{}, {}}}, 
@@ -1012,9 +999,8 @@ ywPRcsgWQUW62AcqlWhAJkOabXHJFkE+GeT4//9oQAjRr0dfyhZBJpyXlw==
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}], 
+                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -1164,9 +1150,8 @@ VZBvDfHzu/k6Nwnuba8qcKq3gqb+RuHvtwhGtpY9Hl5uCWaWtbcNGwj2bZ4Z
                   None, Evaluator -> Automatic, Method -> "Preemptive"], 
                  Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}]], 
+                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -1197,8 +1182,7 @@ zquNqaBhlrlXay2aV5oq9NNArK6ZuaU1jTQfaM1JA6+moqYNrZnyZ78VqNNg
 YEhw266KYNnjent/Xjr8qLIVB2nNr9jfo7iSDv6Hqdsirc9tvHPtK5cMELHH
 +vO1Droyo+/ckAH3z3poKrRmWT5Zf/MmA+arL0Q0aP0fvY6cRA==
                     "]]},
-                     Annotation[#, 
-                    "Charting`Private`Tag$25257#1"]& ]}}, {}}, {
+                     Annotation[#, "Charting`Private`Tag$2710#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 600437.1018299748}, 
                   FrameTicks -> {{{}, {}}, {{}, {}}}, 
@@ -1221,9 +1205,8 @@ YEhw266KYNnjent/Xjr8qLIVB2nNr9jfo7iSDv6Hqdsirc9tvHPtK5cMELHH
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}], 
+                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -1287,9 +1270,8 @@ YEhw266KYNnjent/Xjr8qLIVB2nNr9jfo7iSDv6Hqdsirc9tvHPtK5cMELHH
                   None, Evaluator -> Automatic, Method -> "Preemptive"], 
                  Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}]], 
+                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -1320,8 +1302,7 @@ zquNqaBhlrlXay2aV5oq9NNArK6ZuaU1jTQfaM1JA6+moqYNrZnyZ78VqNNg
 YEhw266KYNnjent/Xjr8qLIVB2nNr9jfo7iSDv6Hqdsirc9tvHPtK5cMELHH
 +vO1Droyo+/ckAH3z3poKrRmWT5Zf/MmA+arL0Q0aP0fvY6cRA==
                     "]]},
-                     Annotation[#, 
-                    "Charting`Private`Tag$25257#1"]& ]}}, {}}, {
+                     Annotation[#, "Charting`Private`Tag$2710#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 600437.1018299748}, 
                   FrameTicks -> {{{}, {}}, {{}, {}}}, 
@@ -1344,9 +1325,8 @@ YEhw266KYNnjent/Xjr8qLIVB2nNr9jfo7iSDv6Hqdsirc9tvHPtK5cMELHH
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 
-                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
-                    Magnification])}], 
+                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -1480,11 +1460,9 @@ JakDhdPmmcyzW9cVKLVRgcGLt2yLeJ4+UMoRklCE/wA28XVs
       SelectWithContents->True,
       Selectable->False]}]}], "}"}], "}"}]], "Output",
  CellChangeTimes->{3.8293657225115223`*^9, 3.829365778108585*^9, 
-  3.829365837145851*^9},
- CellLabel->"Out[26]=",ExpressionUUID->"5a2dcefa-73d2-4fe3-a737-edca34e5f4d9"]
+  3.829365837145851*^9, 3.838686648814808*^9, 3.838689210014209*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"6ecfa9d6-7f30-48e2-ad9e-9e79a0d8b435"]
 }, Open  ]],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"\[IndentingNewLine]", 
@@ -1718,7 +1696,7 @@ Cell[BoxData[
       1, 0.01}, {{
        Hold[$CellContext`\[Xi]$$], 0.839, "efficacia vaccino"}, 0, 1, 0.01}, {{
        Hold[$CellContext`\[Rho]$$], 320000, "inizialmente immuni"}, 0, 
-      4459000, 1}}, Typeset`size$$ = {909., {274., 279.}}, Typeset`update$$ = 
+      4459000, 1}}, Typeset`size$$ = {919., {277., 282.}}, Typeset`update$$ = 
     0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
     True, $CellContext`\[Beta]$2404$$ = 0, $CellContext`\[Gamma]$2405$$ = 
     0, $CellContext`\[Alpha]$2406$$ = 0, $CellContext`\[Eta]$2407$$ = 
@@ -1747,13 +1725,13 @@ Cell[BoxData[
       "Body" :> ($CellContext`sol = 
         NDSolve[{
           Derivative[
-            1][$CellContext`S][$CellContext`t] == (-$CellContext`\[Beta]$$) \
-($CellContext`S[$CellContext`t]/$CellContext`P) \
+            1][$CellContext`S][$CellContext`t] == ((-$CellContext`\[Beta]$$) \
+($CellContext`S[$CellContext`t]/$CellContext`P)) \
 $CellContext`M[$CellContext`t] - Derivative[
             1][$CellContext`V][$CellContext`t], 
            Derivative[
-            1][$CellContext`M][$CellContext`t] == $CellContext`\[Beta]$$ \
-($CellContext`S[$CellContext`t]/$CellContext`P) \
+            1][$CellContext`M][$CellContext`t] == ($CellContext`\[Beta]$$ \
+($CellContext`S[$CellContext`t]/$CellContext`P)) \
 $CellContext`M[$CellContext`t] - $CellContext`\[Gamma]$$ \
 $CellContext`M[$CellContext`t], 
            Derivative[
@@ -1761,8 +1739,8 @@ $CellContext`M[$CellContext`t],
 $CellContext`M[$CellContext`t], -
              Derivative[1][$CellContext`S][$CellContext`t] - Derivative[
             1][$CellContext`R][$CellContext`t] - Derivative[
-            1][$CellContext`M][$CellContext`t] == $CellContext`\[Mu]$$ \
-($CellContext`V[$CellContext`t]/$CellContext`\[Xi]$$) (
+            1][$CellContext`M][$CellContext`t] == ($CellContext`\[Mu]$$ \
+($CellContext`V[$CellContext`t]/$CellContext`\[Xi]$$)) (
              1 - $CellContext`V[$CellContext`t]/($CellContext`\[Xi]$$ \
 ($CellContext`P - $CellContext`\[Eta]$$))), $CellContext`R[
             0] == $CellContext`\[Rho]$$, $CellContext`M[
@@ -1817,24 +1795,12 @@ $CellContext`R, $CellContext`V}, {$CellContext`t, 0, $CellContext`maxT}];
     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
    Deployed->True,
    StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{
-  3.829195599309832*^9, 3.829195926253027*^9, {3.8291960801645937`*^9, 
-   3.829196107039097*^9}, 3.829196236313767*^9, 3.829196297075976*^9, 
-   3.829196358690424*^9, 3.8291963981311617`*^9, 3.829197507414006*^9, 
-   3.8291976006689463`*^9, 3.82919782180014*^9, 3.829197875737845*^9, 
-   3.82920293962706*^9, 3.829208407980996*^9, 3.829208750885499*^9, 
-   3.8292100126967897`*^9, 3.829210264335698*^9, 3.829210847915017*^9, 
-   3.829211208749617*^9, 3.829211296700472*^9, 3.8292114194162083`*^9, 
-   3.829212985441547*^9, 3.829213253372822*^9, 3.82921374211173*^9, 
-   3.829213779056592*^9, 3.829219502772428*^9, 3.8292195613469677`*^9, 
-   3.829222848031254*^9, {3.8293654824098463`*^9, 3.829365539288424*^9}, 
-   3.8293656506839933`*^9, 3.829479932532592*^9},
- CellLabel->"Out[2]=",ExpressionUUID->"a6363059-0a99-47c1-9461-c012c4e0c2e0"]
-}, Open  ]]
+  Manipulate`InterpretManipulate[1]]], "Input",
+ CellChangeTimes->{3.838686611825053*^9},
+ CellLabel->"In[2]:=",ExpressionUUID->"a6363059-0a99-47c1-9461-c012c4e0c2e0"]
 },
 WindowSize->{1440, 847},
-WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowMargins->{{0, Automatic}, {Automatic, 1}},
 FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
 StyleDefinitions->"Default.nb"
 ]
@@ -1850,13 +1816,11 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 4588, 128, 165, "Input",ExpressionUUID->"20b6157e-7b32-436d-b9bc-05c30d3a9f0c"],
-Cell[5171, 152, 69930, 1331, 116, "Output",ExpressionUUID->"5a2dcefa-73d2-4fe3-a737-edca34e5f4d9"]
+Cell[580, 22, 4587, 128, 165, "Input",ExpressionUUID->"20b6157e-7b32-436d-b9bc-05c30d3a9f0c"],
+Cell[5170, 152, 69513, 1311, 116, "Output",ExpressionUUID->"6ecfa9d6-7f30-48e2-ad9e-9e79a0d8b435"]
 }, Open  ]],
-Cell[CellGroupData[{
-Cell[75138, 1488, 9040, 208, 362, "Input",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
-Cell[84181, 1698, 7305, 134, 652, "Output",ExpressionUUID->"a6363059-0a99-47c1-9461-c012c4e0c2e0"]
-}, Open  ]]
+Cell[74698, 1466, 9040, 208, 362, "Input",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
+Cell[83741, 1676, 6568, 123, 648, "Input",ExpressionUUID->"a6363059-0a99-47c1-9461-c012c4e0c2e0"]
 }
 ]
 *)
