@@ -1,12 +1,13 @@
 #ifndef LIFE_WORLD_HPP
 #define LIFE_WORLD_HPP
 
+#include <algorithm>
 #include <cassert>
 #include <vector>
 
 namespace covid {
 
-    enum class Cell : char { S, I, R, V};
+    enum class Cell : char { S, I, R};
 
 class World 
 {
@@ -22,8 +23,8 @@ class World
     }
     Cell const& cell(int r, int c) const noexcept 
     {
-        auto const i = (r + m_side) % m_side; //row index
-        auto const j = (c + m_side) % m_side; //column index
+        auto const i = (r + m_side) % m_side; //column index
+        auto const j = (c + m_side) % m_side; //row index
         assert(i >= 0 && i < m_side && j >= 0 && j < m_side);
         auto const index = i * m_side + j;
         assert(index >= 0 && index < static_cast<int>(m_grid.size()));
@@ -43,12 +44,19 @@ class World
     {
         return l.m_grid == r.m_grid;
     }
+
+    int count_s() const {
+        return std::count(m_grid.begin(), m_grid.end(), Cell::S);
+    }
+
+    int count_i() const {
+        return std::count(m_grid.begin(), m_grid.end(), Cell::I);
+    }
+
+    int count_r() const {
+        return std::count(m_grid.begin(), m_grid.end(), Cell::R);
+    }
 };
 
-inline int neighbours_infected(World const& world, int r, int c)
-{
-    ;
 }
-}
-
 #endif
