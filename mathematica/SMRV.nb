@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     90934,       1819]
-NotebookOptionsPosition[     90313,       1801]
-NotebookOutlinePosition[     90649,       1816]
-CellTagsIndexPosition[     90606,       1813]
+NotebookDataLength[     93837,       1896]
+NotebookOptionsPosition[     92746,       1871]
+NotebookOutlinePosition[     93137,       1887]
+CellTagsIndexPosition[     93094,       1884]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -150,6 +150,18 @@ XFEOcmUXME1RdguTG1maV/zheNPBf7lUDgw=
   "],
  CellLabel->"In[1]:=",ExpressionUUID->"20b6157e-7b32-436d-b9bc-05c30d3a9f0c"],
 
+Cell[BoxData["0.04`"], "Output",
+ CellChangeTimes->{3.8293657225115223`*^9, 3.829365778108585*^9, 
+  3.829365837145851*^9, 3.838686648814808*^9, 3.838689210014209*^9, 
+  3.879921776063532*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"9ca352d6-0b8d-4e6d-9677-4c60b9056a49"],
+
+Cell[BoxData["0.05`"], "Output",
+ CellChangeTimes->{3.8293657225115223`*^9, 3.829365778108585*^9, 
+  3.829365837145851*^9, 3.838686648814808*^9, 3.838689210014209*^9, 
+  3.87992177606612*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"dadf17e5-e85d-45c8-af56-9850163641a3"],
+
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"{", 
@@ -161,18 +173,20 @@ Cell[BoxData[
         "SummaryHead"], "[", 
        DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = 
         "Ready"}, 
-        TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+        TemplateBox[{
+          PaneSelectorBox[{False -> GridBox[{{
                 PaneBox[
                  ButtonBox[
                   DynamicBox[
                    FEPrivate`FrontEndResource[
-                   "FEBitmaps", "SquarePlusIconMedium"]], 
+                   "FEBitmaps", "SummaryBoxOpener"]], 
                   ButtonFunction :> (Typeset`open$$ = True), Appearance -> 
-                  None, Evaluator -> Automatic, Method -> "Preemptive"], 
-                 Alignment -> {Center, Center}, ImageSize -> 
+                  None, BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}]], 
+                   Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -204,7 +218,7 @@ b00zQYPekiY/UmdAKZXLjwpNM0FVhiGniLpnQPFNo+W5TDNBh/kLwZgraEAj
 KXweb0wzQUW62AcqlWhAeAcKSTNMM0E+GeT4//9oQMK3yfn+SzNBkTKbfQ==
 
                     "]]}, 
-                    Annotation[#, "Charting`Private`Tag$2453#1"]& ]}}, {}}, {
+                    Annotation[#, "Charting`Private`Tag$10377#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 1.2646389757342194`*^6}, 
                   FrameTicks -> {{{}, {}}, {{}, {}}}, 
@@ -227,8 +241,9 @@ KXweb0wzQUW62AcqlWhAeAcKSTNMM0E+GeT4//9oQMK3yfn+SzNBkTKbfQ==
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}], 
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -279,7 +294,8 @@ KXweb0wzQUW62AcqlWhAeAcKSTNMM0E+GeT4//9oQMK3yfn+SzNBkTKbfQ==
                  BaseStyle -> {
                   ShowStringCharacters -> False, NumberMarks -> False, 
                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
-              GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+              AutoDelete -> False, 
               GridBoxItemSize -> {
                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
               BaselinePosition -> {1, 1}], True -> GridBox[{{
@@ -287,13 +303,14 @@ KXweb0wzQUW62AcqlWhAeAcKSTNMM0E+GeT4//9oQMK3yfn+SzNBkTKbfQ==
                  ButtonBox[
                   DynamicBox[
                    FEPrivate`FrontEndResource[
-                   "FEBitmaps", "SquareMinusIconMedium"]], 
+                   "FEBitmaps", "SummaryBoxCloser"]], 
                   ButtonFunction :> (Typeset`open$$ = False), Appearance -> 
-                  None, Evaluator -> Automatic, Method -> "Preemptive"], 
-                 Alignment -> {Center, Center}, ImageSize -> 
+                  None, BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}]], 
+                   Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -325,7 +342,7 @@ b00zQYPekiY/UmdAKZXLjwpNM0FVhiGniLpnQPFNo+W5TDNBh/kLwZgraEAj
 KXweb0wzQUW62AcqlWhAeAcKSTNMM0E+GeT4//9oQMK3yfn+SzNBkTKbfQ==
 
                     "]]}, 
-                    Annotation[#, "Charting`Private`Tag$2453#1"]& ]}}, {}}, {
+                    Annotation[#, "Charting`Private`Tag$10377#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 1.2646389757342194`*^6}, 
                   FrameTicks -> {{{}, {}}, {{}, {}}}, 
@@ -348,8 +365,9 @@ KXweb0wzQUW62AcqlWhAeAcKSTNMM0E+GeT4//9oQMK3yfn+SzNBkTKbfQ==
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}], 
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -412,7 +430,8 @@ KXweb0wzQUW62AcqlWhAeAcKSTNMM0E+GeT4//9oQMK3yfn+SzNBkTKbfQ==
                  BaseStyle -> {
                   ShowStringCharacters -> False, NumberMarks -> False, 
                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
-              GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+              AutoDelete -> False, 
               GridBoxItemSize -> {
                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
               BaselinePosition -> {1, 1}]}, 
@@ -489,18 +508,20 @@ Dxfy39hzVFLTEP8FO4qgdA==
         "SummaryHead"], "[", 
        DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = 
         "Ready"}, 
-        TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+        TemplateBox[{
+          PaneSelectorBox[{False -> GridBox[{{
                 PaneBox[
                  ButtonBox[
                   DynamicBox[
                    FEPrivate`FrontEndResource[
-                   "FEBitmaps", "SquarePlusIconMedium"]], 
+                   "FEBitmaps", "SummaryBoxOpener"]], 
                   ButtonFunction :> (Typeset`open$$ = True), Appearance -> 
-                  None, Evaluator -> Automatic, Method -> "Preemptive"], 
-                 Alignment -> {Center, Center}, ImageSize -> 
+                  None, BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}]], 
+                   Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -531,7 +552,8 @@ EHgqRIhekulf1E5A77s/51y7LsDU77plDTcBrGzpMGtZCHfBz/eyniYgqa2b
 WGoiQNHjq4c8ghIxRtCcV2fzEVJs3nixPxG2fRZKsQEPF/56f+SaLRs6A6+l
 b6MKQO3/Udumkg3xCO/Gmvo8KKRnm1tbbAyVj1bQbuXiX+eTt44=
                     "]]},
-                     Annotation[#, "Charting`Private`Tag$2593#1"]& ]}}, {}}, {
+                     Annotation[#, 
+                    "Charting`Private`Tag$10521#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 0}, FrameTicks -> {{{}, {}}, {{}, {}}}, 
                   GridLines -> {None, None}, DisplayFunction -> Identity, 
@@ -553,8 +575,9 @@ b6MKQO3/Udumkg3xCO/Gmvo8KKRnm1tbbAyVj1bQbuXiX+eTt44=
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}], 
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -604,7 +627,8 @@ b6MKQO3/Udumkg3xCO/Gmvo8KKRnm1tbbAyVj1bQbuXiX+eTt44=
                  BaseStyle -> {
                   ShowStringCharacters -> False, NumberMarks -> False, 
                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
-              GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+              AutoDelete -> False, 
               GridBoxItemSize -> {
                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
               BaselinePosition -> {1, 1}], True -> GridBox[{{
@@ -612,13 +636,14 @@ b6MKQO3/Udumkg3xCO/Gmvo8KKRnm1tbbAyVj1bQbuXiX+eTt44=
                  ButtonBox[
                   DynamicBox[
                    FEPrivate`FrontEndResource[
-                   "FEBitmaps", "SquareMinusIconMedium"]], 
+                   "FEBitmaps", "SummaryBoxCloser"]], 
                   ButtonFunction :> (Typeset`open$$ = False), Appearance -> 
-                  None, Evaluator -> Automatic, Method -> "Preemptive"], 
-                 Alignment -> {Center, Center}, ImageSize -> 
+                  None, BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}]], 
+                   Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -649,7 +674,8 @@ EHgqRIhekulf1E5A77s/51y7LsDU77plDTcBrGzpMGtZCHfBz/eyniYgqa2b
 WGoiQNHjq4c8ghIxRtCcV2fzEVJs3nixPxG2fRZKsQEPF/56f+SaLRs6A6+l
 b6MKQO3/Udumkg3xCO/Gmvo8KKRnm1tbbAyVj1bQbuXiX+eTt44=
                     "]]},
-                     Annotation[#, "Charting`Private`Tag$2593#1"]& ]}}, {}}, {
+                     Annotation[#, 
+                    "Charting`Private`Tag$10521#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 0}, FrameTicks -> {{{}, {}}, {{}, {}}}, 
                   GridLines -> {None, None}, DisplayFunction -> Identity, 
@@ -671,8 +697,9 @@ b6MKQO3/Udumkg3xCO/Gmvo8KKRnm1tbbAyVj1bQbuXiX+eTt44=
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}], 
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -734,7 +761,8 @@ b6MKQO3/Udumkg3xCO/Gmvo8KKRnm1tbbAyVj1bQbuXiX+eTt44=
                  BaseStyle -> {
                   ShowStringCharacters -> False, NumberMarks -> False, 
                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
-              GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+              AutoDelete -> False, 
               GridBoxItemSize -> {
                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
               BaselinePosition -> {1, 1}]}, 
@@ -812,18 +840,20 @@ Z9FM9VxVhDzP2Mf0RMPDzHaTru8qKHLlcKBt8w2IqHV/P1GsjP4DEr+cmA==
         "SummaryHead"], "[", 
        DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = 
         "Ready"}, 
-        TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+        TemplateBox[{
+          PaneSelectorBox[{False -> GridBox[{{
                 PaneBox[
                  ButtonBox[
                   DynamicBox[
                    FEPrivate`FrontEndResource[
-                   "FEBitmaps", "SquarePlusIconMedium"]], 
+                   "FEBitmaps", "SummaryBoxOpener"]], 
                   ButtonFunction :> (Typeset`open$$ = True), Appearance -> 
-                  None, Evaluator -> Automatic, Method -> "Preemptive"], 
-                 Alignment -> {Center, Center}, ImageSize -> 
+                  None, BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}]], 
+                   Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -855,7 +885,7 @@ ycQWQYPekiY/UmdAoSRPRCLGFkFVhiGniLpnQAdsyrJKxxZBh/kLwZgraEC4
 ywPRcsgWQUW62AcqlWhAJkOabXHJFkE+GeT4//9oQAjRr0dfyhZBJpyXlw==
 
                     "]]}, 
-                    Annotation[#, "Charting`Private`Tag$2652#1"]& ]}}, {}}, {
+                    Annotation[#, "Charting`Private`Tag$10582#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 320000.00167064427`}, 
                   FrameTicks -> {{{}, {}}, {{}, {}}}, 
@@ -878,8 +908,9 @@ ywPRcsgWQUW62AcqlWhAJkOabXHJFkE+GeT4//9oQAjRr0dfyhZBJpyXlw==
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}], 
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -930,7 +961,8 @@ ywPRcsgWQUW62AcqlWhAJkOabXHJFkE+GeT4//9oQAjRr0dfyhZBJpyXlw==
                  BaseStyle -> {
                   ShowStringCharacters -> False, NumberMarks -> False, 
                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
-              GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+              AutoDelete -> False, 
               GridBoxItemSize -> {
                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
               BaselinePosition -> {1, 1}], True -> GridBox[{{
@@ -938,13 +970,14 @@ ywPRcsgWQUW62AcqlWhAJkOabXHJFkE+GeT4//9oQAjRr0dfyhZBJpyXlw==
                  ButtonBox[
                   DynamicBox[
                    FEPrivate`FrontEndResource[
-                   "FEBitmaps", "SquareMinusIconMedium"]], 
+                   "FEBitmaps", "SummaryBoxCloser"]], 
                   ButtonFunction :> (Typeset`open$$ = False), Appearance -> 
-                  None, Evaluator -> Automatic, Method -> "Preemptive"], 
-                 Alignment -> {Center, Center}, ImageSize -> 
+                  None, BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}]], 
+                   Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -976,7 +1009,7 @@ ycQWQYPekiY/UmdAoSRPRCLGFkFVhiGniLpnQAdsyrJKxxZBh/kLwZgraEC4
 ywPRcsgWQUW62AcqlWhAJkOabXHJFkE+GeT4//9oQAjRr0dfyhZBJpyXlw==
 
                     "]]}, 
-                    Annotation[#, "Charting`Private`Tag$2652#1"]& ]}}, {}}, {
+                    Annotation[#, "Charting`Private`Tag$10582#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 320000.00167064427`}, 
                   FrameTicks -> {{{}, {}}, {{}, {}}}, 
@@ -999,8 +1032,9 @@ ywPRcsgWQUW62AcqlWhAJkOabXHJFkE+GeT4//9oQAjRr0dfyhZBJpyXlw==
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}], 
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -1063,7 +1097,8 @@ ywPRcsgWQUW62AcqlWhAJkOabXHJFkE+GeT4//9oQAjRr0dfyhZBJpyXlw==
                  BaseStyle -> {
                   ShowStringCharacters -> False, NumberMarks -> False, 
                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
-              GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+              AutoDelete -> False, 
               GridBoxItemSize -> {
                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
               BaselinePosition -> {1, 1}]}, 
@@ -1140,18 +1175,20 @@ VZBvDfHzu/k6Nwnuba8qcKq3gqb+RuHvtwhGtpY9Hl5uCWaWtbcNGwj2bZ4Z
         "SummaryHead"], "[", 
        DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = 
         "Ready"}, 
-        TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+        TemplateBox[{
+          PaneSelectorBox[{False -> GridBox[{{
                 PaneBox[
                  ButtonBox[
                   DynamicBox[
                    FEPrivate`FrontEndResource[
-                   "FEBitmaps", "SquarePlusIconMedium"]], 
+                   "FEBitmaps", "SummaryBoxOpener"]], 
                   ButtonFunction :> (Typeset`open$$ = True), Appearance -> 
-                  None, Evaluator -> Automatic, Method -> "Preemptive"], 
-                 Alignment -> {Center, Center}, ImageSize -> 
+                  None, BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}]], 
+                   Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -1182,7 +1219,8 @@ zquNqaBhlrlXay2aV5oq9NNArK6ZuaU1jTQfaM1JA6+moqYNrZnyZ78VqNNg
 YEhw266KYNnjent/Xjr8qLIVB2nNr9jfo7iSDv6Hqdsirc9tvHPtK5cMELHH
 +vO1Droyo+/ckAH3z3poKrRmWT5Zf/MmA+arL0Q0aP0fvY6cRA==
                     "]]},
-                     Annotation[#, "Charting`Private`Tag$2710#1"]& ]}}, {}}, {
+                     Annotation[#, 
+                    "Charting`Private`Tag$10639#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 600437.1018299748}, 
                   FrameTicks -> {{{}, {}}, {{}, {}}}, 
@@ -1205,8 +1243,9 @@ YEhw266KYNnjent/Xjr8qLIVB2nNr9jfo7iSDv6Hqdsirc9tvHPtK5cMELHH
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}], 
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -1257,7 +1296,8 @@ YEhw266KYNnjent/Xjr8qLIVB2nNr9jfo7iSDv6Hqdsirc9tvHPtK5cMELHH
                  BaseStyle -> {
                   ShowStringCharacters -> False, NumberMarks -> False, 
                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
-              GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+              AutoDelete -> False, 
               GridBoxItemSize -> {
                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
               BaselinePosition -> {1, 1}], True -> GridBox[{{
@@ -1265,13 +1305,14 @@ YEhw266KYNnjent/Xjr8qLIVB2nNr9jfo7iSDv6Hqdsirc9tvHPtK5cMELHH
                  ButtonBox[
                   DynamicBox[
                    FEPrivate`FrontEndResource[
-                   "FEBitmaps", "SquareMinusIconMedium"]], 
+                   "FEBitmaps", "SummaryBoxCloser"]], 
                   ButtonFunction :> (Typeset`open$$ = False), Appearance -> 
-                  None, Evaluator -> Automatic, Method -> "Preemptive"], 
-                 Alignment -> {Center, Center}, ImageSize -> 
+                  None, BaseStyle -> {}, Evaluator -> Automatic, Method -> 
+                  "Preemptive"], Alignment -> {Center, Center}, ImageSize -> 
                  Dynamic[{
-                   Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}]], 
+                   Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], 
                 GraphicsBox[{{{{}, {}, 
                     TagBox[{
                     Directive[
@@ -1302,7 +1343,8 @@ zquNqaBhlrlXay2aV5oq9NNArK6ZuaU1jTQfaM1JA6+moqYNrZnyZ78VqNNg
 YEhw266KYNnjent/Xjr8qLIVB2nNr9jfo7iSDv6Hqdsirc9tvHPtK5cMELHH
 +vO1Droyo+/ckAH3z3poKrRmWT5Zf/MmA+arL0Q0aP0fvY6cRA==
                     "]]},
-                     Annotation[#, "Charting`Private`Tag$2710#1"]& ]}}, {}}, {
+                     Annotation[#, 
+                    "Charting`Private`Tag$10639#1"]& ]}}, {}}, {
                  DisplayFunction -> Identity, Ticks -> {Automatic, Automatic},
                    AxesOrigin -> {0, 600437.1018299748}, 
                   FrameTicks -> {{{}, {}}, {{}, {}}}, 
@@ -1325,8 +1367,9 @@ YEhw266KYNnjent/Xjr8qLIVB2nNr9jfo7iSDv6Hqdsirc9tvHPtK5cMELHH
                   GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                   Dynamic[{
-                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}], 
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}], 
                   Method -> {
                    "DefaultBoundaryStyle" -> Automatic, 
                     "DefaultGraphicsInteraction" -> {
@@ -1389,7 +1432,8 @@ YEhw266KYNnjent/Xjr8qLIVB2nNr9jfo7iSDv6Hqdsirc9tvHPtK5cMELHH
                  BaseStyle -> {
                   ShowStringCharacters -> False, NumberMarks -> False, 
                    PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
-              GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+              GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+              AutoDelete -> False, 
               GridBoxItemSize -> {
                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
               BaselinePosition -> {1, 1}]}, 
@@ -1460,8 +1504,9 @@ JakDhdPmmcyzW9cVKLVRgcGLt2yLeJ4+UMoRklCE/wA28XVs
       SelectWithContents->True,
       Selectable->False]}]}], "}"}], "}"}]], "Output",
  CellChangeTimes->{3.8293657225115223`*^9, 3.829365778108585*^9, 
-  3.829365837145851*^9, 3.838686648814808*^9, 3.838689210014209*^9},
- CellLabel->"Out[4]=",ExpressionUUID->"6ecfa9d6-7f30-48e2-ad9e-9e79a0d8b435"]
+  3.829365837145851*^9, 3.838686648814808*^9, 3.838689210014209*^9, 
+  3.879921776473933*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"b270c8ec-7a65-4987-a9e1-5a70a854de85"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -1674,14 +1719,16 @@ Cell[BoxData[
    3.829365648521476*^9},
  CellLabel->"In[1]:=",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
  TagBox[
   StyleBox[
    DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
-    334818, $CellContext`\[Beta]$$ = 0.056, $CellContext`\[Gamma]$$ = 
-    0.045, $CellContext`\[Eta]$$ = 0, $CellContext`\[Mu]$$ = 
-    0.05, $CellContext`\[Nu]$$ = 600437, $CellContext`\[Xi]$$ = 
-    0.839, $CellContext`\[Rho]$$ = 320000, Typeset`show$$ = True, 
+    334818, $CellContext`\[Beta]$$ = 0.06, $CellContext`\[Gamma]$$ = 
+    0.045, $CellContext`\[Eta]$$ = 151764, $CellContext`\[Mu]$$ = 
+    0.05, $CellContext`\[Nu]$$ = 563220, $CellContext`\[Xi]$$ = 
+    0.839, $CellContext`\[Rho]$$ = 114161, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
@@ -1696,7 +1743,7 @@ Cell[BoxData[
       1, 0.01}, {{
        Hold[$CellContext`\[Xi]$$], 0.839, "efficacia vaccino"}, 0, 1, 0.01}, {{
        Hold[$CellContext`\[Rho]$$], 320000, "inizialmente immuni"}, 0, 
-      4459000, 1}}, Typeset`size$$ = {919., {277., 282.}}, Typeset`update$$ = 
+      4459000, 1}}, Typeset`size$$ = {912., {275., 279.}}, Typeset`update$$ = 
     0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
     True, $CellContext`\[Beta]$2404$$ = 0, $CellContext`\[Gamma]$2405$$ = 
     0, $CellContext`\[Alpha]$2406$$ = 0, $CellContext`\[Eta]$2407$$ = 
@@ -1797,12 +1844,36 @@ $CellContext`R, $CellContext`V}, {$CellContext`t, 0, $CellContext`maxT}];
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Input",
  CellChangeTimes->{3.838686611825053*^9},
- CellLabel->"In[2]:=",ExpressionUUID->"a6363059-0a99-47c1-9461-c012c4e0c2e0"]
+ CellLabel->"In[2]:=",ExpressionUUID->"a6363059-0a99-47c1-9461-c012c4e0c2e0"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "NDSolve", "ndnl", 
+   "\"Endpoint \\!\\(\\*RowBox[{\\\"maxT\\\"}]\\) in \\!\\(\\*RowBox[{\\\"{\\\
+\", RowBox[{\\\"t\\\", \\\",\\\", \\\"0.`\\\", \\\",\\\", \\\"maxT\\\"}], \
+\\\"}\\\"}]\\) is not a real number.\"", 2, 1, 1, 19853920321946295448, 
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.879921757677559*^9},
+ CellLabel->"",ExpressionUUID->"c41802b0-066e-4e73-9a44-68fa6d2c5353"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot", "plln", 
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"maxT\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"t\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"maxT\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\
+\"", 2, 1, 2, 19853920321946295448, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.879921757929351*^9},
+ CellLabel->"",ExpressionUUID->"a7619764-ae3a-4683-8ee1-f89662d75b35"]
+}, Open  ]]
 },
 WindowSize->{1440, 847},
 WindowMargins->{{0, Automatic}, {Automatic, 1}},
-FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
-StyleDefinitions->"Default.nb"
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e1669f4f-7d04-4958-8044-ec787807e8b9"
 ]
 (* End of Notebook Content *)
 
@@ -1816,11 +1887,17 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 4587, 128, 165, "Input",ExpressionUUID->"20b6157e-7b32-436d-b9bc-05c30d3a9f0c"],
-Cell[5170, 152, 69513, 1311, 116, "Output",ExpressionUUID->"6ecfa9d6-7f30-48e2-ad9e-9e79a0d8b435"]
+Cell[580, 22, 4587, 128, 166, "Input",ExpressionUUID->"20b6157e-7b32-436d-b9bc-05c30d3a9f0c"],
+Cell[5170, 152, 270, 4, 34, "Output",ExpressionUUID->"9ca352d6-0b8d-4e6d-9677-4c60b9056a49"],
+Cell[5443, 158, 269, 4, 34, "Output",ExpressionUUID->"dadf17e5-e85d-45c8-af56-9850163641a3"],
+Cell[5715, 164, 70454, 1344, 118, "Output",ExpressionUUID->"b270c8ec-7a65-4987-a9e1-5a70a854de85"]
 }, Open  ]],
-Cell[74698, 1466, 9040, 208, 362, "Input",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
-Cell[83741, 1676, 6568, 123, 648, "Input",ExpressionUUID->"a6363059-0a99-47c1-9461-c012c4e0c2e0"]
+Cell[76184, 1511, 9040, 208, 362, "Input",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
+Cell[CellGroupData[{
+Cell[85249, 1723, 6572, 123, 648, "Input",ExpressionUUID->"a6363059-0a99-47c1-9461-c012c4e0c2e0"],
+Cell[91824, 1848, 445, 9, 28, "Message",ExpressionUUID->"c41802b0-066e-4e73-9a44-68fa6d2c5353"],
+Cell[92272, 1859, 458, 9, 28, "Message",ExpressionUUID->"a7619764-ae3a-4683-8ee1-f89662d75b35"]
+}, Open  ]]
 }
 ]
 *)
