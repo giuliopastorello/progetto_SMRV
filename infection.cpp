@@ -11,12 +11,14 @@ double Infection::v() { return analysis.back().V; }
 void Infection::evolve() {
   double const beta = 0.056;
   double const gamma = 0.045;
-  int const non_vax = 118292;    // etdaa
+  int const non_vax = 118292;    // eta
   double const vel_vax = 0.05;   // mu
   double const eff_vax = 0.839;  // efficacia vaccino
   for (int i = 1; i < m_duration_analysis_indays; ++i) {
     if (s() + m() + r() + v() < m_N) {
       ++analysis.back().S;
+    } if (s() + m() + r() + v() > m_N) {
+      --analysis.back().S;
     }
 
     support.S = round(s() - beta * (s() / m_N) * m() -
