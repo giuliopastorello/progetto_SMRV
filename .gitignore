@@ -1,6 +1,6 @@
-#ignore .DS_Store
+#ignore all .DS_Store files
 *.DS_Store
-#ignore .out
-.out
-#ignore .vscode
+#ignore all .out files
+*.out
+#ignore .vscode folder
 .vscode/
