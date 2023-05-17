@@ -1,6 +1,3 @@
-#ignore all .DS_Store files
 *.DS_Store
-#ignore all a.out files
 a.out
-#ignore .vscode folder
 vscode/
