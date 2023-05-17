@@ -1,6 +1,6 @@
 #ignore .DS_Store
 *.DS_Store
 #ignore .out
-*a.out
+.out
 #ignore .vscode
-*.vscode
+.vscode
