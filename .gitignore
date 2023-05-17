@@ -3,4 +3,4 @@
 #ignore .out
 .out
 #ignore .vscode
-.vscode
+.vscode/
