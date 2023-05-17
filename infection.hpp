@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+//#include "gnuplot-iostream.h"
 
 struct State {
   int S;  // suscettibili
@@ -29,7 +30,8 @@ class Infection {
   double m();
   double r();
   double v();
-  void evolve();
+  void evolve(double beta, double gamma);
+  void RK4(double beta, double gamma);
 
   State support = analysis.back();
   State get_state(int day) const { return analysis[day]; };

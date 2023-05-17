@@ -2,43 +2,43 @@
 
 #include "infection.hpp"
 
-void Infection::RK4() {
+void Infection::RK4(double beta, double gamma) {
   int const h = 2;  // step size
-  double const beta = 0.056;
-  double const gamma = 0.045;
-  int const non_vax = 118292;    // eta
-  double const vel_vax = 0.05;   // mu
-  double const eff_vax = 0.839;  // efficacia vaccino
+  //double const beta = 0.056;
+  //double const gamma = 0.045;
+  int const eta = 118292;    // no vax
+  double const mu = 0.05;   // velocità vaccino
+  double const xi = 0.839;  // efficacia vaccino
   for (int i = 0; i < m_duration_analysis_indays; ++i) {
-    if (s() + m() + r() + v() < m_N) {
-      ++analysis.back().S;
-    }
-    if (s() + m() + r() + v() > m_N) {
-      --analysis.back().S;
-    }
+  //  if (s() + m() + r() + v() < m_N) {
+  //    ++analysis.back().S;
+  //  }
+  //  if (s() + m() + r() + v() > m_N) {
+  //    --analysis.back().S;
+  //  }
 
     double n1 =
-        vel_vax * (v() / eff_vax) * (1 - v() / (eff_vax * (m_N - non_vax)));
+        mu * (v() / xi) * (1 - v() / (xi * (m_N - eta)));
     double k1 = -beta / m_N * s() * m() - n1;
     double l1 = beta / m_N * s() * m() - gamma * m();
     double m1 = gamma * m();
 
-    double n2 = vel_vax * ((v() + n1 * h / 2) / eff_vax) *
-                (1 - ((v() + n1 * h / 2) / (eff_vax * (m_N - non_vax))));
+    double n2 = mu * ((v() + n1 * h / 2) / xi) *
+                (1 - ((v() + n1 * h / 2) / (xi * (m_N - eta))));
     double k2 = -beta / m_N * (s() + k1 * h / 2) * (m() + l1 * h / 2) - n2;
     double l2 = beta / m_N * (s() + k1 * h / 2) * (m() + l1 * h / 2) -
                 gamma * (m() + l1 * h / 2);
     double m2 = gamma * (m() + l1 * h / 2);
 
-    double n3 = vel_vax * ((v() + n2 * h / 2) / eff_vax) *
-                (1 - ((v() + n2 * h / 2) / (eff_vax * (m_N - non_vax))));
+    double n3 = mu * ((v() + n2 * h / 2) / xi) *
+                (1 - ((v() + n2 * h / 2) / (xi * (m_N - eta))));
     double k3 = -beta / m_N * (s() + k2 * h / 2) * (m() + l2 * h / 2) - n3;
     double l3 = beta / m_N * (s() + k2 * h / 2) * (m() + l2 * h / 2) -
                 gamma * (m() + l2 * h / 2);
     double m3 = gamma * (m() + l2 * h / 2);
 
-    double n4 = vel_vax * ((v() + n3 * h) / eff_vax) *
-                (1 - ((v() + n3 * h) / (eff_vax * (m_N - non_vax))));
+    double n4 = mu * ((v() + n3 * h) / xi) *
+                (1 - ((v() + n3 * h) / (xi * (m_N - eta))));
     double k4 = -beta / m_N * (s() + k3 * h) * (m() + l3 * h) - n4;
     double l4 =
         beta / m_N * (s() + k3 * h) * (m() + l3 * h) - gamma * (m() + l3 * h);

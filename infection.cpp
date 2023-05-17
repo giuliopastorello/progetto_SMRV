@@ -1,5 +1,8 @@
 #include "infection.hpp"
 
+#include <matplot/matplot.h>
+#include "include/termcolor.hpp"
+
 double Infection::s() { return analysis.back().S; }
 
 double Infection::m() { return analysis.back().M; }
@@ -8,9 +11,9 @@ double Infection::r() { return analysis.back().R; }
 
 double Infection::v() { return analysis.back().V; }
 
-void Infection::evolve() {
-  double const beta = 0.056;
-  double const gamma = 0.045;
+void Infection::evolve(double beta, double gamma) {
+  //double const beta = 0.056;
+  //double const gamma = 0.045;
   int const non_vax = 118292;    // eta
   double const vel_vax = 0.05;   // mu
   double const eff_vax = 0.839;  // efficacia vaccino
@@ -32,10 +35,10 @@ void Infection::evolve() {
 
     analysis.push_back(support);
 
-    if (support.S < 0 || support.M < 0 || support.R < 0 || support.V < 0) {
-      std::cout << "Errore" << '\n';
-      break;
-    }
+    //if (support.S < 0 || support.M < 0 || support.R < 0 || support.V < 0) {
+    //  std::cout << "Errore" << '\n';
+    //  break;
+    //}
   }
 }
 
@@ -50,9 +53,9 @@ void Infection::tabulate(
   os << '+' << std::string(N, '-') << "+\n";
   os << "| DAYS | MALATI | RIMOSSI | VACCINATI | SUSCETTIBILI |\n";
   for (int r = 0; r < L; ++r) {
-    os << "|     " << r + 1 << "    |    " << analysis[r].M << "    |    "
-       << analysis[r].R << "    |    " << analysis[r].V << "    |    "
-       << analysis[r].S << "    |\n";
+    os << "     " << r + 1 << "        " << analysis[r].M << "        "
+       << analysis[r].R << "        " << analysis[r].V << "        "
+       << analysis[r].S << "    \n";
 
   }  // r+1 così inizia da 1 e finisce a L il processo
   os << '+' << std::string(N, '-') << "+\n";
