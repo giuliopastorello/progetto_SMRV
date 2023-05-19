@@ -2,6 +2,7 @@
 
 #include "infection.hpp"
 
+namespace epidemic {
 void Infection::RK4(double beta, double gamma) {
   int const h = 2;  // step size
   //double const beta = 0.056;
@@ -56,4 +57,5 @@ void Infection::RK4(double beta, double gamma) {
       break;
     }
   }
+}
 }
