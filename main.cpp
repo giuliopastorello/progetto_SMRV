@@ -28,7 +28,6 @@ int main()
   int method;
   std::cout << "Numerical method (Euler -> press'0' / RK4 -> press '1'):" << '\t';
   std::cin >> method;
-  //std::vector<epidemic::State> states = Emilia_Romagna1.states();
   if (method == 0)
   {
     Emilia_Romagna1.evolve(beta, gamma);

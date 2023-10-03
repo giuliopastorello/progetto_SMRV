@@ -11,12 +11,11 @@ namespace epidemic
     void print(Infection const &simulation)
     {
         std::vector<State> states = simulation.states();
-        
+
         int N = states[0].S + states[0].M + states[0].R +
                 states[0].V;
         int const width = std::log10(N) + 4;
 
-        // clang-format off
         std::cout << '\n'
                   << '+' << std::string(width - 1, '-') << '+'
                   << std::string(width - 1, '-') << '+' << std::string(width - 1, '-')
@@ -29,11 +28,27 @@ namespace epidemic
                   << '+' << std::string(width - 1, '-') << '+'
                   << std::string(width - 1, '-') << '+' << std::string(width - 1, '-')
                   << '+' << std::string(width, '-') << '+' << '\n';
-        // clang-format off
 
   for (State const& state : states) {
     simulation.print(state);
   }
 
     } 
+
+  //  std::vector<int> get_S(Infection const &simulation) {
+  //  
+  //  std::vector<State> states = simulation.states();
+  //  
+  //  int const N = states.size();
+  //  std::vector<int> result{};
+  //  result.reserve(N);
+//
+  //  for (State const& state : states) {
+  //    int num_s = virus.state().S;
+  //    result.push_back(num_s);
+  //  }
+  //  assert(states.size() == result.size());
+  //  return result;
+//}
+
 } 
