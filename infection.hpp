@@ -41,8 +41,8 @@ namespace epidemic
     State support = analysis.back();
     State get_state(int day) const { return analysis[day]; };
 
-    void print(State) const;
-
+    void print() const;
+    //void tabulate() const;
   };
 }
 #endif

@@ -1,5 +1,4 @@
 #include "infection.hpp"
-#include "display.hpp"
 
 #include <iostream>
 #include <stdexcept>
@@ -40,5 +39,5 @@ int main()
   {
     throw std::runtime_error{"Enter either '0' or '1'"};
   }
-  epidemic::print(Emilia_Romagna1);
+  Emilia_Romagna1.print();
 }
