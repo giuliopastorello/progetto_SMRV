@@ -6,7 +6,7 @@ namespace epidemic
 {
   void Infection::RK4(double beta, double gamma)
   {
-    int const h = 2; // step size
+    float const h = 2; // step size
     // double const beta = 0.056;
     // double const gamma = 0.045;
     int const eta = 118292;  // no vax
@@ -41,10 +41,10 @@ namespace epidemic
       double c4 = gamma * (m() + d3 * h);
       double d4 = -a4 - b4 - c4;
 
-      support.V = round(v() + h / 6 * (a1 + 2 * a2 + 2 * a3 + a4));
-      support.S = round(s() + h / 6 * (b1 + 2 * b2 + 2 * b3 + b4));
-      support.R = round(r() + h / 6 * (c1 + 2 * c2 + 2 * c3 + c4));
-      support.M = round(m() + h / 6 * (d1 + 2 * d2 + 2 * d3 + d4));
+      support.V = round(v() + (h / 6) * (a1  + 2 * a2  + 2 * a3 + a4));
+      support.S = round(s() + (h / 6) * (b1  + 2 * b2  + 2 * b3 + b4));
+      support.R = round(r() + (h / 6) * (c1  + 2 * c2  + 2 * c3 + c4));
+      support.M = round(m() + (h / 6) * (d1  + 2 * d2  + 2 * d3 + d4));
 
       analysis.push_back(support);
 
