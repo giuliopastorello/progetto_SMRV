@@ -10,14 +10,16 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     10335,        257]
-NotebookOptionsPosition[      9623,        238]
-NotebookOutlinePosition[      9959,        253]
-CellTagsIndexPosition[      9916,        250]
+NotebookDataLength[      8912,        225]
+NotebookOptionsPosition[      8343,        207]
+NotebookOutlinePosition[      8734,        223]
+CellTagsIndexPosition[      8691,        220]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{"P", "=", "4459000"}], ";", 
@@ -104,13 +106,13 @@ Cell[BoxData[{
    3.8291986642904263`*^9}, 3.829210182147029*^9, {3.829221082370513*^9, 
    3.829221122525015*^9}, {3.829221230439795*^9, 3.829221301924142*^9}, {
    3.829221332758897*^9, 3.8292214038366003`*^9}},
- CellLabel->"In[13]:=",ExpressionUUID->"a04dba7d-c6e3-4c09-a761-6e972a480e60"],
+ CellLabel->"In[1]:=",ExpressionUUID->"a04dba7d-c6e3-4c09-a761-6e972a480e60"],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`\[Eta]$$ = 117000, $CellContext`\[Mu]$$ = 
-    0.01171154, $CellContext`\[Nu]$$ = 175690, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`\[Eta]$$ = 0, $CellContext`\[Mu]$$ = 
+    0.03, $CellContext`\[Nu]$$ = 4000000, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
@@ -119,17 +121,12 @@ Cell[BoxData[
        Hold[$CellContext`\[Mu]$$], 0.00002, "velocit\[AGrave] vaccinazione"}, 
       0, 0.03, 1.*^-8}, {{
        Hold[$CellContext`\[Eta]$$], 117000, "non vaccinabili"}, 0, 4000000, 
-      1}}, Typeset`size$$ = {778., {237., 242.}}, Typeset`update$$ = 0, 
-    Typeset`initDone$$, Typeset`skipInitDone$$ = 
-    True, $CellContext`\[Nu]$5382$$ = 0, $CellContext`\[Mu]$5383$$ = 
-    0, $CellContext`\[Eta]$5384$$ = 0}, 
+      1}}, Typeset`size$$ = {759., {223., 227.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
       "Variables" :> {$CellContext`\[Eta]$$ = 117000, $CellContext`\[Mu]$$ = 
-        0.00002, $CellContext`\[Nu]$$ = 600437}, "ControllerVariables" :> {
-        Hold[$CellContext`\[Nu]$$, $CellContext`\[Nu]$5382$$, 0], 
-        Hold[$CellContext`\[Mu]$$, $CellContext`\[Mu]$5383$$, 0], 
-        Hold[$CellContext`\[Eta]$$, $CellContext`\[Eta]$5384$$, 0]}, 
+        0.00002, $CellContext`\[Nu]$$ = 600437}, "ControllerVariables" :> {}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -157,7 +154,7 @@ $CellContext`V[$CellContext`t]/$CellContext`\[Xi]) (
          "Labeled"}, {{$CellContext`\[Eta]$$, 117000, "non vaccinabili"}, 0, 
          4000000, 1, Appearance -> "Labeled"}}, 
       "Options" :> {ContentSize -> {800, 500}}, "DefaultOptions" :> {}],
-     ImageSizeCache->{814., {309., 315.}},
+     ImageSizeCache->{794., {299., 305.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -167,28 +164,18 @@ $CellContext`V[$CellContext`t]/$CellContext`\[Xi]) (
     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
    Deployed->True,
    StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Input",
- CellChangeTimes->{{3.829221823460494*^9, 3.829221838722743*^9}, {
-  3.82922187499415*^9, 
-  3.829221875318812*^9}},ExpressionUUID->"a80ceaf8-7be1-46d1-bca8-\
-7b05fd61acd0"],
-
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.829199892058379*^9, 
-  3.8291999278584127`*^9}},ExpressionUUID->"60a83802-52de-43d7-9241-\
-745927efe60f"],
-
-Cell[CellGroupData[{
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.892097172609746*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"55fc24e5-a048-4703-ae5c-c563cda70421"]
+}, Open  ]],
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{
-   RowBox[{"P", "=", "4459000"}], ";", 
-   RowBox[{"maxT", "=", "300"}]}], ",", " ", 
-  RowBox[{
-   RowBox[{"\[Xi]", "=", "0.839"}], ";", " ", 
-   RowBox[{"\[Mu]", "=", "0.0117"}], ";", 
-   RowBox[{"\[Nu]", "=", "600437"}], ";"}]}], "\[IndentingNewLine]", 
+  RowBox[{"P", "=", "4459000"}], ";", 
+  RowBox[{"maxT", "=", "300"}], ";", " ", 
+  RowBox[{"\[Xi]", "=", "0.839"}], ";", " ", 
+  RowBox[{"\[Mu]", "=", "0.0117"}], ";", 
+  RowBox[{"\[Nu]", "=", "600437"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"NDSolve", "[", 
   RowBox[{
    RowBox[{"{", 
@@ -214,32 +201,15 @@ Cell[BoxData[{
     RowBox[{"t", ",", "0", ",", "maxT"}], "}"}]}], "]"}]}], "Input",
  CellChangeTimes->{{3.829199908457336*^9, 3.8291999084655313`*^9}, {
   3.829221888422411*^9, 3.829221946082245*^9}, {3.829222387638183*^9, 
-  3.829222410922511*^9}, {3.829222521945273*^9, 3.8292225229678993`*^9}},
- EmphasizeSyntaxErrors->True,
- CellLabel->"In[1]:=",ExpressionUUID->"bcba38f7-eb10-4f0f-9d9a-d4cc45eb4522"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Syntax","tsntxi",
-   "\"\\\"\\!\\(\\*RowBox[{RowBox[{RowBox[{\\\"P\\\", \\\"=\\\", \
-\\\"4459000\\\"}], \\\";\\\", RowBox[{\\\"maxT\\\", \\\"=\\\", \
-\\\"300\\\"}]}], \\\",\\\", RowBox[{RowBox[{\\\"\[Xi]\\\", \\\"=\\\", \
-\\\"0.839\\\"}], \\\";\\\", RowBox[{\\\"\[Mu]\\\", \\\"=\\\", \
-\\\"0.0117\\\"}], \\\";\\\", RowBox[{\\\"\[Nu]\\\", \\\"=\\\", \
-\\\"600437\\\"}], \\\";\\\"}]}]\\)\\\" is incomplete; more input is \
-needed.\\!\\(\\*RowBox[{\\\"\\\\\\\"\\\\\\\"\\\"}]\\)\"",2,1,4,
-   19521657381556211425,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.8292225270542727`*^9},
- CellLabel->
-  "During evaluation of \
-In[1]:=",ExpressionUUID->"2d7f2c1e-4082-4abe-8da3-2edde55adcca"]
-}, Open  ]]
+  3.829222410922511*^9}, {3.829222521945273*^9, 3.8292225229678993`*^9}, {
+  3.892097302328205*^9, 3.892097303404098*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"bcba38f7-eb10-4f0f-9d9a-d4cc45eb4522"]
 },
 WindowSize->{1440, 847},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
-FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
-StyleDefinitions->"Default.nb"
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"2a0181a2-c8bb-41d1-b633-7d981a9a9a68"
 ]
 (* End of Notebook Content *)
 
@@ -252,13 +222,11 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 3488, 86, 185, "Input",ExpressionUUID->"a04dba7d-c6e3-4c09-a761-6e972a480e60"],
-Cell[4049, 108, 3322, 65, 639, InheritFromParent,ExpressionUUID->"a80ceaf8-7be1-46d1-bca8-7b05fd61acd0"],
-Cell[7374, 175, 154, 3, 30, "Input",ExpressionUUID->"60a83802-52de-43d7-9241-745927efe60f"],
 Cell[CellGroupData[{
-Cell[7553, 182, 1312, 36, 72, "Input",ExpressionUUID->"bcba38f7-eb10-4f0f-9d9a-d4cc45eb4522"],
-Cell[8868, 220, 739, 15, 24, "Message",ExpressionUUID->"2d7f2c1e-4082-4abe-8da3-2edde55adcca"]
-}, Open  ]]
+Cell[580, 22, 3487, 86, 185, "Input",ExpressionUUID->"a04dba7d-c6e3-4c09-a761-6e972a480e60"],
+Cell[4070, 110, 2954, 58, 623, "Output",ExpressionUUID->"55fc24e5-a048-4703-ae5c-c563cda70421"]
+}, Open  ]],
+Cell[7039, 171, 1300, 34, 72, "Input",ExpressionUUID->"bcba38f7-eb10-4f0f-9d9a-d4cc45eb4522"]
 }
 ]
 *)
