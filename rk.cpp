@@ -6,7 +6,7 @@ namespace epidemic
 {
   void Infection::RK4(double beta, double gamma)
   {
-    float const h = 2; // step size
+    float const h = 1; // step size
     // double const beta = 0.056;
     // double const gamma = 0.045;
     int const eta = 118292;  // no vax
