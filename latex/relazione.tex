@@ -123,9 +123,54 @@ andamento possibile della curva dei vaccinati.\\
     \hspace{-10pt}
     \includegraphics[width=\textwidth]{vaccinati.png}
     \caption{\textit{Curva logistica con $\nu=56980, 
-    \mu=0.0274216, \eta=1418957$, e popolazione totale della 
-    regione Emilia-Romagna.}}
+    \mu=0.0274216, \eta=1418957$, e popolazione totale della regione 
+    Emilia-Romagna.}}
     \label{fig::vaccinati}
 \end{minipage}
 \end{figure}
+
+\section{I Metodi Numerici}
+
+\hspace{\parindent} Per calcolare i risultati prodotti dal modello 
+si sono scritti due diversi metodi numerici: il \textit{metodo di Eulero},
+meno preciso ma anche meno dispendioso a livello di calcoli, e il 
+metodo \textit{Runge-Kutta 4}, che è più complesso ma produce 
+risultati migliori.
+
+\subsection{Il metodo di Eulero}
+Il metodo di Eulero è eseguito dalla funzione evolve() in 
+infection.cpp. Dato un probelma di Cauchy nella forma
+\begin{equation} \label{eq::ODE} 
+    \dot{\vec{x}} = f(t, \vec{x}), \qquad \vec{x}(t_0) = x_0
+\end{equation}
+dove $f(t, \vec{x})$ rappresenta il campo vettoriale che descrive il 
+sistema di equazioni, con $\vec{x} \in \mathbb{R}$ variabile di stato, 
+t variabile indipendente (tempo), e $\vec{x}(t_0) = x_0$
+condizione iniziale, il \textit{metodo di Eulero} discretizza il 
+sistema nella seguente maniera:
+\begin{equation} \label{eq::Euler}
+    \vec{x}(t_{n+1})=\vec{x}(t_n) + h f(t_n, \vec{x}(t_n))
+\end{equation}
+dove h è lo \textit{step size}, un intervallo di tempo arbitrario che 
+ovviamente determina la precisione dei risultati ottenuti. 
+Nel caso dell'\textit{algoritmo di Eulero}, si dimostra che l'errore 
+totale è dell'ordine di $O(h^2)$. \\
+Nel caso del modello SMRV, il sistema è \textit{autonomo}, ovvero le 
+euqazioni non dipendono esplicitamente dal tempo. L'algoritmo di 
+discretizzazione assume quindi la forma: 
+\begin{equation} \label{eq::autoEuler}
+    \vec{x}(t_{n+1})=\vec{x}(t_n) + h f(\vec{x}(t_n))
+\end{equation}
+Le equazioni risultanti sono i valori che otteniamo:
+\begin{equation} \label{eq::evolve}
+\left\{\begin{array}{@{}l@{\  / \ }l@{,\ }l@{}}
+S(t_{n+1}) = - h \beta \frac{S(t_n)}{N} I(t_n) - 
+        h \mu \frac{V(t_n)}{\xi} \left( 
+        1 - \frac{V(t_n)}{\xi (N - \eta)} \right) \\
+M(t_{n+1}) = h \beta \frac{S(t_n)}{N} I(t_n) - h \gamma M(t_n) \\
+R(t_{n+1}) = h \gamma M(t_n) \\
+V(t_{n+1}) = h \mu \frac{V(t_n)}{\xi} \left( 
+        1 - \frac{V(t_n)}{\xi (N - \eta)} \right) \\
+\end{array}\right.
+\end{equation}
 \end{document}
