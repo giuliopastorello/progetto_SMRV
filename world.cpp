@@ -30,10 +30,9 @@ namespace GameofLife{
 
     Cell World::Get_cell(int r,int c) const{
         //bisogna convertire gli indici matriciali r,c nell' indice del vettore Field
-        int const counter_r= m_side*(r-1); //ritorna la posizione (r-1,m_side) in notazione matriciale ()
-        int const counter_c=c;
-        int index=r+c-1;
-        assert(index>=0 && index <=m_side-1); 
+        int const counter_r= m_side*(r-1); //ritorna la posizione (r-1,m_side) in notazione matriciale (+1)
+        int index=counter_r+c-1;
+        assert(index>=0 && index <=m_side*m_side-1); 
         /*riporta la posizione (r,c) in notazione matriciale, 
         -1 poichè gli indici vettoriali partono da zero; li calcolo partendo da 1 e poi li riscalo*/
         return m_field[index];
@@ -41,9 +40,8 @@ namespace GameofLife{
 
     void World::Set_cell(Cell cell_type,int r, int c){
         int const counter_r= m_side*(r-1); 
-        int const counter_c=c;
-        int index=r+c-1;
-        assert(index>=0 && index <=m_side-1);
+        int index=counter_r+c-1;
+        assert(index>=0 && index <=m_side*m_side-1);
         m_field[index]=cell_type; 
     }
 
