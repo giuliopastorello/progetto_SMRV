@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     92255,       1867]
-NotebookOptionsPosition[     91545,       1846]
-NotebookOutlinePosition[     91936,       1862]
-CellTagsIndexPosition[     91893,       1859]
+NotebookDataLength[     92292,       1867]
+NotebookOptionsPosition[     91582,       1846]
+NotebookOutlinePosition[     91973,       1862]
+CellTagsIndexPosition[     91930,       1859]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1721,17 +1721,17 @@ Cell[BoxData[
    3.8927136628109303`*^9}, {3.8927138660056467`*^9, 3.892713872781389*^9}, {
    3.892718218786147*^9, 3.892718234328821*^9}, {3.892718755425124*^9, 
    3.8927187561040363`*^9}, {3.892867871573316*^9, 3.892867876082901*^9}},
- CellLabel->"In[3]:=",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
+ CellLabel->"In[1]:=",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
    DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
-    774575, $CellContext`\[Beta]$$ = 0.056, $CellContext`\[Gamma]$$ = 
-    0.055, $CellContext`\[Eta]$$ = 250000, $CellContext`\[Mu]$$ = 
-    0.01, $CellContext`\[Nu]$$ = 600437, $CellContext`\[Xi]$$ = 
-    0.58, $CellContext`\[Rho]$$ = 320000, Typeset`show$$ = True, 
-    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    516126, $CellContext`\[Beta]$$ = 0., $CellContext`\[Gamma]$$ = 
+    0.07, $CellContext`\[Eta]$$ = 126900, $CellContext`\[Mu]$$ = 
+    0.022, $CellContext`\[Nu]$$ = 600437, $CellContext`\[Xi]$$ = 
+    0.47000000000000003`, $CellContext`\[Rho]$$ = 320000, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`\[Beta]$$], 0.056, "prob contagio"}, 0, 1, 0.01}, {{
@@ -1746,7 +1746,7 @@ Cell[BoxData[
        1, 0.001}, {{
        Hold[$CellContext`\[Xi]$$], 0.4, "efficacia vaccino"}, 0, 1, 0.01}, {{
        Hold[$CellContext`\[Rho]$$], 320000, "inizialmente immuni"}, 0, 
-      4459000, 1}}, Typeset`size$$ = {910., {272., 276.}}, Typeset`update$$ = 
+      4459000, 1}}, Typeset`size$$ = {839., {250., 254.}}, Typeset`update$$ = 
     0, Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
@@ -1823,7 +1823,7 @@ $CellContext`R, $CellContext`V}, {$CellContext`t, 0, $CellContext`maxT}];
          "Labeled"}, {{$CellContext`\[Rho]$$, 320000, "inizialmente immuni"}, 
          0, 4459000, 1, Appearance -> "Labeled"}}, 
       "Options" :> {ContentSize -> {940, 600}}, "DefaultOptions" :> {}],
-     ImageSizeCache->{1306., {302., 308.}},
+     ImageSizeCache->{1311., {314., 319.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -1840,8 +1840,8 @@ $CellContext`R, $CellContext`V}, {$CellContext`t, 0, $CellContext`maxT}];
    3.892713402853861*^9, 3.892713595638468*^9, {3.892713637413474*^9, 
    3.892713668712702*^9}, 3.8927138761259327`*^9, {3.892718227773929*^9, 
    3.892718236465494*^9}, 3.892718759218173*^9, 3.89286783259621*^9, 
-   3.8928678939395103`*^9},
- CellLabel->"Out[4]=",ExpressionUUID->"d96ad020-44a8-4392-a0ea-310ece52f605"]
+   3.8928678939395103`*^9, 3.9059169332758417`*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"0a047e8b-ac8f-4d00-8929-ec064b50cb1a"]
 }, Open  ]]
 },
 WindowSize->{1440, 847},
@@ -1867,7 +1867,7 @@ Cell[5170, 152, 70630, 1350, 118, "Output",ExpressionUUID->"776a9faf-49ad-4ca8-b
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[75837, 1507, 9532, 216, 362, "Input",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
-Cell[85372, 1725, 6157, 118, 652, "Output",ExpressionUUID->"d96ad020-44a8-4392-a0ea-310ece52f605"]
+Cell[85372, 1725, 6194, 118, 652, "Output",ExpressionUUID->"0a047e8b-ac8f-4d00-8929-ec064b50cb1a"]
 }, Open  ]]
 }
 ]

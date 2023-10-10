@@ -39,7 +39,9 @@ non possa più ammalarsi.
 \end{itemize}
 Il vincolo fondamentale del modello è che la popolazione totale 
 sia costante:
-$$S(t)+I(t)+R(t)+V(t)=N$$
+\begin{equation}\label{eq::pop}
+S(t)+I(t)+R(t)+V(t)=N
+\end{equation}
 Questa è un'approssimazione ragionevole se si fa l'assunzione 
 che il numero totale di persone che muoiono a causa del virus 
 sia trascurabile rispetto alla popolazione totale.
@@ -141,11 +143,11 @@ risultati migliori.
 Il metodo di Eulero è eseguito dalla funzione evolve() in 
 infection.cpp. Dato un probelma di Cauchy nella forma
 \begin{equation} \label{eq::ODE} 
-    \dot{\vec{x}} = f(t, \vec{x}), \qquad \vec{x}(t_0) = x_0
+    \dot{\vec{x}} = f(t, \vec{x}), \qquad \vec{x}(t_0) = \vec{x_0}
 \end{equation}
 dove $f(t, \vec{x})$ rappresenta il campo vettoriale che descrive il 
 sistema di equazioni, con $\vec{x} \in \mathbb{R}$ variabile di stato, 
-t variabile indipendente (tempo), e $\vec{x}(t_0) = x_0$
+t variabile indipendente (tempo), e $\vec{x}(t_0) = \vec{x_0}$
 condizione iniziale, il \textit{metodo di Eulero} discretizza il 
 sistema nella seguente maniera:
 \begin{equation} \label{eq::Euler}
@@ -161,16 +163,66 @@ discretizzazione assume quindi la forma:
 \begin{equation} \label{eq::autoEuler}
     \vec{x}(t_{n+1})=\vec{x}(t_n) + h f(\vec{x}(t_n))
 \end{equation}
-Le equazioni risultanti sono i valori che otteniamo:
-\begin{equation} \label{eq::evolve}
-\left\{\begin{array}{@{}l@{\  / \ }l@{,\ }l@{}}
-S(t_{n+1}) = - h \beta \frac{S(t_n)}{N} I(t_n) - 
-        h \mu \frac{V(t_n)}{\xi} \left( 
-        1 - \frac{V(t_n)}{\xi (N - \eta)} \right) \\
-M(t_{n+1}) = h \beta \frac{S(t_n)}{N} I(t_n) - h \gamma M(t_n) \\
-R(t_{n+1}) = h \gamma M(t_n) \\
-V(t_{n+1}) = h \mu \frac{V(t_n)}{\xi} \left( 
-        1 - \frac{V(t_n)}{\xi (N - \eta)} \right) \\
-\end{array}\right.
+Le equazioni risultanti sono i valori che stampiamo:
+\begin{equation}\label{eq::evolve}
+    \left\{ \arraycolsep=1.4pt\def\arraystretch{2.2}
+    \begin{array}{rcl}
+    S(t_{n+1}) & = & - h \beta \frac{S(t_n)}{N} I(t_n) -
+            h \mu \frac{V(t_n)}{\xi} \left(
+            1 - \frac{V(t_n)}{\xi (N - \eta)} \right) \\
+    M(t_{n+1}) & = & h \beta \frac{S(t_n)}{N} I(t_n) - h \gamma M(t_n) \\
+    R(t_{n+1}) & = & h \gamma M(t_n) \\
+    V(t_{n+1}) & = & h \mu \frac{V(t_n)}{\xi} \left(
+            1 - \frac{V(t_n)}{\xi (N - \eta)} \right) \\
+    \end{array}\right.
+    \end{equation}
+
+\subsection{Runge-Kutta 4th Order}
+L'algoritmo alternativo usato per calcolare i valori delle variabili di 
+stato giorno-per-giorno è il Runge-Kutta del quarto ordine, abbreviato 
+spesso come RK o RK4, che è eseguito nella funzione rk() in rk.cpp.
+Come da nome, l'errore totale è dell'ordine di $O(h^4)$.
+Partendo da un'equazione generica nella forma dell' eq. (\ref{eq::ODE})
+l'approssimazione che viene fatta è la seguente: \\
+\begin{equation} \label{eq::rk4}
+    \vec{x}(t_{n+1})=\vec{x}(t_n)+\frac{h}{6}(k_1+k_2+k_3+k_4), \qquad
+    \left\{ \arraycolsep=1.4pt\def\arraystretch{2.2}
+    \begin{array}{rcl}
+    k_1 & = & f(t_n, \vec{x}(t_n)) \\
+    k_2 & = & f(t_n+\frac{h}{2}, \vec{x}(t_n)+h\frac{k_1}{2}) \\
+    k_3 & = & f(t_n+\frac{h}{2}, \vec{x}(t_n)+h\frac{k_2}{2}) \\
+    k_4 & = & f(t_n+h, \vec{x}(t_n)+hk_3) \\
+    \end{array}\right.
 \end{equation}
+Nel caso del nostro modello, ricordando che il sistema è autonomo (ovvero
+il campo è nella forma $f(\vec{x})$), il calcolo dei coefficienti è dato 
+dalle seguenti espressioni:
+\begin{equation} \label{eq::rk4Coeff}
+    \left\{ \arraycolsep=1.4pt\def\arraystretch{2.2}
+    \begin{array}{crcl}
+    (V) & a_1 & = & \mu \frac{V(t)}{\xi}\left(1-\frac{V(t)}
+    {\xi(N-\eta)}\right) \\
+    (S) & b_1 & = &  -\beta\frac{S(t)}{N}M(t)-a_1\\
+    (R) & c_1 & = &  \gamma M(t)\\
+    (M) & d_1 & = &  -a_1-b_1-c_1 \\
+    \end{array}\right. \quad
+    \left\{ \arraycolsep=1.4pt\def\arraystretch{2.2}
+    \begin{array}{rcl}
+    a_2 & = & \mu \frac{V(t) + a_1 h/2}{\xi}\left(1-\frac{V(t)+
+    a_1 h/2}{\xi(N-\eta)}\right) \\
+    b_2 & = &  -\beta\frac{S(t)+b_1 h/2}{N}(M(t)+d_1 h/2)-a_2\\
+    c_2 & = &  \gamma (M(t)+d_1 h/2)\\
+    d_2 & = &  -a_2-b_2-c_2 \\
+    \end{array}\right. \quad ...
+\end{equation}
+Scegliendo lo step size $h=1$(giorno), si otterranno i valori delle 
+quattro variabili di ogni giorno. Ad ogni iterazione vengono ri-calcolati
+i coefficienti $a_i, b_i, c_i,d_i, i \in \{1,2,3,4\}$, che sarebbero dunque
+16 valori per ogni giornata. Poiché sulle quattro variabili abbiamo il 
+vincolo della popolazione costante espresso dall'equazione \ref{eq::pop},
+si riesce a esprimere uno dei quattro coefficienti in funzione degli altri 
+tre, e quindi i valori da calcolare si riducono a 12 per ogni giornata. 
+Nel metodo di Eulero per ogni variabile viene calcolato un solo valore 
+al giorno, dunque calcoliamo 4 valori per ogni giorno.\\
+???NON SI PUO' FARE LA STESSA COSA CON EVOLVE()????
 \end{document}
