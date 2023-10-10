@@ -18,6 +18,7 @@ namespace epidemic
   {
     // double const beta = 0.056;
     // double const gamma = 0.045;
+    double const h = 1;
     int const non_vax = 118292;   // eta
     double const vel_vax = 0.05;  // mu
     double const eff_vax = 0.839; // efficacia vaccino
@@ -31,15 +32,17 @@ namespace epidemic
       //{
       //   --analysis.back().S;
       // }
+      double delV = vel_vax * (v() / eff_vax) *
+                    (1 - v() / (eff_vax * (m_N - non_vax)));
+      double delS = -beta * (s() / m_N) * m() -
+                    vel_vax * (v() / eff_vax) *
+                        (1 - v() / (eff_vax * (m_N - non_vax)));
+      double delR = gamma * m();
 
-      support.S = round(s() - beta * (s() / m_N) * m() -
-                        vel_vax * (v() / eff_vax) *
-                            (1 - v() / (eff_vax * (m_N - non_vax))));
-      support.M = round(m() + beta * (s() / m_N) * m() - gamma * m());
-      support.R = round(r() + gamma * m());
-
-      support.V = round(v() + vel_vax * (v() / eff_vax) *
-                                  (1 - v() / (eff_vax * (m_N - non_vax))));
+      support.V = round(v() + h * delV);
+      support.S = round(s() + h * delS);
+      support.R = round(r() + h * delR);
+      support.M = round(m() - h * (delV - delS - delR));
 
       analysis.push_back(support);
 
@@ -60,15 +63,15 @@ namespace epidemic
     int const N = analysis[0].S + analysis[0].M + analysis[0].R + analysis[0].V;
     int const width = std::log10(N) + 4;
 
-    std::cout << '|' << " day   " << std::string(floor(width / 2) - 1, ' ') << 'S' << std::string(floor(width / 2) - 1, ' ') 
-                                  << std::string(floor(width / 2) - 1, ' ') << 'M' << std::string(floor(width / 2) - 1, ' ')
-                                  << std::string(floor(width / 2) - 1, ' ') << 'R' << std::string(floor(width / 2) - 1, ' ')
-                                  << std::string(floor(width / 2) - 1, ' ') << 'V' << std::string(floor(width) - 2, ' ')
-                                  << '|' << '\n';
+    std::cout << '|' << " day   " << std::string(floor(width / 2) - 1, ' ') << 'S' << std::string(floor(width / 2) - 1, ' ')
+              << std::string(floor(width / 2) - 1, ' ') << 'M' << std::string(floor(width / 2) - 1, ' ')
+              << std::string(floor(width / 2) - 1, ' ') << 'R' << std::string(floor(width / 2) - 1, ' ')
+              << std::string(floor(width / 2) - 1, ' ') << 'V' << std::string(floor(width) - 2, ' ')
+              << '|' << '\n';
 
     for (int i = 0; i < m_duration_analysis_indays; i++)
     {
-      std::cout << '|' << std::string(2, ' ') << i + 1  << ')' << std::string(4 - std::log10(i+1.5), ' ')
+      std::cout << '|' << std::string(2, ' ') << i + 1 << ')' << std::string(4 - std::log10(i + 1.5), ' ')
                 << analysis[i].S
                 << std::string(width - count_digit(analysis[i].S), ' ') << analysis[i].M
                 << std::string(width - count_digit(analysis[i].M), ' ') << analysis[i].R
