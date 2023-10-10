@@ -5,32 +5,46 @@
 #include <cassert>
 #include <cmath>
 #include <random>
+
 namespace GameofLife{
 
     int World::side() const{return m_side;}
 
     int World::S_Number() const {
-        return std::count(m_field.begin(), m_field.end(), Cell_Type::S);
+        return std::count(m_field.begin(), m_field.end(), Cell::S);
     }
 
     int World::I_Number() const {
-        return std::count(m_field.begin(), m_field.end(), Cell_Type::I);
+        return std::count(m_field.begin(), m_field.end(), Cell::I);
     }
 
     int World::R_Number() const {
-        return std::count(m_field.begin(), m_field.end(), Cell_Type::R);
+        return std::count(m_field.begin(), m_field.end(), Cell::R);
     }
 
-    World::World(int a):m_side{a}, m_field(a*a,Cell_Type::Empty){ //inizializza a*a celle vuote
+    World::World(int a):m_side{a}, m_field(a*a,Cell::Empty){ //inizializza a*a celle vuote
        if (a<1){
          throw std::runtime_error("Invalid grid dimension");
        }
     }
 
-    Cell_Type Get_cell(int r,int c){
-        //bisogna convertire gli indici matriciali r,c con gli indici del vettore Field
-        int const i=r;
-        int const j=c;
+    Cell World::Get_cell(int r,int c) const{
+        //bisogna convertire gli indici matriciali r,c nell' indice del vettore Field
+        int const counter_r= m_side*(r-1); //ritorna la posizione (r-1,m_side) in notazione matriciale ()
+        int const counter_c=c;
+        int index=r+c-1;
+        assert(index>=0 && index <=m_side-1); 
+        /*riporta la posizione (r,c) in notazione matriciale, 
+        -1 poichè gli indici vettoriali partono da zero; li calcolo partendo da 1 e poi li riscalo*/
+        return m_field[index];
+    }
+
+    void World::Set_cell(Cell cell_type,int r, int c){
+        int const counter_r= m_side*(r-1); 
+        int const counter_c=c;
+        int index=r+c-1;
+        assert(index>=0 && index <=m_side-1);
+        m_field[index]=cell_type; 
     }
 
 }

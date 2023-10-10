@@ -5,12 +5,12 @@
 
 namespace GameofLife{
 
-enum class Cell_Type { Empty, S, I, R };
+enum class Cell { Empty, S, I, R };
 
 class World {
 
    int m_side; //dimensione griglia m_side x m_side
-   std::vector<Cell_Type> m_field; //vettore griglia di celle
+   std::vector<Cell> m_field; //vettore griglia di celle
 
    public:
 
@@ -18,18 +18,18 @@ class World {
    int S_Number() const; //get numero di suscettibili
    int I_Number() const; //get numero di infetti
    int R_Number() const; //get numero di rimossi
+
+   void Set_cell(Cell cell_type,int r, int c); //cambia il valore della cella in posizione (r,c)
    
-   Cell_Type Get_cell(int r,int c);// restituisce la cella in posizione (r,c) riga colonna
+   Cell Get_cell(int r,int c) const;// restituisce la cella in posizione (r,c) riga colonna
    
    World(int a); //costruttore celle vuote
    
-   void Initial_Random_World(World &World); //metodo che prende una griglia creata e genera random infetti e suscettibili
-   
-   
+};//class world
 
-};
+void Initial_Random_World(World World); //metodo che prende una griglia creata e genera random infetti e suscettibili
 
-}
+}//namespace gameoflife
 
 
 #endif
