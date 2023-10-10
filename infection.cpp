@@ -14,6 +14,8 @@ namespace epidemic
 
   double Infection::v() { return analysis.back().V; }
 
+  State Infection::get_state(int day) const { return analysis[day]; };
+
   void Infection::evolve(double beta, double gamma)
   {
     // double const beta = 0.056;

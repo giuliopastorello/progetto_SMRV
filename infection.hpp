@@ -10,6 +10,7 @@
 
 namespace epidemic
 {
+ 
   struct State
   {
     int S; // suscettibili
@@ -29,17 +30,19 @@ namespace epidemic
         : m_duration_analysis_indays{duration_analysis_indays},
           analysis{initial_state},
           m_N{N} {}
-
+    
+    //Get 
     double s();
     double m();
     double r();
     double v();
+
     std::vector<State> states () const;
     void evolve(double beta, double gamma);
     void RK4(double beta, double gamma);
 
     State support = analysis.back();
-    State get_state(int day) const { return analysis[day]; };
+    State get_state(int day) const;
 
     void print() const;
     //void tabulate() const;
