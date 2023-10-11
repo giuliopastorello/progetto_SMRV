@@ -19,7 +19,7 @@ class World {
    int I_Number() const; //get numero di infetti
    int R_Number() const; //get numero di rimossi
 
-   void Set_cell(Cell cell_type,int r, int c); //cambia il valore della cella in posizione (r,c)
+   void Set_cell(Cell const &cell_type,int r, int c); //cambia il valore della cella in posizione (r,c)
    
    Cell Get_cell(int r,int c) const;// restituisce la cella in posizione (r,c) riga colonna
    
@@ -27,7 +27,15 @@ class World {
    
 };//class world
 
-void Initial_Random_World(World World); //metodo che prende una griglia creata e genera random infetti e suscettibili
+void Initial_Random_World(World &World); //metodo che prende una griglia creata e genera random infetti e suscettibili
+
+int Cell_counter(World const &World,int r,int c); //conta il numero di celle infette intorno 
+
+bool infected(int number_counter,double beta); //metodo per stabilire se contagiare
+  
+bool removed(double gamma); //metodo per stabilire se rimuovere
+
+World evolve(World &corrente,double beta,double gamma);
 
 }//namespace gameoflife
 
