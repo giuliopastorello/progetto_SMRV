@@ -27,7 +27,7 @@ class World {
    
 };//class world
 
-void Initial_Random_World(World &World); //metodo che prende una griglia creata e genera random infetti e suscettibili
+void initial_random(World &world, int num_s, int num_i); //metodo che prende una griglia creata e genera random infetti e suscettibili
 
 int Cell_counter(World const &World,int r,int c); //conta il numero di celle infette intorno 
 
@@ -35,7 +35,7 @@ bool infected(int number_counter,double beta); //metodo per stabilire se contagi
   
 bool removed(double gamma); //metodo per stabilire se rimuovere
 
-World evolve(World &corrente,double beta,double gamma);
+World evolve(World &World, double beta, double gamma);
 
 }//namespace gameoflife
 
