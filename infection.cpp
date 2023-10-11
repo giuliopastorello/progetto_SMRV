@@ -44,7 +44,7 @@ namespace epidemic
       support.V = round(v() + h * delV);
       support.S = round(s() + h * delS);
       support.R = round(r() + h * delR);
-      support.M = round(m() - h * (delV - delS - delR));
+      support.M = round(m() - h * (delV + delS + delR));
 
       analysis.push_back(support);
 
