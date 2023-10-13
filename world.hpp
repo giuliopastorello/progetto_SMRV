@@ -29,11 +29,13 @@ class World {
 
 void initial_random(World &world, int num_s, int num_i); //metodo che prende una griglia creata e genera random infetti e suscettibili
 
-int Cell_counter(World const &World,int r,int c); //conta il numero di celle infette intorno 
+int infected_counter(World const &World,int r,int c); //conta il numero di celle infette intorno 
 
 bool infected(int number_counter,double beta); //metodo per stabilire se contagiare
   
 bool removed(double gamma); //metodo per stabilire se rimuovere
+
+bool move_condition(World const &World,int r,int c);
 
 World evolve(World &World, double beta, double gamma);
 

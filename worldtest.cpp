@@ -9,6 +9,6 @@ int main(){
    world_test.Set_cell(GameofLife::Cell::I,1,2);
    world_test.Set_cell(GameofLife::Cell::I,2,1);
     
-   std::cout<<GameofLife::Cell_counter(world_test,2,2);
+   std::cout<<GameofLife::infected_counter(world_test,2,2);
   
 }

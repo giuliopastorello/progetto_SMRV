@@ -55,7 +55,7 @@ namespace GameofLife{
     }
 
 
-    int Cell_counter(World const &World,int r,int c){
+    int infected_counter(World const &World,int r,int c){
       int result=0;
       for (int i : {-1, 0, 1}) {
         for (int j : {-1, 0, 1}) {
@@ -67,6 +67,18 @@ namespace GameofLife{
       return result;
     } /*conta il numero di celle infette intorno 
     (sembra contare anche sè stessa però verrà usato solo su celle S) */
+
+    bool move_condition(World const &World,int r,int c){
+      bool condition=false;
+      for (int i : {-1, 0, 1}) {
+        for (int j : {-1, 0, 1}) {
+          if (World.Get_cell(r + i, c + j) == Cell::Empty) {
+             condition=true;
+          }
+        }
+      }
+      return condition;
+    }//metodo che controlla se intorno ci sono celle vuote in cui spostarsi e restituisce vero nel caso
 
 
     bool infected(int number_counter,double beta){
@@ -137,10 +149,76 @@ namespace GameofLife{
         }
     } //metodo che prende una griglia creata e genera random infetti e suscettibili
 
-    World evolve(World &corrente,double beta,double gamma);
+    World evolve(World &corrente,double beta,double gamma){
+       if (beta < 0 || beta > 1 || gamma < 0 || gamma > 1) {
+         throw std::runtime_error("Probability parameters must be between 0 and 1");
+       }
+
+       int const N = corrente.side();
+
+       World next{corrente};
+
+       std::random_device r{};
+       std::default_random_engine eng{r()};
+       std::uniform_int_distribution<int> dist{-1, 1};
+       //numero causale tra -1 0 1 per far spostare random gli abitanti della griglia
+
+       for(int r=1;r!=(N+1);r++){
+          for(int c=1;c!=(N+1);c++){
+              bool condition=move_condition(corrente,r,c);
+
+              if (condition==false){
+                continue;
+              }//se la cella non si può muovere rimane lì e si passa alla prossima iterazione
+              //non può mutare tale cella per ora          
+              
+              auto a = dist(eng);
+              auto b = dist(eng);
+
+              while (next.Get_cell(r + a, c + b) != Cell::Empty) {
+                a = dist(eng);
+                b = dist(eng);
+              }//continuo a generare una posizione random finchè non viene trovata una libera
+              //da analizzare se possono crearsi loop infiniti
+          
+              int const infected_around = infected_counter(corrente, r, c);
+
+              switch (corrente.Get_cell(r, c)) {
+                 case Cell::S:
+                   if (infected(infected_around, beta)) {
+                     next.Set_cell(Cell::I,r + a, c + b);
+                   } else {
+                     next.Set_cell(Cell::S,r + a, c + b);
+                   }
+                   break;
+         
+                 case Cell::I:
+                   if (removed(gamma)) {
+                     next.Set_cell(Cell::R,r + a, c + b);
+                   } else {
+                     next.Set_cell(Cell::I,r + a, c + b);
+                   }
+                   break;
+         
+                 case Cell::R:
+                   next.Set_cell(Cell::R,r + a, c + b);
+                   break;
+         
+                 default:
+                   break;
+              }
+          
+          }
+        }
+
+        assert(corrente.S_Number() + corrente.I_Number() + corrente.R_Number() == 
+               next.S_Number() + next.I_Number() + next.R_Number());
+        //verifico che il numero di abitanti nella griglia sia rimasto lo stesso
+
+        return next;
+
+      }
     
-
-
 
 
 }//namespace gameoflife
