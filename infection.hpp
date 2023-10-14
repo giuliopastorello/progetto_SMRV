@@ -45,7 +45,6 @@ namespace epidemic
     State get_state(int day) const;
 
     void print() const;
-    //void tabulate() const;
   };
 }
 #endif

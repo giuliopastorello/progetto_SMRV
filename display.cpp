@@ -58,6 +58,17 @@ std::vector<int> get_V(std::vector<State> const &states) {
   return result;
 }
 
-void graph(std::vector<State> const &states){}
+void graph(std::vector<State> const &states){
+
+std::vector<int> const S = get_S(states);
+std::vector<int> const I = get_M(states);
+std::vector<int> const R = get_R(states);
+std::vector<int> const D = get_V(states);
+
+auto f2 = matplot::figure();
+auto f = matplot::figure();
+
+
+}
 }
 

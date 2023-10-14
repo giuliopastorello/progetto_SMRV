@@ -18,22 +18,12 @@ namespace epidemic
 
   void Infection::evolve(double beta, double gamma)
   {
-    // double const beta = 0.056;
-    // double const gamma = 0.045;
     double const h = 1;
     int const non_vax = 118292;   // eta
     double const vel_vax = 0.05;  // mu
     double const eff_vax = 0.839; // efficacia vaccino
     for (int i = 1; i < m_duration_analysis_indays; ++i)
     {
-      // if (s() + m() + r() + v() < m_N)
-      //{
-      //   ++analysis.back().S;
-      // }
-      // if (s() + m() + r() + v() > m_N)
-      //{
-      //   --analysis.back().S;
-      // }
       double delV = vel_vax * (v() / eff_vax) *
                     (1 - v() / (eff_vax * (m_N - non_vax)));
       double delS = -beta * (s() / m_N) * m() -
@@ -47,11 +37,6 @@ namespace epidemic
       support.M = round(m() - h * (delV + delS + delR));
 
       analysis.push_back(support);
-
-      // if (support.S < 0 || support.M < 0 || support.R < 0 || support.V < 0) {
-      //   std::cout << "Errore" << '\n';
-      //   break;
-      // }
     }
   }
 
@@ -84,23 +69,4 @@ namespace epidemic
       //<< '+' << std::string(width, '-') << '+' << '\n';
     }
   }
-
-  // void Infection::tabulate(
-  //   std::ostream& os) {  // ancora problemi di formattazione della tabella:
-  //                        // trovare dato più lungo : m_N abitanti
-  // int const N = 52;      // meglio mettere la funzione dentro e utilizzare come
-  //                        // membro un std::vector<State>
-  // int const L = analysis.size();
-  // std::string space = std::to_string(m_N);
-  //
-  // os << '+' << std::string(N, '-') << "+\n";
-  // os << "| DAYS | MALATI | RIMOSSI | VACCINATI | SUSCETTIBILI |\n";
-  // for (int r = 0; r < L; ++r) {
-  //  os << "     " << r + 1 << "        " << analysis[r].M << "        "
-  //     << analysis[r].R << "        " << analysis[r].V << "        "
-  //     << analysis[r].S << "    \n";
-  //
-  //  }  // r+1 così inizia da 1 e finisce a L il processo
-  // os << '+' << std::string(N, '-') << "+\n";
-  // }
 }
