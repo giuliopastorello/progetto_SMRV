@@ -5,7 +5,7 @@
 
 namespace GameofLife{
 
-enum class Cell { Empty, S, I, R };
+enum class Cell {Empty, S, I, R };
 
 class World {
 
@@ -29,7 +29,7 @@ class World {
 
 void initial_random(World &world, int num_s, int num_i); //metodo che prende una griglia creata e genera random infetti e suscettibili
 
-int infected_counter(World const &World,int r,int c); //conta il numero di celle infette intorno 
+int infected_counter(World &World,int r,int c); //conta il numero di celle infette intorno 
 
 bool infected(int number_counter,double beta); //metodo per stabilire se contagiare
   

@@ -10,7 +10,7 @@
 
 namespace GameofLife{
 
-    int World::side() const{return m_side;}
+    int World::side() const {return m_side;}
 
     int World::S_Number() const {
         return std::count(m_field.begin(), m_field.end(), Cell::S);
@@ -57,8 +57,15 @@ namespace GameofLife{
     }
 
 
-    int infected_counter(World const &World,int r,int c){
+    int infected_counter(World &World,int r,int c){
       int result=0;
+      int const N=World.side();
+      switch (r){
+        case 1:
+         break;
+        case N:
+         break;
+      }
       for (int i : {-1, 0, 1}) {
         for (int j : {-1, 0, 1}) {
           if (World.Get_cell(r + i, c + j) == Cell::I) {
