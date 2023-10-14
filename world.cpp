@@ -5,6 +5,8 @@
 #include <cassert>
 #include <cmath>
 #include <random>
+#include <iostream>
+
 
 namespace GameofLife{
 
@@ -175,7 +177,7 @@ namespace GameofLife{
               auto a = dist(eng);
               auto b = dist(eng);
 
-              while (next.Get_cell(r + a, c + b) != Cell::Empty) {
+              while (r+a>=1 && r+a<=N && c+b>=1 && c+b<=N && next.Get_cell(r + a, c + b) != Cell::Empty) {
                 a = dist(eng);
                 b = dist(eng);
               }//continuo a generare una posizione random finchè non viene trovata una libera
@@ -217,7 +219,57 @@ namespace GameofLife{
 
         return next;
 
+    }
+
+    void worldDisplay(World &World){
+      int const N=World.side();
+
+      for(int i=0;i<=(N+1);i++){
+        std::cout<<"+";
       }
+
+      std::cout<<'\n';
+
+      for(int r=1;r!=(N+1);r++){
+        for(int c=1;c!=(N+1);c++){
+          if(c==1){
+            std::cout<<"+";
+          }
+          switch (World.Get_cell(r, c)) {
+              case Cell::S:
+                std::cout<<"o";
+                break;
+         
+              case Cell::I:
+                std::cout<<"0";
+                break;
+         
+              case Cell::R:
+                std::cout<<"x";
+                break;
+                 
+              case Cell::Empty:
+                std::cout<<" ";
+                break;
+        
+              default:
+                break;
+            }
+            if(c==N){
+              std::cout<<"+"<<'\n';
+            }
+        }
+      }
+
+      for(int j=0;j<=(N+1);j++){
+        std::cout<<"+";
+      }
+
+      std::cout<<'\n';
+
+    }
+
+
     
 
 

@@ -39,6 +39,8 @@ bool move_condition(World const &World,int r,int c);
 
 World evolve(World &World, double beta, double gamma);
 
+void worldDisplay(World &World);//metodo per graficare su terminale
+
 }//namespace gameoflife
 
 
