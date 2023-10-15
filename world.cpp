@@ -31,41 +31,33 @@ namespace GameofLife{
     }
 
     Cell World::Get_cell(int r,int c) const{
-        //bisogna convertire gli indici matriciali r,c nell' indice del vettore Field
-        int const counter_r= m_side*(r-1); //ritorna la posizione (r-1,m_side) come indice vettoriale (+1)
-        assert(counter_r>=0 && counter_r<=(m_side*m_side-1) && c>=1 && c<=m_side);
-        int index=counter_r+c-1;
-        assert(index>=0 && index <=m_side*m_side-1); 
-        /*riporta la posizione (r,c) in indice vettoriale, 
-        -1 poichè gli indici vettoriali partono da zero; li calcolo partendo da 1 e poi li riscalo*/
+        auto const i = (r + m_side) % m_side;
+        auto const j = (c + m_side) % m_side;
+        assert(i >= 0 && i < m_side && j >= 0 && j < m_side);
+        auto const index = i * m_side + j;
+        assert(index>=0 && index<=m_side*m_side-1);
         return m_field[index];
     }
     /*
     questo metodo identifica le celle del vettore in una matrice m_side x m_side
     per noi la matrice è (r,c):
-    (1,1) (1,2) (1,3)
-    (2,1) (2,2) (2,3)
-    (3,1) (3,2) (3,1)
+    (0,0) (0,1) (0,2)
+    (1,0) (1,1) (1,2)
+    (2,0) (2,1) (2,2)
     */
 
     void World::Set_cell(Cell const &cell_type,int r, int c){
-        int const counter_r= m_side*(r-1); 
-        assert(counter_r>=0 && counter_r<=(m_side*m_side-1) && c>=1 && c<=m_side);
-        int index=counter_r+c-1;
-        assert(index>=0 && index <=m_side*m_side-1);
+        auto const i = (r + m_side) % m_side;
+        auto const j = (c + m_side) % m_side;
+        assert(i >= 0 && i < m_side && j >= 0 && j < m_side);
+        auto const index = i * m_side + j;
+        assert(index>=0 && index<=m_side*m_side-1);
         m_field[index]=cell_type; 
     }
 
 
     int infected_counter(World &World,int r,int c){
       int result=0;
-      int const N=World.side();
-      switch (r){
-        case 1:
-         break;
-        case N:
-         break;
-      }
       for (int i : {-1, 0, 1}) {
         for (int j : {-1, 0, 1}) {
           if (World.Get_cell(r + i, c + j) == Cell::I) {
@@ -172,8 +164,8 @@ namespace GameofLife{
        std::uniform_int_distribution<int> dist{-1, 1};
        //numero causale tra -1 0 1 per far spostare random gli abitanti della griglia
 
-       for(int r=1;r!=(N+1);r++){
-          for(int c=1;c!=(N+1);c++){
+       for(int r=0;r!=N;r++){
+          for(int c=0;c!=N;c++){
               bool condition=move_condition(corrente,r,c);
 
               if (condition==false){
@@ -184,7 +176,7 @@ namespace GameofLife{
               auto a = dist(eng);
               auto b = dist(eng);
 
-              while (r+a>=1 && r+a<=N && c+b>=1 && c+b<=N && next.Get_cell(r + a, c + b) != Cell::Empty) {
+              while (next.Get_cell(r + a, c + b) != Cell::Empty) {
                 a = dist(eng);
                 b = dist(eng);
               }//continuo a generare una posizione random finchè non viene trovata una libera
@@ -195,23 +187,28 @@ namespace GameofLife{
               switch (corrente.Get_cell(r, c)) {
                  case Cell::S:
                    if (infected(infected_around, beta)) {
+                     next.Set_cell(Cell::Empty,r,c);
                      next.Set_cell(Cell::I,r + a, c + b);
                    } else {
+                     next.Set_cell(Cell::Empty,r,c);
                      next.Set_cell(Cell::S,r + a, c + b);
                    }
                    break;
          
                  case Cell::I:
                    if (removed(gamma)) {
+                     next.Set_cell(Cell::Empty,r,c);
                      next.Set_cell(Cell::R,r + a, c + b);
                    } else {
+                     next.Set_cell(Cell::Empty,r,c);
                      next.Set_cell(Cell::I,r + a, c + b);
                    }
                    break;
          
                  case Cell::R:
-                   next.Set_cell(Cell::R,r + a, c + b);
-                   break;
+                     next.Set_cell(Cell::Empty,r,c);
+                     next.Set_cell(Cell::R,r + a, c + b);
+                     break;
          
                  default:
                    break;
@@ -231,15 +228,15 @@ namespace GameofLife{
     void worldDisplay(World &World){
       int const N=World.side();
 
-      for(int i=0;i<=(N+1);i++){
+      for(int i=0;i!=N+2;i++){
         std::cout<<"+";
       }
 
       std::cout<<'\n';
 
-      for(int r=1;r!=(N+1);r++){
-        for(int c=1;c!=(N+1);c++){
-          if(c==1){
+      for(int r=0;r!=N;r++){
+        for(int c=0;c!=N;c++){
+          if(c==0){
             std::cout<<"+";
           }
           switch (World.Get_cell(r, c)) {
@@ -262,15 +259,18 @@ namespace GameofLife{
               default:
                 break;
             }
-            if(c==N){
+
+            if(c==N-1){
               std::cout<<"+"<<'\n';
             }
+            
         }
       }
 
-      for(int j=0;j<=(N+1);j++){
-        std::cout<<"+";
+      for(int i=0;i!=N+2;i++){
+         std::cout<<"+";
       }
+
 
       std::cout<<'\n';
 
