@@ -16,11 +16,11 @@ int main(){
    GameofLife::worldDisplay(world_test);
 
    GameofLife::World next1(4);
-   next1=GameofLife::evolve(world_test,0.3,0.2);
+   next1=GameofLife::evolve(world_test,0.4,0.2);
    GameofLife::worldDisplay(next1);
 
    GameofLife::World next2(4);
-   next2=GameofLife::evolve(next1,0.3,0.2);
+   next2=GameofLife::evolve(next1,0.4,0.2);
    GameofLife::worldDisplay(next2);
    
   
