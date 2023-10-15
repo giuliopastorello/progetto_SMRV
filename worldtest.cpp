@@ -11,7 +11,7 @@ int main(){
 
    GameofLife::World world_test2(5);
 
-   GameofLife::initial_random(world_test2,4,3);
+   GameofLife::initial_random(world_test2,14,10);
    GameofLife::worldDisplay(world_test2);
    /*
    world_test.Set_cell(GameofLife::Cell::S,0,0);

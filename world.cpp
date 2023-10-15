@@ -115,7 +115,10 @@ namespace GameofLife{
         int const N = world.side();
 
         if (num_s < 0 || num_i < 0) {
-           throw std::runtime_error("Can't have negative number of people");
+           throw std::runtime_error("non puoi mettere numeri negativi di persone");
+        }
+        if (num_s + num_i >=world.side()*world.side()) {
+           throw std::runtime_error("la griglia non può essere tutta piena");
         } 
         
         /*else if (static_cast<double>(num_s + num_i) / static_cast<double>(N * N) >0.3) {
