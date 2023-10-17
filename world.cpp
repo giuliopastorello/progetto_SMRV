@@ -1,6 +1,6 @@
 #include "world.hpp"
 
-
+#include "termcolor.hpp"
 #include <algorithm> //contiene metodo count per ricerca nei vettori
 #include <cassert>
 #include <cmath>
@@ -171,9 +171,9 @@ namespace GameofLife{
 
        for(int r=0;r!=N;r++){
           for(int c=0;c!=N;c++){
-              bool condition=move_condition(corrente,r,c);
+              bool condition=move_condition(next,r,c);//restituisce vero se ho una cella empty intorno
 
-              int const infected_around = infected_counter(corrente, r, c);
+              int infected_around = infected_counter(corrente, r, c);
 
               if (condition==false){
                 switch (corrente.Get_cell(r, c)) {
@@ -181,15 +181,15 @@ namespace GameofLife{
                    if (infected(infected_around, beta)) {
                      next.Set_cell(Cell::I,r, c);
                    } else {
-                     break;
+                     next.Set_cell(Cell::S,r, c);
                    }
                     break;
-         
+
                   case Cell::I:
                    if (removed(gamma)) {
                      next.Set_cell(Cell::R,r, c);
                    } else {
-                     break;
+                     next.Set_cell(Cell::I,r , c );
                    }
                     break;
 
@@ -197,49 +197,46 @@ namespace GameofLife{
                     break;
                 }
 
-                continue;
-              }//se la cella non si può muovere rimane lì e si passa alla prossima iterazione
-              //tuttavia può mutare come tutte le altre celle (S->I o I->R)        
-              
-              auto a = dist(eng);
-              auto b = dist(eng);
-
-              while (next.Get_cell(r + a, c + b) != Cell::Empty) {
-                a = dist(eng);
-                b = dist(eng);
-              }//continuo a generare una posizione random finchè non viene trovata una libera
-              //da analizzare se possono crearsi loop infiniti
-
-              switch (corrente.Get_cell(r, c)) {
-                 case Cell::S:
-                   if (infected(infected_around, beta)) {
-                     next.Set_cell(Cell::Empty,r,c);
-                     next.Set_cell(Cell::I,r + a, c + b);
-                   } else {
-                     next.Set_cell(Cell::Empty,r,c);
-                     next.Set_cell(Cell::S,r + a, c + b);
-                   }
-                   break;
-         
-                 case Cell::I:
-                   if (removed(gamma)) {
-                     next.Set_cell(Cell::Empty,r,c);
-                     next.Set_cell(Cell::R,r + a, c + b);
-                   } else {
-                     next.Set_cell(Cell::Empty,r,c);
-                     next.Set_cell(Cell::I,r + a, c + b);
-                   }
-                   break;
-         
-                 case Cell::R:
-                     next.Set_cell(Cell::Empty,r,c);
-                     next.Set_cell(Cell::R,r + a, c + b);
-                     break;
-         
-                 default:
-                   break;
+              } else {                        
+                  auto a = dist(eng);
+                  auto b = dist(eng);
+    
+                  while (next.Get_cell(r + a, c + b) != Cell::Empty) {
+                    a = dist(eng);
+                    b = dist(eng);
+                  }//continuo a generare una posizione random finchè non viene trovata una libera
+                  //da analizzare se possono crearsi loop infiniti
+    
+                  switch (corrente.Get_cell(r, c)) {
+                     case Cell::S:
+                       if (infected(infected_around, beta)) {
+                         next.Set_cell(Cell::Empty,r,c);
+                         next.Set_cell(Cell::I,r + a, c + b);
+                       } else {
+                         next.Set_cell(Cell::Empty,r,c);
+                         next.Set_cell(Cell::S,r + a, c + b);
+                       }
+                       break;
+             
+                     case Cell::I:
+                       if (removed(gamma)) {
+                         next.Set_cell(Cell::Empty,r,c);
+                         next.Set_cell(Cell::R,r + a, c + b);
+                       } else {
+                         next.Set_cell(Cell::Empty,r,c);
+                         next.Set_cell(Cell::I,r + a, c + b);
+                       }
+                       break;
+             
+                     case Cell::R:
+                         next.Set_cell(Cell::Empty,r,c);
+                         next.Set_cell(Cell::R,r + a, c + b);
+                         break;
+             
+                     default:
+                       break;
+                  }
               }
-          
           }
         }
 
@@ -263,7 +260,7 @@ namespace GameofLife{
       int const N=World.side();
 
       for(int i=0;i!=N+2;i++){
-        std::cout<<"-";
+        std::cout<< termcolor::white <<"-";
       }
 
       std::cout<<'\n';
@@ -271,19 +268,19 @@ namespace GameofLife{
       for(int r=0;r!=N;r++){
         for(int c=0;c!=N;c++){
           if(c==0){
-            std::cout<<"|";
+            std::cout<< termcolor::white <<"|";
           }
           switch (World.Get_cell(r, c)) {
               case Cell::S:
-                std::cout<<"S";
+                std::cout<< termcolor::white <<"o";
                 break;
          
               case Cell::I:
-                std::cout<<"I";
+                std::cout<< termcolor::bright_red <<"o";
                 break;
          
               case Cell::R:
-                std::cout<<"R";
+                std::cout<< termcolor::bright_blue <<"x";
                 break;
                  
               case Cell::Empty:
@@ -295,14 +292,14 @@ namespace GameofLife{
             }
 
             if(c==N-1){
-              std::cout<<"|"<<'\n';
+              std::cout<< termcolor::white <<"|"<<'\n';
             }
             
         }
       }
 
       for(int i=0;i!=N+2;i++){
-         std::cout<<"-";
+         std::cout<< termcolor::white <<"-";
       }
 
 
