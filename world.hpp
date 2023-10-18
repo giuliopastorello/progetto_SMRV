@@ -42,6 +42,8 @@ World evolve(World &World, double beta, double gamma);
 
 void worldDisplay(World &World);//metodo per graficare su terminale
 
+void worldDisplayGrid(World &World);//metodo per graficare una griglia con scacchiera
+
 bool virus_condition(World &World);
 
 

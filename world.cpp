@@ -171,9 +171,12 @@ namespace GameofLife{
 
        for(int r=0;r!=N;r++){
           for(int c=0;c!=N;c++){
-              bool condition=move_condition(next,r,c);//restituisce vero se ho una cella empty intorno
+              bool condition=move_condition(next,r,c);
+              //restituisce vero se ho una cella empty intorno
+              //va fatto su next poichè la grglia cambia durante il ciclo
 
               int infected_around = infected_counter(corrente, r, c);
+              //va fatto su corrente perchè l'infezione dipende dai contatti dello stato prima 
 
               if (condition==false){
                 switch (corrente.Get_cell(r, c)) {
@@ -195,7 +198,7 @@ namespace GameofLife{
 
                   default:
                     break;
-                }
+                } //se la cella non ha dove spostarsi rimane ferma evolvendosi in base al suo stato precedente
 
               } else {                        
                   auto a = dist(eng);
@@ -205,7 +208,7 @@ namespace GameofLife{
                     a = dist(eng);
                     b = dist(eng);
                   }//continuo a generare una posizione random finchè non viene trovata una libera
-                  //da analizzare se possono crearsi loop infiniti
+                  //sono sicuro che esista una posizione intorno libera poichè condition è true
     
                   switch (corrente.Get_cell(r, c)) {
                      case Cell::S:
@@ -235,7 +238,7 @@ namespace GameofLife{
              
                      default:
                        break;
-                  }
+                  }//se l'individuo può spostarsi si sposta ed evolve secondo le stesse regole 
               }
           }
         }
@@ -259,8 +262,11 @@ namespace GameofLife{
     void worldDisplay(World &World){
       int const N=World.side();
 
+      std::cout<<termcolor::on_bright_white<<termcolor::grey
+      <<"VIRUS GAME"<<termcolor::reset<<'\n';
+
       for(int i=0;i!=N+2;i++){
-        std::cout<< termcolor::white <<"-";
+        std::cout<< termcolor::bright_white <<"-";
       }
 
       std::cout<<'\n';
@@ -268,7 +274,7 @@ namespace GameofLife{
       for(int r=0;r!=N;r++){
         for(int c=0;c!=N;c++){
           if(c==0){
-            std::cout<< termcolor::white <<"|";
+            std::cout<< termcolor::bright_white <<"|";
           }
           switch (World.Get_cell(r, c)) {
               case Cell::S:
@@ -292,14 +298,14 @@ namespace GameofLife{
             }
 
             if(c==N-1){
-              std::cout<< termcolor::white <<"|"<<'\n';
+              std::cout<< termcolor::bright_white <<"|"<<'\n';
             }
             
         }
       }
 
       for(int i=0;i!=N+2;i++){
-         std::cout<< termcolor::white <<"-";
+         std::cout<< termcolor::bright_white <<"-";
       }
 
 
@@ -308,7 +314,74 @@ namespace GameofLife{
     }
 
 
+    void worldDisplayGrid(World &World){
+          int const N=World.side();
+    
+          std::cout<<termcolor::on_bright_white<<termcolor::grey
+          <<"VIRUS GAME"<<termcolor::reset<<'\n';//titolo
+    
+           
+          for(int r=0;r!=N;r++){
 
+            for(int i=0;i!=N;i++){
+               std::cout<< termcolor::on_bright_white << termcolor::grey <<"+-"
+               <<termcolor::reset;
+            }
+            std::cout<< termcolor::on_bright_white << termcolor::grey <<"+"
+            <<termcolor::reset<<'\n';
+
+            for(int c=0;c!=N;c++){
+              
+              switch (World.Get_cell(r, c)) {
+                  case Cell::S:
+                    std::cout<< termcolor::on_bright_white << termcolor::grey <<"|"
+                    <<termcolor::reset;
+                    std::cout<< termcolor::on_bright_white << termcolor::grey <<"o"
+                    <<termcolor::reset;
+                    break;
+             
+                  case Cell::I:
+                    std::cout<< termcolor::on_bright_white << termcolor::grey <<"|"
+                    <<termcolor::reset;
+                    std::cout<< termcolor::on_bright_white << termcolor::red <<"o"
+                    <<termcolor::reset;
+                    break;
+             
+                  case Cell::R:
+                    std::cout<< termcolor::on_bright_white << termcolor::grey <<"|"
+                    <<termcolor::reset;
+                    std::cout<< termcolor::on_bright_white << termcolor::blue <<"x"
+                    <<termcolor::reset;
+                    break;
+                     
+                  case Cell::Empty:
+                    std::cout<< termcolor::on_bright_white << termcolor::grey <<"|"
+                    <<termcolor::reset;
+                    std::cout<< termcolor::on_bright_white <<" "
+                    <<termcolor::reset;
+                    break;
+            
+                  default:
+                    break;
+                }
+    
+                if(c==N-1){
+                  std::cout<< termcolor::on_bright_white << termcolor::grey <<"|"
+                  <<termcolor::reset<<'\n';
+                }
+                
+            }
+          }
+    
+          for(int i=0;i!=N;i++){
+              std::cout<< termcolor::on_bright_white << termcolor::grey <<"+-"
+              <<termcolor::reset;
+          }
+              
+          std::cout<< termcolor::on_bright_white << termcolor::grey <<"+"
+          <<termcolor::reset<<'\n';
+    
+        }
     
 
 
