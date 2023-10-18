@@ -5,7 +5,7 @@
 
 namespace GameofLife{
 
-enum class Cell {Empty, S, I, R };
+enum class Cell {Dead, Empty, S, I, Healed };
 
 class World {
 
@@ -17,7 +17,8 @@ class World {
    int side() const; //get per il side
    int S_Number() const; //get numero di suscettibili
    int I_Number() const; //get numero di infetti
-   int R_Number() const; //get numero di rimossi
+   int Healed_Number() const; //get numero di rimossi (guariti)
+   int Dead_Number() const; //get numero di morti
 
 
    void Set_cell(Cell const &cell_type,int r, int c); //cambia il valore della cella in posizione (r,c)
@@ -36,15 +37,17 @@ bool infected(int number_counter,double beta); //metodo per stabilire se contagi
   
 bool removed(double gamma); //metodo per stabilire se rimuovere
 
+bool fatality(double alfa); //metodo per stabilire se muore
+
 bool move_condition(World const &World,int r,int c);
 
-World evolve(World &World, double beta, double gamma);
+World evolve(World &World, double beta, double gamma, double alfa);
 
 void worldDisplay(World &World);//metodo per graficare su terminale
 
 void worldDisplayGrid(World &World);//metodo per graficare una griglia con scacchiera
 
-bool virus_condition(World &World);
+bool virus_condition(World &World);//metodo che verifica se ha senso far proseguire il programma
 
 
 }//namespace gameoflife

@@ -20,8 +20,12 @@ namespace GameofLife{
         return std::count(m_field.begin(), m_field.end(), Cell::I);
     }
 
-    int World::R_Number() const {
-        return std::count(m_field.begin(), m_field.end(), Cell::R);
+    int World::Healed_Number() const {
+        return std::count(m_field.begin(), m_field.end(), Cell::Healed);
+    }
+
+    int World::Dead_Number() const {
+        return std::count(m_field.begin(), m_field.end(), Cell::Dead);
     }
 
     World::World(int a):m_side{a}, m_field(a*a,Cell::Empty){ //inizializza a*a celle vuote
@@ -80,9 +84,12 @@ namespace GameofLife{
           }
         }
       }
+      if(World.Get_cell(r,c)==Cell::Dead){
+        condition=false;
+      }
       return condition;
     }//metodo che controlla se intorno ci sono celle vuote in cui spostarsi e restituisce vero nel caso
-
+    //se la cella su cui viene chiamata è morta restituisce falso
 
     bool infected(int number_counter,double beta){
        assert(beta>=0 && beta<=1);
@@ -91,7 +98,7 @@ namespace GameofLife{
        std::uniform_int_distribution<int> dist{0, 100};
 
        int m = dist(eng);
-       int prob = std::round(beta * number_counter * 10);
+       int prob = std::round(beta * number_counter * 10); //per beta=0.5 ogni infetto vicino +5%
 
        return m < prob; //se numero generato minore di prob restituisce vero -> cella infettata
 
@@ -106,12 +113,29 @@ namespace GameofLife{
    
      int m = dist(eng);
      int prob = std::round(gamma * 100); //qui chiaramente non contano le celle confinanti
+                                        //per gamma=0.1 10% probabilità rimozione
    
      bool result = (m < prob);
    
      return result;
 
     } //metodo per stabilire se rimuovere
+
+    bool fatality(double alfa){
+      assert(alfa >= 0 && alfa <= 1);
+
+      std::random_device rand{};
+      std::default_random_engine eng{rand()};
+      std::uniform_int_distribution<int> dist{0, 100};
+
+      int m = dist(eng);
+      int prob = std::round(alfa * 100);//per alfa=0.05 5% prob di morire 
+
+      bool result = (m < prob);
+   
+      return result;
+      
+    }//metodo per stabilire la morte: vero->morte
 
     void initial_random(World &world, int num_s, int num_i){
         int const N = world.side();
@@ -121,12 +145,11 @@ namespace GameofLife{
         }
         if (num_s + num_i >=world.side()*world.side()) {
            throw std::runtime_error("la griglia non può essere tutta piena");
-        } 
-        
-        /*else if (static_cast<double>(num_s + num_i) / static_cast<double>(N * N) >0.3) {
-           throw std::runtime_error("Overpopulation: more than 30 percent of the grid populated");
-          }   problema sovrappopolazione gianca non affrontato ancora */
-
+        }
+        if (num_i==0) {
+           throw std::runtime_error("il gioco non è interessante senza virus");
+        }
+     
         std::random_device r{};
         std::default_random_engine eng{r()};
         std::uniform_int_distribution<int> dist{1, N};
@@ -155,14 +178,14 @@ namespace GameofLife{
         }
     } //metodo che prende una griglia creata e genera random infetti e suscettibili
 
-    World evolve(World &corrente,double beta,double gamma){
-       if (beta < 0 || beta > 1 || gamma < 0 || gamma > 1) {
-         throw std::runtime_error("Probability parameters must be between 0 and 1");
+    World evolve(World &now,double beta,double gamma,double alfa){
+       if (beta < 0 || beta > 1 || gamma < 0 || gamma > 1 || alfa<0 || alfa>1) {
+         throw std::runtime_error("i parametri di probabilità devono essere compresi fra 0 e 1");
        }
 
-       int const N = corrente.side();
+       int const N = now.side();
 
-       World next{corrente};
+       World next{now};
 
        std::random_device r{};
        std::default_random_engine eng{r()};
@@ -174,12 +197,13 @@ namespace GameofLife{
               bool condition=move_condition(next,r,c);
               //restituisce vero se ho una cella empty intorno
               //va fatto su next poichè la grglia cambia durante il ciclo
-
-              int infected_around = infected_counter(corrente, r, c);
-              //va fatto su corrente perchè l'infezione dipende dai contatti dello stato prima 
+              //restituisce falso se la cella è morta o è bloccata
+              
+              int infected_around = infected_counter(now, r, c);
+              //va fatto su now perchè l'infezione dipende dai contatti dello stato prima 
 
               if (condition==false){
-                switch (corrente.Get_cell(r, c)) {
+                switch (now.Get_cell(r, c)) {
                   case Cell::S:
                    if (infected(infected_around, beta)) {
                      next.Set_cell(Cell::I,r, c);
@@ -189,11 +213,20 @@ namespace GameofLife{
                     break;
 
                   case Cell::I:
-                   if (removed(gamma)) {
-                     next.Set_cell(Cell::R,r, c);
-                   } else {
-                     next.Set_cell(Cell::I,r , c );
-                   }
+                    if (removed(gamma)) {
+                      bool fat=fatality(alfa);
+                      if(fat){
+                        next.Set_cell(Cell::Dead,r,c);
+                      } else {
+                        next.Set_cell(Cell::Healed,r, c);//se fat falso viene rimossa (curata)
+                      }
+                    } else {
+                        next.Set_cell(Cell::I,r, c);
+                    }
+                    break;
+
+                  case Cell::Dead:
+                    next.Set_cell(Cell::Dead,r,c);
                     break;
 
                   default:
@@ -210,7 +243,7 @@ namespace GameofLife{
                   }//continuo a generare una posizione random finchè non viene trovata una libera
                   //sono sicuro che esista una posizione intorno libera poichè condition è true
     
-                  switch (corrente.Get_cell(r, c)) {
+                  switch (now.Get_cell(r, c)) {
                      case Cell::S:
                        if (infected(infected_around, beta)) {
                          next.Set_cell(Cell::Empty,r,c);
@@ -223,17 +256,23 @@ namespace GameofLife{
              
                      case Cell::I:
                        if (removed(gamma)) {
-                         next.Set_cell(Cell::Empty,r,c);
-                         next.Set_cell(Cell::R,r + a, c + b);
+                        bool fat=fatality(alfa);
+                        if(fat){
+                          next.Set_cell(Cell::Empty,r,c);
+                          next.Set_cell(Cell::Dead,r + a,c + b);
+                        } else {
+                          next.Set_cell(Cell::Empty,r,c);
+                          next.Set_cell(Cell::Healed,r + a, c + b);//se fat falso viene rimossa (curata)
+                        }
                        } else {
                          next.Set_cell(Cell::Empty,r,c);
                          next.Set_cell(Cell::I,r + a, c + b);
                        }
                        break;
              
-                     case Cell::R:
+                     case Cell::Healed:
                          next.Set_cell(Cell::Empty,r,c);
-                         next.Set_cell(Cell::R,r + a, c + b);
+                         next.Set_cell(Cell::Healed,r + a, c + b);
                          break;
              
                      default:
@@ -243,8 +282,8 @@ namespace GameofLife{
           }
         }
 
-        assert(corrente.S_Number() + corrente.I_Number() + corrente.R_Number() == 
-               next.S_Number() + next.I_Number() + next.R_Number());
+        assert(now.S_Number() + now.I_Number() + now.Healed_Number() + now.Dead_Number() == 
+               next.S_Number() + next.I_Number() + next.Healed_Number()+next.Dead_Number());
         //verifico che il numero di abitanti nella griglia sia rimasto lo stesso
 
         return next;
@@ -253,7 +292,7 @@ namespace GameofLife{
 
     bool virus_condition(World &world){
       bool cond=true;
-      if(world.I_Number()==0 || world.S_Number()==0){
+      if(world.I_Number()==0){
         cond=false;
       }
       return cond;
@@ -278,15 +317,19 @@ namespace GameofLife{
           }
           switch (World.Get_cell(r, c)) {
               case Cell::S:
-                std::cout<< termcolor::white <<"o";
+                std::cout<< termcolor::bright_blue<<"o";
                 break;
          
               case Cell::I:
                 std::cout<< termcolor::bright_red <<"o";
                 break;
          
-              case Cell::R:
-                std::cout<< termcolor::bright_blue <<"x";
+              case Cell::Healed:
+                std::cout<< termcolor::green <<"x";
+                break;
+
+              case Cell::Dead:
+                std::cout<< termcolor::grey << "x";
                 break;
                  
               case Cell::Empty:
@@ -309,9 +352,10 @@ namespace GameofLife{
       }
 
 
-      std::cout<<'\n';
+      std::cout<<'\n'<<'\n';
 
-    }
+
+    }//metodo stamba semplice
 
 
     void worldDisplayGrid(World &World){
@@ -336,7 +380,7 @@ namespace GameofLife{
                   case Cell::S:
                     std::cout<< termcolor::on_bright_white << termcolor::grey <<"|"
                     <<termcolor::reset;
-                    std::cout<< termcolor::on_bright_white << termcolor::grey <<"o"
+                    std::cout<< termcolor::on_bright_white << termcolor::bright_blue <<"o"
                     <<termcolor::reset;
                     break;
              
@@ -347,10 +391,17 @@ namespace GameofLife{
                     <<termcolor::reset;
                     break;
              
-                  case Cell::R:
+                  case Cell::Healed:
                     std::cout<< termcolor::on_bright_white << termcolor::grey <<"|"
                     <<termcolor::reset;
-                    std::cout<< termcolor::on_bright_white << termcolor::blue <<"x"
+                    std::cout<< termcolor::on_bright_white << termcolor::green <<"x"
+                    <<termcolor::reset;
+                    break;
+
+                  case Cell::Dead:
+                    std::cout<< termcolor::on_bright_white << termcolor::grey <<"|"
+                    <<termcolor::reset;
+                    std::cout<< termcolor::on_bright_white << termcolor::grey <<"x"
                     <<termcolor::reset;
                     break;
                      
@@ -381,7 +432,7 @@ namespace GameofLife{
           std::cout<< termcolor::on_bright_white << termcolor::grey <<"+"
           <<termcolor::reset<<'\n';
     
-        }
+        }//metodo stampa con griglia a scacchiera
     
 
 
