@@ -62,7 +62,7 @@ namespace GameofLife{
     }
 
 
-    int infected_counter(World &World,int r,int c){
+    int infected_counter(World const &World,int r,int c){
       int result=0;
       for (int i : {-1, 0, 1}) {
         for (int j : {-1, 0, 1}) {
@@ -264,7 +264,7 @@ namespace GameofLife{
                           next.Set_cell(Cell::Empty,r,c);
                           next.Set_cell(Cell::Healed,r + a, c + b);//se fat falso viene rimossa (curata)
                         }
-                       } else {
+                       }  else {
                          next.Set_cell(Cell::Empty,r,c);
                          next.Set_cell(Cell::I,r + a, c + b);
                        }
@@ -290,7 +290,7 @@ namespace GameofLife{
 
     }
 
-    bool virus_condition(World &world){
+    bool virus_condition(World const &world){
       bool cond=true;
       if(world.I_Number()==0){
         cond=false;
@@ -298,7 +298,7 @@ namespace GameofLife{
       return cond;
     }
 
-    void worldDisplay(World &World){
+    void worldDisplay(World const &World){
       int const N=World.side();
 
       std::cout<<termcolor::on_bright_white<<termcolor::grey
@@ -358,7 +358,7 @@ namespace GameofLife{
     }//metodo stamba semplice
 
 
-    void worldDisplayGrid(World &World){
+    void worldDisplayGrid(World const &World){
           int const N=World.side();
     
           std::cout<<termcolor::on_bright_white<<termcolor::grey

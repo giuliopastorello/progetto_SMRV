@@ -10,11 +10,11 @@ int main(){
 
    //int i=0;
    //int N_times=25;
-   int dimension=10;
-   int number_S=18;
-   int number_I=10;
+   int dimension=4;
+   int number_S=3;
+   int number_I=2;
    float Beta=0.5;//contagio (con 0.5-> +5% per ogni vicino infetto)
-   float Gamma=0.10;//rimozione (con 0.1 -> 10% probabilità rimozione -> o morto o guarito)
+   float Gamma=0.05;//rimozione (con 0.1 -> 10% probabilità rimozione -> o morto o guarito)
    float alfa=0.10;//fatalità (con 0.1 -> 10% probabilità morte 90% probabilità guarigione)
    float time_inter=1.5;//secondi / tempo intercorso fra un frame e l'altro
    int N_people=number_I + number_S;//numero persone totali sulla griglia

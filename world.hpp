@@ -31,7 +31,7 @@ class World {
 
 void initial_random(World &world, int num_s, int num_i); //metodo che prende una griglia creata e genera random infetti e suscettibili
 
-int infected_counter(World &World,int r,int c); //conta il numero di celle infette intorno 
+int infected_counter(World const &World,int r,int c); //conta il numero di celle infette intorno 
 
 bool infected(int number_counter,double beta); //metodo per stabilire se contagiare
   
@@ -43,11 +43,11 @@ bool move_condition(World const &World,int r,int c);
 
 World evolve(World &World, double beta, double gamma, double alfa);
 
-void worldDisplay(World &World);//metodo per graficare su terminale
+void worldDisplay(World const &World);//metodo per graficare su terminale
 
-void worldDisplayGrid(World &World);//metodo per graficare una griglia con scacchiera
+void worldDisplayGrid(World const &World);//metodo per graficare una griglia con scacchiera
 
-bool virus_condition(World &World);//metodo che verifica se ha senso far proseguire il programma
+bool virus_condition(World const &World);//metodo che verifica se ha senso far proseguire il programma
 
 
 }//namespace gameoflife
