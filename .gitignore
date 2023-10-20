@@ -7,3 +7,7 @@ relazione.fls
 relazione.log
 relazione.out
 relazione.synctex.gz
+world.o
+visual.o
+worldmain.o
+sfml-app
