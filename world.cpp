@@ -98,7 +98,7 @@ namespace GameofLife{
        std::uniform_int_distribution<int> dist{0, 100};
 
        int m = dist(eng);
-       int prob = std::round(beta * number_counter * 10); //per beta=0.5 ogni infetto vicino +5%
+       int prob = std::round(beta * number_counter * 20); //per beta=0.5 ogni infetto vicino +10%
 
        return m < prob; //se numero generato minore di prob restituisce vero -> cella infettata
 
