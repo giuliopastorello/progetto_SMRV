@@ -1,7 +1,7 @@
 #include "world.hpp"
 #include <iostream>
 #include <unistd.h>
-#include "termcolor.hpp"
+#include "include/termcolor.hpp"
 
 
 int main(){
