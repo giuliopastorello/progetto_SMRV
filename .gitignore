@@ -10,3 +10,5 @@ relazione.synctex.gz
 
 sfml-app
 world.o
+visual.o
+worldmain.o
