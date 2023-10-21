@@ -10,7 +10,7 @@ int main() {
   int num_s = 350;           
   int num_i = 160;            
   double beta = 0.4; //*20*beta*n infetti vicini        
-  double gamma = 0.05;//100*gamma
+  double gamma = 0.09;//100*gamma
   double alfa = 0.05;        
   int framerate = 5;         
 
@@ -66,39 +66,66 @@ int main() {
     }
     display.draw(world);
 
-    int s_counter = world.S_Number();
     int i_counter = world.I_Number();
-    int r_counter = world.Healed_Number();
-    int d_counter = world.Dead_Number();
 
     if (i_counter == 0) {
-      int N_people= num_i + num_s;
-      int survivors=N_people-d_counter;//sopravvissuti
-      int restored=r_counter;//guariti
-      int dead=d_counter;//morti
-      int infected=d_counter+r_counter-num_i;//numero infettati durante la pandemia
-   
-      std::cout<< "Il virus non può più progredire" << '\n'<<'\n';
-      std::cout<< "Numero di persone totali: "<< N_people << '\n';
-      std::cout<< "Numero di suscettibili iniziale: "<< num_s << '\n';
-      std::cout<< "Numero di infetti iniziale: "<< num_i << '\n';
-      std::cout<< "Numero di sopravvisuti: "<< survivors << '\n';
-      std::cout<< "Numero di guariti: "<< restored << '\n';
-      std::cout<< "Numero di vittime del virus: "<< dead << '\n';
-      std::cout<< "Numero di infettati durante la pandemia: "<< infected << '\n';
-     //per ora stampo su terminale, si potrebbe stampare su una finestra secondaria
-
       break;
     }//se gli infetti divengono zero la pandemia si ferma ed esco dal ciclo
 
     window.display(); //mostra a schermo il mondo nuovo disegnato prima sulla finestra
   }
 
-  if (window.isOpen()) {
+  if (window.isOpen()) { //in questo if si entra dopo che i_counter=0
+    int h_counter = world.Healed_Number();
+    int d_counter = world.Dead_Number();
+    int N_people= num_i + num_s;
+    int survivors=N_people-d_counter;//sopravvissuti
+    int infected=d_counter+h_counter-num_i;//numero infettati durante la pandemia
+  
+    std::cout<< "Il virus non può più progredire" << '\n'<<'\n';
+    std::cout<< "Numero di persone totali: "<< N_people << '\n';
+    std::cout<< "Numero di suscettibili iniziale: "<< num_s << '\n';
+    std::cout<< "Numero di infetti iniziale: "<< num_i << '\n';
+    std::cout<< "Numero di sopravvisuti: "<< survivors << '\n';
+    std::cout<< "Numero di guariti: "<< h_counter << '\n';
+    std::cout<< "Numero di vittime del virus: "<< d_counter << '\n';
+    std::cout<< "Numero di infettati durante la pandemia: "<< infected << '\n';
+    //stampa dati finali su terminale
+    
+    sf::Text text;//testo per rettangolo di riepilogo
+    sf::Font font;//font per rettangolo di riepilogo
+    if (!font.loadFromFile("include/Roboto-Regular.ttf")) {
+      throw std::runtime_error("can't load Roboto font");
+    }
+    text.setFont(font);//font setting
+  
+    text.setCharacterSize(20);
+    text.setStyle(sf::Text::Bold);
+    text.setFillColor(sf::Color::Black);
+    text.setPosition(6, 6);
+  
+    sf::Vector2f size(270, 160);//vettore bidimensionale per il rettangolo di riepilogo
+    sf::RectangleShape rect(size);//rettangolo analisi dati
+    rect.setFillColor(sf::Color::White);
+    rect.setOutlineColor(sf::Color::Black);
+    rect.setOutlineThickness(3.0);
+    rect.setPosition(3, 3);
+
+    std::string counter_message =
+        "Number of initial S: " + std::to_string(num_s) + '\n' +
+        "Number of initial I: " + std::to_string(num_i) + '\n' +
+        "Number of Healed: " + std::to_string(h_counter) + '\n' +
+        "Number of Dead: " + std::to_string(d_counter) + '\n' +
+        "Number of Survivors: " + std::to_string(survivors) + '\n' +
+        "Number of Infected: " + std::to_string(infected);
+    text.setString(counter_message);
+
     window.clear(sf::Color::White);
     display.draw(world);
     display.show_message("Epidemy has stopped");
-    //come ultima operazione quando i_counter==0 disegno e mostro a schermo l'ultima griglia
+
+    window.draw(rect);
+    window.draw(text);
        
     window.display();
 
