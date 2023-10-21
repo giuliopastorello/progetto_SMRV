@@ -5,12 +5,12 @@
 #include "world.hpp"
 
 int main() {
-  int grid_dimension = 50;  
-  int cell_size = 15;         
-  int num_s = 350;           
-  int num_i = 160;            
-  double beta = 0.4; //*20*beta*n infetti vicini        
-  double gamma = 0.09;//100*gamma
+  int grid_dimension = 100;  
+  int cell_size = 8;         
+  int num_s = 2000;           
+  int num_i = 400;            
+  double beta = 0.5; //*20*beta*n infetti vicini        
+  double gamma = 0.08;//100*gamma
   double alfa = 0.05;        
   int framerate = 5;         
 
@@ -102,14 +102,14 @@ int main() {
     text.setCharacterSize(20);
     text.setStyle(sf::Text::Bold);
     text.setFillColor(sf::Color::Black);
-    text.setPosition(6, 6);
+    text.setPosition(10, 10);
   
-    sf::Vector2f size(270, 160);//vettore bidimensionale per il rettangolo di riepilogo
+    sf::Vector2f size(280, 160);//vettore bidimensionale per il rettangolo di riepilogo
     sf::RectangleShape rect(size);//rettangolo analisi dati
     rect.setFillColor(sf::Color::White);
     rect.setOutlineColor(sf::Color::Black);
     rect.setOutlineThickness(3.0);
-    rect.setPosition(3, 3);
+    rect.setPosition(6, 6);
 
     std::string counter_message =
         "Number of initial S: " + std::to_string(num_s) + '\n' +
