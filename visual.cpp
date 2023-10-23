@@ -16,9 +16,9 @@ Visual::Visual(sf::RenderWindow &window) : m_window{window}{
 void Visual::draw(World const &world) {
   int const N = world.side();
 
-  sf::Color Healedcolor(1,180,1); //red green blue
-  sf::Color HealthyColor(1,100,255);
-  sf::Color InfectedColor(250,1,1);         
+  sf::Color Healedcolor(1, 180, 1); //red green blue
+  sf::Color HealthyColor(1, 100, 255);
+  sf::Color InfectedColor(250, 1, 1);         
 
   sf::Vector2f const cell_size{m_window.getSize() / static_cast<unsigned>(N)};//vettore 2 dim (x,y)
   //rettangolo celle: (0,0) in alto a sinistra
@@ -63,7 +63,7 @@ void Visual::show_message(std::string const &message) {
 
   text.move((m_window.getSize().x - text.getLocalBounds().width) / 2, m_window.getSize().y / 2);
 
-  sf::Color Textcolor = sf::Color::White;
+  sf::Color Textcolor(247, 231, 0);//giallo
   text.setFillColor(Textcolor);
   text.setOutlineColor(sf::Color::Black);
   text.setOutlineThickness(2.0);

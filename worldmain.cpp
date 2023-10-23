@@ -95,7 +95,7 @@ int main() {
     text.setFillColor(sf::Color::Black);
     text.setPosition(10, 10);
   
-    sf::Vector2f size(380, 160);//vettore bidimensionale per il rettangolo di riepilogo
+    sf::Vector2f size(385, 160);//vettore bidimensionale per il rettangolo di riepilogo
     sf::RectangleShape rect(size);//rettangolo analisi dati
     rect.setFillColor(sf::Color::White);
     rect.setOutlineColor(sf::Color::Black);
@@ -109,6 +109,7 @@ int main() {
         "Number of dead: " + std::to_string(d_counter) + '\n' +
         "Number of survivors: " + std::to_string(survivors) + '\n' +
         "Number of infected during virus: " + std::to_string(infected);
+        
     text.setString(counter_message);
 
     window.clear(sf::Color::White);
