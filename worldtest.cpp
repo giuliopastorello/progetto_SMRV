@@ -19,31 +19,31 @@ int main(){
    float time_inter=1.5;//secondi / tempo intercorso fra un frame e l'altro
    int N_people=number_I + number_S;//numero persone totali sulla griglia
 
-   GameofLife::World world_test(dimension);
+   VirusGame::World world_test(dimension);
 
-   GameofLife::initial_random(world_test,number_S,number_I);
+   VirusGame::initial_random(world_test,number_S,number_I);
    //GameofLife::worldDisplay(world_test);
-   GameofLife::worldDisplayGrid(world_test);
+   VirusGame::worldDisplayGrid(world_test);
    
-   GameofLife::World next(dimension);
+   VirusGame::World next(dimension);
    
-   while(GameofLife::virus_condition(world_test)){
+   while(VirusGame::virus_condition(world_test)){
       sleep(time_inter);
       system("clear");
-      next=GameofLife::evolve(world_test,Beta,Gamma,alfa);
+      next=VirusGame::evolve(world_test,Beta,Gamma,alfa);
       //GameofLife::worldDisplay(next);
-      GameofLife::worldDisplayGrid(next);
+      VirusGame::worldDisplayGrid(next);
       world_test=next;
    }
 
    //analisi risultati:
-   int survivors=N_people-world_test.Dead_Number();//sopravvissuti
-   int restored=world_test.Healed_Number();//guariti
-   int dead=world_test.Dead_Number();//morti
-   int infected=world_test.Dead_Number()+world_test.Healed_Number()-number_I;//numero infettati durante la pandemia
+   int survivors=N_people-world_test.D_Number();//sopravvissuti
+   int restored=world_test.H_Number();//guariti
+   int dead=world_test.D_Number();//morti
+   int infected=world_test.D_Number()+world_test.H_Number()-number_I;//numero infettati durante la pandemia
 
 
-   if(GameofLife::virus_condition(world_test)==false){
+   if(VirusGame::virus_condition(world_test)==false){
       std::cout<< "Il virus non può più progredire" << '\n'<<'\n';
       std::cout<< "Numero di persone totali: "<< N_people << '\n';
       std::cout<< "Numero di suscettibili iniziale: "<< number_S << '\n';

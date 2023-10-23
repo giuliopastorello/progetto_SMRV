@@ -3,9 +3,9 @@
 
 #include <vector>
 
-namespace GameofLife{
+namespace VirusGame{
 
-enum class Cell {Dead, Empty, S, I, Healed };
+enum class Cell {Dead, Empty, Healthy, Infected, Healed };
 
 class World {
 
@@ -14,11 +14,11 @@ class World {
 
    public:
 
-   int side() const; //get per il side
-   int S_Number() const; //get numero di suscettibili
-   int I_Number() const; //get numero di infetti
-   int Healed_Number() const; //get numero di rimossi (guariti)
-   int Dead_Number() const; //get numero di morti
+   int side() const; //dimensione lato griglia
+   int S_Number() const; //numero di sani
+   int I_Number() const; //numero di infetti
+   int H_Number() const; //numero di guariti
+   int D_Number() const; //numero di morti
 
 
    void Set_cell(Cell const &cell_type,int r, int c); //cambia il valore della cella in posizione (r,c)
@@ -31,15 +31,15 @@ class World {
 
 void initial_random(World &world, int num_s, int num_i); //metodo che prende una griglia creata e genera random infetti e suscettibili
 
-int infected_counter(World const &World,int r,int c); //conta il numero di celle infette intorno 
+int infected_counter(World const &World, int r, int c); //conta il numero di celle infette intorno 
 
-bool infected(int number_counter,double beta); //metodo per stabilire se contagiare
+bool infection_condition(int number_counter, double beta); //metodo per stabilire se contagiare
   
-bool removed(double gamma); //metodo per stabilire se rimuovere
+bool removal_condition(double gamma); //metodo per stabilire se rimuovere
 
-bool fatality(double alfa); //metodo per stabilire se muore
+bool death_condition(double alfa); //metodo per stabilire se muore
 
-bool move_condition(World const &World,int r,int c);
+bool move_condition(World const &World, int r, int c);//metodo che verifica se la cella si può spostare
 
 World evolve(World &World, double beta, double gamma, double alfa);
 

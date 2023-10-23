@@ -2,10 +2,9 @@
 #define VISUAL_HPP
 
 #include <SFML/Graphics.hpp>
-
 #include "world.hpp"
 
-namespace GameofLife {
+namespace VirusGame {
 
 class Visual {
   sf::RenderWindow &m_window;
@@ -19,6 +18,6 @@ class Visual {
 
   void show_message(std::string const &message);
 };
-}  // namespace virus
+}// namespace VirusGame
 
 #endif
