@@ -14,7 +14,7 @@ int main() {
   double alfa = 0.05;        
   int framerate = 5;         
 
-  //manca ancora la parte dove si fanno inserire i dati manualmente dall'utente
+  //manca ancora la parte dove si fanno inserire i dati manualmente dall'utente se si vuole fare
 
   constexpr auto window_title{"Virus Game"};
 
@@ -109,7 +109,7 @@ int main() {
         "Number of dead: " + std::to_string(d_counter) + '\n' +
         "Number of survivors: " + std::to_string(survivors) + '\n' +
         "Number of infected during virus: " + std::to_string(infected);
-        
+
     text.setString(counter_message);
 
     window.clear(sf::Color::White);
