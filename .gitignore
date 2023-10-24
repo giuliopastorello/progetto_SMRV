@@ -11,7 +11,7 @@ relazione.synctex.gz
 sfml-app
 _deps/
 CMakeFiles/
-CMakeFiles
+MakeFile
 CMakeCache.txt
 CTestTestfile.cmake
 cmake_install.cmake
