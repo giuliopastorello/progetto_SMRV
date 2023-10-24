@@ -9,3 +9,5 @@ relazione.out
 relazione.synctex.gz
 *.o
 sfml-app
+_deps/
+CMakeFiles/
