@@ -23,13 +23,13 @@ class World {
 
    void Set_cell(Cell const &cell_type,int r, int c); //cambia il valore della cella in posizione (r,c)
    
-   Cell Get_cell(int r,int c) const;// restituisce la cella in posizione (r,c) riga colonna
+   Cell Get_cell(int r,int c) const;                  // restituisce la cella in posizione (r,c) riga colonna
    
    World(int a); //costruttore celle vuote
    
 };//class world
 
-void initial_random(World &world, int num_s, int num_i); //metodo che prende una griglia creata e genera random infetti e suscettibili
+void initial_random(World &world, int num_healthy, int num_infected); //metodo che prende una griglia creata e genera random infetti e suscettibili
 
 int infected_counter(World const &World, int r, int c); //conta il numero di celle infette intorno 
 

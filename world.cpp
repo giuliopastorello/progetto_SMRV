@@ -133,34 +133,36 @@ namespace VirusGame{
       return result;     
     }//metodo per stabilire la morte: vero->morte
 
-    void initial_random(World &world, int num_s, int num_i){
+    void initial_random(World &world, int num_healthy, int num_infected){
         int const N = world.side();
 
-        if (num_s < 0 || num_i < 0) {
-           throw std::runtime_error("There can not be negative number of people");
+        if (num_healthy < 0 || num_infected < 0) {
+           throw std::runtime_error("There can be no negative number of people");
         }
-        
-        if (num_i == 0) {
+        if (num_infected == 0) {
            throw std::runtime_error("The game is not interesting without infected");
-        }//si potrebbe mettere anche la restrizione per il caso limite di griglia tutta piena
+        }
+        if (num_healthy + num_infected > world.side() * world.side()) {
+           throw std::runtime_error("There are too much people");
+        }
      
         std::random_device r{};
         std::default_random_engine eng{r()};
         std::uniform_int_distribution<int> dist{1, N};
 
-        for (int i = 0; i != num_s; ++i) {
-           auto r = dist(eng); //vado a selezionare random una riga tra 1 e side (num righe e colonne)
+        for (int i = 0; i != num_healthy; ++i) {
+           auto r = dist(eng);                                       
            auto c = dist(eng);
        
-           while (world.Get_cell(r, c) != Cell::Empty) { //se trovo una cella già occupata rigenero casualmente
+           while (world.Get_cell(r, c) != Cell::Empty) {             
             r = dist(eng);
             c = dist(eng);
            }
 
-           world.Set_cell(Cell::Healthy, r, c); //set della cella random con S
+           world.Set_cell(Cell::Healthy, r, c); 
         }
 
-        for (int i = 0; i != num_i; ++i) {
+        for (int i = 0; i != num_infected; ++i) {
            auto r = dist(eng);
            auto c = dist(eng);
        
