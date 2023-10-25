@@ -8,7 +8,7 @@ relazione.log
 relazione.out
 relazione.synctex.gz
 visual.o
-main.o
+world.o
 worldmain.o
 sfml-app
 _deps/
