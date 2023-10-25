@@ -5,16 +5,39 @@
 #include "world.hpp"
 
 int main() {
-  int grid_dimension = 70;  
-  int cell_size = 10;         
-  int num_s = 1500;           
-  int num_i = 700;            
+  int grid_dimension = 100;  
+  int cell_size = 8;         
+  int num_s = 3000;           
+  int num_i = 800;            
   double beta = 0.5; //*20*beta*n infetti vicini        
   double gamma = 0.09;//100*gamma
   double alfa = 0.05;        
   int framerate = 5;         
+  
+  std::string message1 = "no";
+  std::cout << "Do you want do change grid dimensions and people?";
+  std::cin >> message1;
+  if(message1 == "yes"){
+    std::cout << "Digit an int grid size (<100): ";
+    std::cin >> grid_dimension ; std::cout << '\n';
+    std::cout << "Digit an int number of healthy: ";
+    std::cin >> num_s ; std::cout << '\n';
+    std::cout << "Digit an int number of infected: ";
+    std::cin >> num_i ; std::cout << '\n';
 
-  //manca ancora la parte dove si fanno inserire i dati manualmente dall'utente se si vuole fare
+  }
+
+  std::string message2 = "no";
+  std::cout << "Do you want do change virus parameters? (yes/no)";
+  std::cin >> message2;
+  if(message2 == "yes"){
+    std::cout << "Digit a double beta parameter (0<beta<1): ";
+    std::cin >> beta ; std::cout << '\n';
+    std::cout << "Digit a double gamma parameter (0<gamma<1): ";
+    std::cin >> gamma ; std::cout << '\n'; 
+    std::cout << "Digit a double alfa parameter (0<alfa<1): ";
+    std::cin >> alfa ; std::cout << '\n';
+  }
 
   constexpr auto window_title{"Virus Game"};
 
