@@ -1,5 +1,5 @@
 #include "world.hpp"
-#include "include/termcolor.hpp"
+#include "../include/termcolor.hpp"
 #include <algorithm> //contiene metodo count per ricerca nei vettori
 #include <cassert>
 #include <cmath>

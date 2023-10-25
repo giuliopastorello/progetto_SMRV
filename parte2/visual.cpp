@@ -5,9 +5,9 @@
 namespace VirusGame {
 
 Visual::Visual(sf::RenderWindow &window) : m_window{window}{
-  if (!m_font.loadFromFile("include/INFECTION.ttf")) {
+  if (!m_font.loadFromFile("../include/INFECTION.ttf")) {
     if (!m_font.loadFromFile(
-            "include/arialbi.ttf")) {
+            "../include/arialbi.ttf")) {
       throw std::runtime_error{"Cannot load font"};
     }
   } 

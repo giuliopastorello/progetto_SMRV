@@ -85,7 +85,7 @@ int main() {
     
     sf::Text text;//testo per rettangolo di riepilogo
     sf::Font font;//font per rettangolo di riepilogo
-    if (!font.loadFromFile("include/Roboto-Regular.ttf")) {
+    if (!font.loadFromFile("../include/Roboto-Regular.ttf")) {
       throw std::runtime_error("can't load Roboto font");
     }
     text.setFont(font);//font setting
