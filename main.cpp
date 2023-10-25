@@ -40,5 +40,8 @@ int main()
   {
     throw std::runtime_error{"Enter either '0' or '1'"};
   }
+  
   Emilia_Romagna1.print();
+  
+  Emilia_Romagna1.graph();
 }

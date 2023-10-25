@@ -7,7 +7,7 @@ relazione.fls
 relazione.log
 relazione.out
 relazione.synctex.gz
-*.o
+.o
 sfml-app
 _deps/
 CMakeFiles/

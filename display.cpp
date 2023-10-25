@@ -1,82 +1,83 @@
-#include "display.hpp"
+//#include "display.hpp"
 
 #include <matplot/matplot.h>
 
 #include <cassert>
+#include "infection.hpp"
 
 namespace epidemic
 {
 
-  std::vector<int> get_S(std::vector<State> const &states)
+  std::vector<int> Infection::get_S()
   {
-    int const N = states.size();
+    int const N = Infection::states().size();
     std::vector<int> result{};
     result.reserve(N);
 
     for (int i = 0; i < N; ++i)
     {
-      int num_s = states[i].S;
+      int num_s = Infection::states()[i].S;
       result.push_back(num_s);
     }
-    assert(states.size() == result.size());
+    assert(Infection::states().size() == result.size());
     return result;
   }
 
-  std::vector<int> get_M(std::vector<State> const &states)
+  std::vector<int> Infection::get_M()
   {
-    int const N = states.size();
+    int const N = Infection::states().size();
     std::vector<int> result{};
     result.reserve(N);
 
     for (int i = 0; i < N; ++i)
     {
-      int num_m = states[i].M;
+      int num_m = Infection::states()[i].M;
       result.push_back(num_m);
     }
-    assert(states.size() == result.size());
+    assert(Infection::states().size() == result.size());
     return result;
   }
 
-  std::vector<int> get_R(std::vector<State> const &states)
+  std::vector<int> Infection::get_R()
   {
-    int const N = states.size();
+    int const N = Infection::states().size();
     std::vector<int> result{};
     result.reserve(N);
 
     for (int i = 0; i < N; ++i)
     {
-      int num_r = states[i].R;
+      int num_r = Infection::states()[i].R;
       result.push_back(num_r);
     }
-    assert(states.size() == result.size());
+    assert(Infection::states().size() == result.size());
     return result;
   }
 
-  std::vector<int> get_V(std::vector<State> const &states)
+  std::vector<int> Infection::get_V()
   {
-    int const N = states.size();
+    int const N = Infection::states().size();
     std::vector<int> result{};
     result.reserve(N);
 
     for (int i = 0; i < N; ++i)
     {
-      int num_v = states[i].V;
+      int num_v = Infection::states()[i].V;
       result.push_back(num_v);
     }
-    assert(states.size() == result.size());
+    assert(Infection::states().size() == result.size());
     return result;
   }
 
-  void graph(std::vector<State> const &states)
+  void Infection::graph()
   {
 
-    std::vector<int> const S = get_S(states);
-    std::vector<int> const I = get_M(states);
-    std::vector<int> const R = get_R(states);
-    std::vector<int> const D = get_V(states);
+    std::vector<int> S = Infection::get_S();
+    std::vector<int> M = Infection::get_M();
+    std::vector<int> R = Infection::get_R();
+    std::vector<int> V = Infection::get_V();
 
-    auto f2 = matplot::figure();
-    auto f = matplot::figure();
+    auto f = matplot::figure(true);
+    //f->matplot::backend()->matplot::output("file.svg");
 
     // S()
     auto ax1 = matplot::nexttile();
@@ -97,7 +98,7 @@ namespace epidemic
 
     // Infected
     auto ax2 = matplot::nexttile();
-    matplot::bar(ax2, I, 0.3)->face_color("red");
+    matplot::bar(ax2, M, 0.3)->face_color("red");
     matplot::title("{/:Italic Infected", "red");
     matplot::ylabel("Number of people");
     matplot::xtickformat("day %g");
@@ -129,7 +130,7 @@ namespace epidemic
 
     // Dead
     auto ax4 = matplot::nexttile();
-    matplot::bar(ax4, D, 0.3)->face_color("black");
+    matplot::bar(ax4, V, 0.3)->face_color("black");
     matplot::title("{/:Italic Dead", "black");
     matplot::ylabel("Number of people");
     matplot::xtickformat("day %g");
@@ -145,5 +146,7 @@ namespace epidemic
 
     matplot::sgtitle("HISTOGRAMS", "black");
     matplot::gcf()->title_font_size_multiplier(2.0);
+
+    matplot::show();
   }
 }

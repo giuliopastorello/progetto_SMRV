@@ -6,13 +6,13 @@ namespace epidemic
 {
   std::vector<State> Infection::states() const { return analysis; }
 
-  double Infection::s() { return analysis.back().S; }
+  int Infection::s() { return analysis.back().S; }
 
-  double Infection::m() { return analysis.back().M; }
+  int Infection::m() { return analysis.back().M; }
 
-  double Infection::r() { return analysis.back().R; }
+  int Infection::r() { return analysis.back().R; }
 
-  double Infection::v() { return analysis.back().V; }
+  int Infection::v() { return analysis.back().V; }
 
   State Infection::get_state(int day) const { return analysis[day]; };
 

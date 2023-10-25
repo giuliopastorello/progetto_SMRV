@@ -5,7 +5,7 @@
 
 namespace epidemic{
 
-void graph(std::vector<State> const &states);
+    void Infection::graph();
 }
 
 #endif

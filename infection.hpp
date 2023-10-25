@@ -6,7 +6,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-// #include "gnuplot-iostream.h"
 
 namespace epidemic
 {
@@ -31,11 +30,16 @@ namespace epidemic
           analysis{initial_state},
           m_N{N} {}
     
-    //Get 
-    double s();
-    double m();
-    double r();
-    double v();
+    //Get       
+    int s();
+    int m();
+    int r();
+    int v();
+
+    std::vector<int> get_S();
+    std::vector<int> get_M();
+    std::vector<int> get_R();
+    std::vector<int> get_V();
 
     std::vector<State> states () const;
     void evolve(double beta, double gamma);
@@ -45,6 +49,8 @@ namespace epidemic
     State get_state(int day) const;
 
     void print() const;
+
+    void graph();
   };
 }
 #endif
