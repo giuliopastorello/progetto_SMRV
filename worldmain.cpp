@@ -20,6 +20,8 @@ int main() {
   if(message1 == "yes"){
     std::cout << "Digit an int grid size (<100): ";
     std::cin >> grid_dimension ; std::cout << '\n';
+    std::cout << "Digit an int cell size: ";
+    std::cin >> cell_size ; std::cout << '\n';
     std::cout << "Digit an int number of healthy: ";
     std::cin >> num_s ; std::cout << '\n';
     std::cout << "Digit an int number of infected: ";
