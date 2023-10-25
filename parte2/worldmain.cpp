@@ -12,7 +12,33 @@ int main() {
   double beta = 0.5; //*20*beta*n infetti vicini        
   double gamma = 0.09;//100*gamma
   double alfa = 0.05;        
-  int framerate = 5;         
+  int framerate = 5;   
+
+  std::string message1 = "no";
+  std::cout << "Do you want to change grid dimensions and number of people? (yes/no) ";
+  std::cin >> message1;
+  if (message1 == "yes"){
+    std::cout << "Digit int grid size (<100): ";
+    std::cin >> grid_dimension; std::cout << '\n';
+    std::cout << "Digit int cell size: ";
+    std::cin >> cell_size; std::cout << '\n';
+    std::cout << "Digit int number of healthy: ";
+    std::cin >> num_s; std::cout << '\n';
+    std::cout << "Digit int number of infected: ";
+    std::cin >> num_i; std::cout << '\n';
+  }
+
+  std::string message2 = "no";
+  std::cout << "Do you want to change probability parameters? (yes/no) ";
+  std::cin >> message2;
+  if (message2 == "yes"){
+    std::cout << "Digit double beta (0<beta<1): ";
+    std::cin >> beta; std::cout << '\n';
+    std::cout << "Digit double gamma (0<gamma<1): ";
+    std::cin >> gamma; std::cout << '\n';
+    std::cout << "Digit double alfa (0<alfa<1): ";
+    std::cin >> alfa; std::cout << '\n';
+  }       
 
   constexpr auto window_title{"Virus Game"};
 
