@@ -14,8 +14,6 @@ int main() {
   double alfa = 0.05;        
   int framerate = 5;         
 
-  //manca ancora la parte dove si fanno inserire i dati manualmente dall'utente se si vuole fare
-
   constexpr auto window_title{"Virus Game"};
 
   sf::RenderWindow window{sf::VideoMode(grid_dimension * cell_size, grid_dimension * cell_size),
