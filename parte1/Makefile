@@ -210,30 +210,6 @@ matplot/fast:
 	$(MAKE) $(MAKESILENT) -f matplotplusplus/source/matplot/CMakeFiles/matplot.dir/build.make matplotplusplus/source/matplot/CMakeFiles/matplot.dir/build
 .PHONY : matplot/fast
 
-display.o: display.cpp.o
-.PHONY : display.o
-
-# target to build an object file
-display.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/infection_tty.dir/build.make CMakeFiles/infection_tty.dir/display.cpp.o
-.PHONY : display.cpp.o
-
-display.i: display.cpp.i
-.PHONY : display.i
-
-# target to preprocess a source file
-display.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/infection_tty.dir/build.make CMakeFiles/infection_tty.dir/display.cpp.i
-.PHONY : display.cpp.i
-
-display.s: display.cpp.s
-.PHONY : display.s
-
-# target to generate assembly for a file
-display.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/infection_tty.dir/build.make CMakeFiles/infection_tty.dir/display.cpp.s
-.PHONY : display.cpp.s
-
 infection.o: infection.cpp.o
 .PHONY : infection.o
 
@@ -282,30 +258,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/infection_tty.dir/build.make CMakeFiles/infection_tty.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-rk.o: rk.cpp.o
-.PHONY : rk.o
-
-# target to build an object file
-rk.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/infection_tty.dir/build.make CMakeFiles/infection_tty.dir/rk.cpp.o
-.PHONY : rk.cpp.o
-
-rk.i: rk.cpp.i
-.PHONY : rk.i
-
-# target to preprocess a source file
-rk.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/infection_tty.dir/build.make CMakeFiles/infection_tty.dir/rk.cpp.i
-.PHONY : rk.cpp.i
-
-rk.s: rk.cpp.s
-.PHONY : rk.s
-
-# target to generate assembly for a file
-rk.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/infection_tty.dir/build.make CMakeFiles/infection_tty.dir/rk.cpp.s
-.PHONY : rk.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -322,18 +274,12 @@ help:
 	@echo "... infection_tty"
 	@echo "... matplot"
 	@echo "... nodesoup"
-	@echo "... display.o"
-	@echo "... display.i"
-	@echo "... display.s"
 	@echo "... infection.o"
 	@echo "... infection.i"
 	@echo "... infection.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... rk.o"
-	@echo "... rk.i"
-	@echo "... rk.s"
 .PHONY : help
 
 

@@ -18,7 +18,7 @@ namespace epidemic
 
   State Infection::get_state(int day) const { return analysis[day]; };
 
-  std::vector<int> Infection::get_S() const{
+  std::vector<int> Infection::get_S_vector() const{
     int const N = Infection::states().size();
     std::vector<int> result{};
     result.reserve(N);
@@ -32,7 +32,7 @@ namespace epidemic
     return result;
   }
 
-  std::vector<int> Infection::get_R() const {
+  std::vector<int> Infection::get_R_vector() const {
     int const N = Infection::states().size();
     std::vector<int> result{};
     result.reserve(N);
@@ -46,7 +46,7 @@ namespace epidemic
     return result;
   }
 
-  std::vector<int> Infection::get_V() const {
+  std::vector<int> Infection::get_V_vector() const {
     int const N = Infection::states().size();
     std::vector<int> result{};
     result.reserve(N);
@@ -60,7 +60,7 @@ namespace epidemic
     return result;
   }
 
-  std::vector<int> Infection::get_M() const {
+  std::vector<int> Infection::get_M_vector() const {
     int const N = Infection::states().size();
     std::vector<int> result{};
     result.reserve(N);
@@ -74,19 +74,19 @@ namespace epidemic
     return result;
   }
 
-  void Infection::evolve(double beta, double gamma)
-  {
+  void Infection::evolve(double beta, double gamma) {
     double const h = 1;
-    int const non_vax = 118292;   // eta
+    int const no_vax = 118292;   // eta
     double const vel_vax = 0.05;  // mu
     double const eff_vax = 0.839; // efficacia vaccino
-    for (int i = 1; i < m_time_indays; ++i)
-    {
+
+    for (int i = 1; i < m_time_indays; ++i) {
       double delV = vel_vax * (v() / eff_vax) *
-                    (1 - v() / (eff_vax * (m_N - non_vax)));
-      double delS = -beta * (s() / m_N) * m() -
-                    vel_vax * (v() / eff_vax) *
-                        (1 - v() / (eff_vax * (m_N - non_vax)));
+                    (1 - v() / (eff_vax * (m_N - no_vax)));
+
+      double delS = -beta * (s() / m_N) * m() - vel_vax * (v() / eff_vax) *
+                            (1 - v() / (eff_vax * (m_N - no_vax)));
+
       double delR = gamma * m();
 
       support.V = round(v() + h * delV);
@@ -98,13 +98,63 @@ namespace epidemic
     }
   }
 
-  int count_digit(int n)
-  {
+  void Infection::RK4(double beta, double gamma) {
+
+    float const h = 1; // step size
+    // double const beta = 0.056;
+    // double const gamma = 0.045;
+    int const eta = 118292;  // no vax
+    double const mu = 0.05;  // velocità vaccino
+    double const xi = 0.839; // efficacia vaccino
+    
+    for (int i = 1; i < m_time_indays; ++i) {
+      //  if (s() + m() + r() + v() < m_N) {
+      //    ++analysis.back().S;
+      //  }
+      //  if (s() + m() + r() + v() > m_N) {
+      //    --analysis.back().S;
+      //  }
+
+      double a1 = mu * (v() / xi) * (1 - v() / (xi * (m_N - eta)));
+      double b1 = -beta * s() * m() / m_N - a1;
+      double c1 = gamma * m();
+      double d1 = -a1 - b1 - c1;
+
+      double a2 = mu * ((v() + a1 * h / 2) / xi) * (1 - (v() + a1 * h / 2) / (xi * (m_N - eta)));
+      double b2 = -beta * (s() + b1 * h / 2) * (m() + d1 * h / 2) / m_N - a2;
+      double c2 = gamma * (m() + d1 * h / 2);
+      double d2 = -a2 - b2 - c2;
+
+      double a3 = mu * ((v() + a2 * h / 2) / xi) * (1 - (v() + a2 * h / 2) / (xi * (m_N - eta)));
+      double b3 = -beta * (s() + b2 * h / 2) * (m() + d2 * h / 2) / m_N - a3;
+      double c3 = gamma * (m() + d2 * h / 2);
+      double d3 = -a3 - b3 - c3;
+
+      double a4 = mu * ((v() + a3 * h) / xi) * (1 - (v() + a3 * h) / (xi * (m_N - eta)));
+      double b4 = -beta * (s() + b3 * h) * (m() + d3 * h) / m_N - a4;
+      double c4 = gamma * (m() + d3 * h);
+      double d4 = -a4 - b4 - c4;
+
+      support.V = round(v() + (h / 6) * (a1  + 2 * a2  + 2 * a3 + a4));
+      support.S = round(s() + (h / 6) * (b1  + 2 * b2  + 2 * b3 + b4));
+      support.R = round(r() + (h / 6) * (c1  + 2 * c2  + 2 * c3 + c4));
+      support.M = round(m() + (h / 6) * (d1  + 2 * d2  + 2 * d3 + d4));
+
+      analysis.push_back(support);
+
+      //if (support.S < 0 || support.M < 0 || support.R < 0 || support.V < 0)
+      //{
+      //  std::cout << "Errore" << '\n';
+      //  break;
+      //}
+    }
+  }
+
+  int count_digit(int n) {
     return std::log10(n) + 1;
   }
 
-  void Infection::print() const
-  {
+  void Infection::print() const {
     int const N = analysis[0].S + analysis[0].M + analysis[0].R + analysis[0].V;
     int const width = std::log10(N) + 4;
 
@@ -114,8 +164,7 @@ namespace epidemic
               << std::string(floor(width / 2) - 1, ' ') << 'V' << std::string(floor(width) - 2, ' ')
               << '|' << '\n';
 
-    for (int i = 0; i < m_time_indays; i++)
-    {
+    for (int i = 0; i < m_time_indays; i++) {
       std::cout << '|' << std::string(2, ' ') << i + 1 << ')' << std::string(4 - std::log10(i + 1.5), ' ')
                 << analysis[i].S
                 << std::string(width - count_digit(analysis[i].S), ' ') << analysis[i].M
@@ -128,13 +177,12 @@ namespace epidemic
     }
   }
 
-  void Infection::graph()
-  {
+  void Infection::graph() {
 
-    std::vector<int> S = Infection::get_S();
-    std::vector<int> M = Infection::get_M();
-    std::vector<int> R = Infection::get_R();
-    std::vector<int> V = Infection::get_V();
+    std::vector<int> S = Infection::get_S_vector();
+    std::vector<int> M = Infection::get_M_vector();
+    std::vector<int> R = Infection::get_R_vector();
+    std::vector<int> V = Infection::get_V_vector();
 
     auto f = matplot::figure(true);
 

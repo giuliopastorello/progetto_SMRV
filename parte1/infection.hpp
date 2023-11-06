@@ -27,19 +27,19 @@ namespace epidemic {
            : m_time_indays{days},
              analysis{initial_state},
              m_N{N} {}
-       
-       //Get       
+             
        int s() const;
        int m() const;
        int r() const;
        int v() const;
    
-       std::vector<int> get_S() const;
-       std::vector<int> get_M() const;
-       std::vector<int> get_R() const;
-       std::vector<int> get_V() const;
+       std::vector<int> get_S_vector() const;
+       std::vector<int> get_M_vector() const;
+       std::vector<int> get_R_vector() const;
+       std::vector<int> get_V_vector() const;
    
-       std::vector<State> states () const;
+       std::vector<State> states() const;
+
        void evolve(double beta, double gamma);
        void RK4(double beta, double gamma);
    
@@ -50,6 +50,9 @@ namespace epidemic {
    
        void graph();
   };
+
+  int count_digit(int n);
+
 }//namespace epidemic
 
 #endif
