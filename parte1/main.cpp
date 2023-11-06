@@ -1,5 +1,4 @@
 #include "infection.hpp"
-
 #include <iostream>
 #include <stdexcept>
 
