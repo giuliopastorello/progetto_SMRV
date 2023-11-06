@@ -14,16 +14,15 @@ class World {
 
    public:
 
-   int side() const; //dimensione lato griglia
-   int S_Number() const; //numero di sani
-   int I_Number() const; //numero di infetti
-   int H_Number() const; //numero di guariti
-   int D_Number() const; //numero di morti
+   int side() const; 
+   int Healthy_Number() const; 
+   int I_Number() const; 
+   int Healed_Number() const; 
+   int D_Number() const;
 
-
-   void Set_cell(Cell const &cell_type,int r, int c); //cambia il valore della cella in posizione (r,c)
+   void Set_cell(Cell const &cell_type, int r, int c);
    
-   Cell Get_cell(int r,int c) const;                  // restituisce la cella in posizione (r,c) riga colonna
+   Cell Get_cell(int r,int c) const;
    
    World(int a); //costruttore celle vuote
    
@@ -49,8 +48,6 @@ void worldDisplayGrid(World const &World);//metodo per graficare una griglia con
 
 bool virus_condition(World const &World);//metodo che verifica se ha senso far proseguire il programma
 
-
 }//namespace gameoflife
-
 
 #endif

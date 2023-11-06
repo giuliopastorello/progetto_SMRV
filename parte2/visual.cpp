@@ -4,7 +4,7 @@
 
 namespace VirusGame {
 
-Visual::Visual(sf::RenderWindow &window) : m_window{window}{
+Display::Display(sf::RenderWindow &window) : m_window{window}{
   if (!m_font.loadFromFile("../include/INFECTION.ttf")) {
     if (!m_font.loadFromFile(
             "../include/arialbi.ttf")) {
@@ -13,7 +13,7 @@ Visual::Visual(sf::RenderWindow &window) : m_window{window}{
   } 
 }
 
-void Visual::draw(World const &world) {
+void Display::draw(World const &world) {
   int const N = world.side();
 
   sf::Color Healedcolor(1, 180, 1); //red green blue
@@ -58,12 +58,12 @@ void Visual::draw(World const &world) {
   }
 }
 
-void Visual::show_message(std::string const &message) {
+void Display::show_message(std::string const &message) {
   sf::Text text{message, m_font};
 
   text.move((m_window.getSize().x - text.getLocalBounds().width) / 2, m_window.getSize().y / 2);
 
-  sf::Color Textcolor(247, 231, 0);//giallo
+  sf::Color Textcolor(247, 231, 0);
   text.setFillColor(Textcolor);
   text.setOutlineColor(sf::Color::Black);
   text.setOutlineThickness(2.0);

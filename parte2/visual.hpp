@@ -6,13 +6,13 @@
 
 namespace VirusGame {
 
-class Visual {
+class Display {
   sf::RenderWindow &m_window;
   sf::Font m_font;
 
  public:
 
-  Visual(sf::RenderWindow &window);
+  Display(sf::RenderWindow &window);
 
   void draw(World const &world);
 

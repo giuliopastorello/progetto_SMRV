@@ -11,7 +11,7 @@ namespace VirusGame{
 
     int World::side() const { return m_side;}
 
-    int World::S_Number() const {
+    int World::Healthy_Number() const {
         return std::count(m_field.begin(), m_field.end(), Cell::Healthy);
     }
 
@@ -19,7 +19,7 @@ namespace VirusGame{
         return std::count(m_field.begin(), m_field.end(), Cell::Infected);
     }
 
-    int World::H_Number() const {
+    int World::Healed_Number() const {
         return std::count(m_field.begin(), m_field.end(), Cell::Healed);
     }
 
@@ -27,19 +27,18 @@ namespace VirusGame{
         return std::count(m_field.begin(), m_field.end(), Cell::Dead);
     }
 
-    World::World(int a):m_side{a}, m_field(a*a, Cell::Empty){ //inizializza a*a celle vuote
+    World::World(int a): m_side{a}, m_field(a*a, Cell::Empty){ 
        if ( a<1 ){
          throw std::runtime_error("Invalid grid dimension");
        }
     }
-
 
     Cell World::Get_cell(int r, int c) const{
         auto i = (r + m_side) % m_side;
         auto j = (c + m_side) % m_side;
         assert(i >= 0 && i < m_side && j >= 0 && j < m_side);
         auto index = i * m_side + j;
-        assert(index >= 0 && index <= m_side*m_side-1);
+        assert(index >= 0 && index < m_side * m_side);
         return m_field[index];
     }
     /*
@@ -56,10 +55,9 @@ namespace VirusGame{
         auto j = (c + m_side) % m_side;
         assert(i >= 0 && i < m_side && j >= 0 && j < m_side);
         auto index = i * m_side + j;
-        assert(index >= 0 && index <= m_side*m_side-1);
-        m_field[index]=cell_type; 
+        assert(index >= 0 && index < m_side * m_side);
+        m_field[index] = cell_type; 
     }
-
 
     int infected_counter(World const &World, int r, int c){
       int result = 0;
@@ -106,31 +104,27 @@ namespace VirusGame{
     } //metodo per stabilire se contagiare
 
     bool removal_condition(double gamma){
-     assert(gamma >= 0 && gamma <= 1);
-     std::random_device rand{};
-     std::default_random_engine eng{rand()};
-     std::uniform_int_distribution<int> dist{0, 100};
-   
-     int m = dist(eng);
-     int prob = std::round(gamma * 100); //qui chiaramente non contano le celle confinanti
-                                        //per gamma=0.1 10% probabilità rimozione
-     bool result = (m < prob);
-   
-     return result;
-    } //metodo per stabilire se rimuovere
+       assert(gamma >= 0 && gamma <= 1);
+       std::random_device rand{};
+       std::default_random_engine eng{rand()};
+       std::uniform_int_distribution<int> dist{0, 100};
+     
+       int m = dist(eng);
+       int prob = std::round(gamma * 100); //qui chiaramente non contano le celle confinanti
+                                          //per gamma=0.1 10% probabilità rimozione  
+       return m < prob;
+    }//metodo per stabilire se rimuovere
 
     bool death_condition(double alfa){
-      assert(alfa >= 0 && alfa <= 1);
-      std::random_device rand{};
-      std::default_random_engine eng{rand()};
-      std::uniform_int_distribution<int> dist{0, 100};
-
-      int m = dist(eng);
-      int prob = std::round(alfa * 100);//per alfa=0.05 5% prob di morire 
-
-      bool result = (m < prob);
-   
-      return result;     
+       assert(alfa >= 0 && alfa <= 1);
+       std::random_device rand{};
+       std::default_random_engine eng{rand()};
+       std::uniform_int_distribution<int> dist{0, 100};
+ 
+       int m = dist(eng);
+       int prob = std::round(alfa * 100);//per alfa=0.05 5% prob di morire 
+ 
+       return m < prob;     
     }//metodo per stabilire la morte: vero->morte
 
     void initial_random(World &world, int num_healthy, int num_infected){
@@ -139,11 +133,11 @@ namespace VirusGame{
         if (num_healthy < 0 || num_infected < 0) {
            throw std::runtime_error("There can be no negative number of people");
         }
-        if (num_infected == 0) {
+        if (num_infected < 1) {
            throw std::runtime_error("The game is not interesting without infected");
         }
         if (num_healthy + num_infected > world.side() * world.side()) {
-           throw std::runtime_error("There are too much people");
+           throw std::runtime_error("There are too many people");
         }
      
         std::random_device r{};
@@ -158,7 +152,6 @@ namespace VirusGame{
             r = dist(eng);
             c = dist(eng);
            }
-
            world.Set_cell(Cell::Healthy, r, c); 
         }
 
@@ -175,7 +168,6 @@ namespace VirusGame{
     } //metodo che prende una griglia creata e genera random infetti e suscettibili
 
     World evolve(World &now, double beta, double gamma, double alfa){
-      
        if (beta < 0 || beta > 1 || gamma < 0 || gamma > 1 || alfa < 0 || alfa > 1) {
          throw std::runtime_error("Probability parameters must be between 0 and 1");
        }
@@ -211,7 +203,6 @@ namespace VirusGame{
 
                   case Cell::Infected:
                     if (removal_condition(gamma)) {  
-
                       if(death_condition(alfa)){
                         next.Set_cell(Cell::Dead, r, c);
                       } else {
@@ -274,12 +265,11 @@ namespace VirusGame{
           }
         }
 
-        assert(now.S_Number() + now.I_Number() + now.H_Number() + now.D_Number() == 
-               next.S_Number() + next.I_Number() + next.H_Number()+ next.D_Number());
+        assert(now.Healthy_Number() + now.I_Number() + now.Healed_Number() + now.D_Number() == 
+               next.Healthy_Number() + next.I_Number() + next.Healed_Number()+ next.D_Number());
         //verifico che il numero di abitanti nella griglia sia rimasto lo stesso
 
         return next;
-
     }
 
     bool virus_condition(World const &world){
@@ -347,14 +337,12 @@ namespace VirusGame{
 
     }//metodo stamba semplice
 
-
     void worldDisplayGrid(World const &World){
           int const N = World.side();
     
           std::cout << termcolor::on_bright_white << termcolor::grey
           << "VIRUS GAME" << termcolor::reset << '\n'; //titolo
     
-           
           for(int r = 0; r != N; ++r){
 
             for(int i = 0; i != N; ++i){

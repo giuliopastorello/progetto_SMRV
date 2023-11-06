@@ -38,9 +38,9 @@ int main(){
 
    //analisi risultati:
    int survivors=N_people-world_test.D_Number();//sopravvissuti
-   int restored=world_test.H_Number();//guariti
+   int restored=world_test.Healed_Number();//guariti
    int dead=world_test.D_Number();//morti
-   int infected=world_test.D_Number()+world_test.H_Number()-number_I;//numero infettati durante la pandemia
+   int infected=world_test.D_Number()+world_test.Healed_Number()-number_I;//numero infettati durante la pandemia
 
 
    if(VirusGame::virus_condition(world_test)==false){

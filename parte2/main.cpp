@@ -47,7 +47,7 @@ int main() {
 
   window.setFramerateLimit(framerate);//sleep di sfml per la finestra
 
-  VirusGame::Visual display{window};//definisco un oggetto display attraverso la classe Visual
+  VirusGame::Display display{window};//definisco un oggetto display attraverso la classe Visual
   //Oggetto display con 2 attributi privati: Finestra(renderwindow) e Font
   //qui utilizziamo il costruttore della classe
 
@@ -101,7 +101,7 @@ int main() {
   }
 
   if (window.isOpen()) { //in questo if si entra dopo che i_counter=0
-    int h_counter = world.H_Number();
+    int h_counter = world.Healed_Number();
     int d_counter = world.D_Number();
     int N_people = num_i + num_s;
     int survivors = N_people - d_counter;//sopravvissuti
