@@ -3,7 +3,6 @@
 #include <cassert>
 #include <matplot/matplot.h>
 
-
 namespace epidemic
 {
   std::vector<State> Infection::states() const { return analysis; }
@@ -106,7 +105,7 @@ namespace epidemic
     int const eta = 118292;  // no vax
     double const mu = 0.05;  // velocità vaccino
     double const xi = 0.839; // efficacia vaccino
-    
+
     for (int i = 1; i < m_time_indays; ++i) {
       //  if (s() + m() + r() + v() < m_N) {
       //    ++analysis.back().S;
@@ -189,8 +188,7 @@ namespace epidemic
     // S()
     auto ax1 = matplot::nexttile();
     matplot::bar(ax1, S, 0.3)->face_color("blue");
-    matplot::title("{/:Italic Susceptible",
-                   "blue");
+    matplot::title("{/:Italic Susceptible", "blue");
     matplot::ylabel("");
     matplot::xtickformat("%g");
     matplot::xtickangle(45);

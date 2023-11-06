@@ -28,16 +28,14 @@ int main()
   int method;
   std::cout << "Numerical method (Euler -> press'0' / RK4 -> press '1'):" << '\t';
   std::cin >> method;
-  if (method == 0)
-  {
+
+  if (method == 0) {
     Emilia_Romagna1.evolve(beta, gamma);
   }
-  else if (method == 1)
-  {
+  else if (method == 1) {
     Emilia_Romagna1.RK4(beta, gamma);
   }
-  else
-  {
+  else {
     throw std::runtime_error{"Enter either '0' or '1'"};
   }
   
