@@ -9,6 +9,6 @@ set(CMAKE_CXX_EXTENSIONS        OFF)
 
 add_subdirectory(matplotplusplus)
 
-add_executable(infection_tty infection.cpp rk.cpp display.cpp main.cpp)
+add_executable(infection_tty infection.cpp rk.cpp main.cpp)
 target_compile_options(infection_tty PRIVATE -Wall -Wextra -g -std=c++17)
 target_link_libraries(infection_tty PUBLIC matplot)

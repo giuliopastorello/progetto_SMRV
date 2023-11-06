@@ -12,7 +12,7 @@ namespace epidemic
     int const eta = 118292;  // no vax
     double const mu = 0.05;  // velocità vaccino
     double const xi = 0.839; // efficacia vaccino
-    for (int i = 1; i < m_duration_analysis_indays; ++i)
+    for (int i = 1; i < m_time_indays; ++i)
     {
       //  if (s() + m() + r() + v() < m_N) {
       //    ++analysis.back().S;
