@@ -15,7 +15,8 @@ int main() {
   int framerate = 5;   
 
   std::string message1 = "no";
-  std::cout << "Do you want to change grid dimensions and number of people? (yes/no) ";
+  std::cout << "Do you want to change grid dimensions and number of people?" << '\n'
+            << "(Max dimension: 100x100 with cell size 8) (yes/no) ";
   std::cin >> message1;
   if (message1 == "yes"){
     std::cout << "Digit int grid size (<100): ";
