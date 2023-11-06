@@ -77,15 +77,14 @@ namespace epidemic
     std::vector<int> V = Infection::get_V();
 
     auto f = matplot::figure(true);
-    //f->matplot::backend()->matplot::output("file.svg");
 
     // S()
     auto ax1 = matplot::nexttile();
     matplot::bar(ax1, S, 0.3)->face_color("blue");
     matplot::title("{/:Italic Susceptible",
                    "blue");
-    matplot::ylabel("Number of people");
-    matplot::xtickformat("day %g");
+    matplot::ylabel("");
+    matplot::xtickformat("%g");
     matplot::xtickangle(45);
 
     ax1->font_size(10);
@@ -100,8 +99,8 @@ namespace epidemic
     auto ax2 = matplot::nexttile();
     matplot::bar(ax2, M, 0.3)->face_color("red");
     matplot::title("{/:Italic Infected", "red");
-    matplot::ylabel("Number of people");
-    matplot::xtickformat("day %g");
+    matplot::ylabel("");
+    matplot::xtickformat(" %g");
     matplot::xtickangle(45);
 
     ax2->font_size(10);
@@ -116,8 +115,8 @@ namespace epidemic
     auto ax3 = matplot::nexttile();
     matplot::bar(ax3, R, 0.3)->face_color("green");
     matplot::title("{/:Italic Recovered", "green");
-    matplot::ylabel("Number of people");
-    matplot::xtickformat("day %g");
+    matplot::ylabel("");
+    matplot::xtickformat("%g");
     matplot::xtickangle(45);
 
     ax3->font_size(10);
@@ -131,9 +130,9 @@ namespace epidemic
     // Dead
     auto ax4 = matplot::nexttile();
     matplot::bar(ax4, V, 0.3)->face_color("black");
-    matplot::title("{/:Italic Dead", "black");
-    matplot::ylabel("Number of people");
-    matplot::xtickformat("day %g");
+    matplot::title("{/:Italic Vaccinated", "black");
+    matplot::ylabel("");
+    matplot::xtickformat("%g");
     matplot::xtickangle(45);
 
     ax4->font_size(10);
@@ -148,5 +147,7 @@ namespace epidemic
     matplot::gcf()->title_font_size_multiplier(2.0);
 
     matplot::show();
+    matplot::save("infection.jpg");
+
   }
 }
