@@ -175,6 +175,7 @@ namespace VirusGame{
     } //metodo che prende una griglia creata e genera random infetti e suscettibili
 
     World evolve(World &now, double beta, double gamma, double alfa){
+      
        if (beta < 0 || beta > 1 || gamma < 0 || gamma > 1 || alfa < 0 || alfa > 1) {
          throw std::runtime_error("Probability parameters must be between 0 and 1");
        }
