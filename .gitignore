@@ -18,3 +18,4 @@ CMakeCache.txt
 CTestTestfile.cmake
 cmake_install.cmake
 cel_sfml
+infection_tty
