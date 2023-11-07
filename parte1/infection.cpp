@@ -181,7 +181,6 @@ namespace epidemic
 
     f->position({0, 0, 800, 800});
     f->size(800, 800);
-    f->draw();
 
     // S()
     auto ax1 = matplot::nexttile();
@@ -249,9 +248,10 @@ namespace epidemic
 
     matplot::sgtitle("HISTOGRAMS", "black");
     matplot::gcf()->title_font_size_multiplier(2.0);
-
-    matplot::save("infection.jpg");
     
     matplot::show();
+    matplot::save("infection.jpg");
+
+    matplot::wait();
   }
 }

@@ -9,12 +9,12 @@ int main() {
   int const V_t0 = 600447;
   int const R_t0 = 320000;
   int const S_t0 = people - M_t0 - V_t0 - R_t0;
-  int duration = 10;
-  double beta = 0.4; 
+  int duration = 50;
+  double beta = 0.5; 
   double gamma = 0.3;
   int const no_vax = 118292;   // eta
-  double const vel_vax = 0.05;  // mu
-  double const eff_vax = 0.800; // xi
+  double const vel_vax = 0.04;  // mu
+  double const eff_vax = 0.700; // xi
   //std::cout << "Duration of the simulation in days: " << '\t';
   //std::cin >> duration;
   //std::cout << "Beta (infectiousness) in ]0,1[: " << '\t';
