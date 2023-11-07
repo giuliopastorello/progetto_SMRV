@@ -1,21 +1,18 @@
 #include "infection.hpp"
-#include <cmath>
-#include <cassert>
-#include <matplot/matplot.h>
 
 namespace epidemic
 {
-  std::vector<State> Infection::states() const { return analysis; }
+  std::vector<State> Infection::states() const { return m_data; }
 
-  int Infection::s() const { return analysis.back().S; }
+  int Infection::s() const { return m_data.back().S; }
 
-  int Infection::m() const { return analysis.back().M; }
+  int Infection::m() const { return m_data.back().M; }
 
-  int Infection::r() const { return analysis.back().R; }
+  int Infection::r() const { return m_data.back().R; }
 
-  int Infection::v() const { return analysis.back().V; }
+  int Infection::v() const { return m_data.back().V; }
 
-  State Infection::get_state(int day) const { return analysis[day]; };
+  State Infection::get_state(int day) const { return m_data[day]; };
 
   std::vector<int> Infection::get_S_vector() const{
     int const N = Infection::states().size();
@@ -73,11 +70,11 @@ namespace epidemic
     return result;
   }
 
-  void Infection::evolve(double beta, double gamma) {
+  void Infection::evolve(double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
+
     double const h = 1;
-    int const no_vax = 118292;   // eta
-    double const vel_vax = 0.05;  // mu
-    double const eff_vax = 0.839; // efficacia vaccino
+
+    State support;
 
     for (int i = 1; i < m_time_indays; ++i) {
       double delV = vel_vax * (v() / eff_vax) *
@@ -93,18 +90,15 @@ namespace epidemic
       support.R = round(r() + h * delR);
       support.M = round(m() - h * (delV + delS + delR));
 
-      analysis.push_back(support);
+      m_data.push_back(support);
     }
   }
 
-  void Infection::RK4(double beta, double gamma) {
+  void Infection::RK4(double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
 
     float const h = 1; // step size
-    // double const beta = 0.056;
-    // double const gamma = 0.045;
-    int const eta = 118292;  // no vax
-    double const mu = 0.05;  // velocità vaccino
-    double const xi = 0.839; // efficacia vaccino
+
+    State support;
 
     for (int i = 1; i < m_time_indays; ++i) {
       //  if (s() + m() + r() + v() < m_N) {
@@ -114,22 +108,22 @@ namespace epidemic
       //    --analysis.back().S;
       //  }
 
-      double a1 = mu * (v() / xi) * (1 - v() / (xi * (m_N - eta)));
+      double a1 = vel_vax * (v() / eff_vax) * (1 - v() / (eff_vax * (m_N - no_vax)));
       double b1 = -beta * s() * m() / m_N - a1;
       double c1 = gamma * m();
       double d1 = -a1 - b1 - c1;
 
-      double a2 = mu * ((v() + a1 * h / 2) / xi) * (1 - (v() + a1 * h / 2) / (xi * (m_N - eta)));
+      double a2 = vel_vax * ((v() + a1 * h / 2) / eff_vax) * (1 - (v() + a1 * h / 2) / (eff_vax * (m_N - no_vax)));
       double b2 = -beta * (s() + b1 * h / 2) * (m() + d1 * h / 2) / m_N - a2;
       double c2 = gamma * (m() + d1 * h / 2);
       double d2 = -a2 - b2 - c2;
 
-      double a3 = mu * ((v() + a2 * h / 2) / xi) * (1 - (v() + a2 * h / 2) / (xi * (m_N - eta)));
+      double a3 = vel_vax * ((v() + a2 * h / 2) / eff_vax) * (1 - (v() + a2 * h / 2) / (eff_vax * (m_N - no_vax)));
       double b3 = -beta * (s() + b2 * h / 2) * (m() + d2 * h / 2) / m_N - a3;
       double c3 = gamma * (m() + d2 * h / 2);
       double d3 = -a3 - b3 - c3;
 
-      double a4 = mu * ((v() + a3 * h) / xi) * (1 - (v() + a3 * h) / (xi * (m_N - eta)));
+      double a4 = vel_vax * ((v() + a3 * h) / eff_vax) * (1 - (v() + a3 * h) / (eff_vax * (m_N - no_vax)));
       double b4 = -beta * (s() + b3 * h) * (m() + d3 * h) / m_N - a4;
       double c4 = gamma * (m() + d3 * h);
       double d4 = -a4 - b4 - c4;
@@ -139,7 +133,7 @@ namespace epidemic
       support.R = round(r() + (h / 6) * (c1  + 2 * c2  + 2 * c3 + c4));
       support.M = round(m() + (h / 6) * (d1  + 2 * d2  + 2 * d3 + d4));
 
-      analysis.push_back(support);
+      m_data.push_back(support);
 
       //if (support.S < 0 || support.M < 0 || support.R < 0 || support.V < 0)
       //{
@@ -154,7 +148,7 @@ namespace epidemic
   }
 
   void Infection::print() const {
-    int const N = analysis[0].S + analysis[0].M + analysis[0].R + analysis[0].V;
+    int const N = m_data[0].S + m_data[0].M + m_data[0].R + m_data[0].V;
     int const width = std::log10(N) + 4;
 
     std::cout << '|' << " day   " << std::string(floor(width / 2) - 1, ' ') << 'S' << std::string(floor(width / 2) - 1, ' ')
@@ -165,11 +159,11 @@ namespace epidemic
 
     for (int i = 0; i < m_time_indays; i++) {
       std::cout << '|' << std::string(2, ' ') << i + 1 << ')' << std::string(4 - std::log10(i + 1.5), ' ')
-                << analysis[i].S
-                << std::string(width - count_digit(analysis[i].S), ' ') << analysis[i].M
-                << std::string(width - count_digit(analysis[i].M), ' ') << analysis[i].R
-                << std::string(width - count_digit(analysis[i].R), ' ') << analysis[i].V
-                << std::string(width - count_digit(analysis[i].V), ' ') << '|' << '\n';
+                << m_data[i].S
+                << std::string(width - count_digit(m_data[i].S), ' ') << m_data[i].M
+                << std::string(width - count_digit(m_data[i].M), ' ') << m_data[i].R
+                << std::string(width - count_digit(m_data[i].R), ' ') << m_data[i].V
+                << std::string(width - count_digit(m_data[i].V), ' ') << '|' << '\n';
       //<< '+' << std::string(width - 1, '-') << '+'
       //<< std::string(width - 1, '-') << '+' << std::string(width - 1, '-')
       //<< '+' << std::string(width, '-') << '+' << '\n';

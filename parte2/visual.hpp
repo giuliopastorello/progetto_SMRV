@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "world.hpp"
+#include <stdexcept>
 
 namespace VirusGame {
 
