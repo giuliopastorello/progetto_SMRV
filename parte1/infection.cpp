@@ -189,7 +189,7 @@ namespace epidemic
     matplot::title("{/:Italic Susceptible", "blue");
     matplot::ylabel("");
     matplot::xtickformat("%g");
-    matplot::xtickangle(45);
+    matplot::xtickangle(0);
 
     ax1->font_size(10);
     ax1->y_axis().label_font_size(10);
@@ -205,7 +205,7 @@ namespace epidemic
     matplot::title("{/:Italic Infected", "red");
     matplot::ylabel("");
     matplot::xtickformat(" %g");
-    matplot::xtickangle(45);
+    matplot::xtickangle(0);
 
     ax2->font_size(10);
     ax2->y_axis().label_font_size(10);
@@ -221,7 +221,7 @@ namespace epidemic
     matplot::title("{/:Italic Recovered", "green");
     matplot::ylabel("");
     matplot::xtickformat("%g");
-    matplot::xtickangle(45);
+    matplot::xtickangle(0);
 
     ax3->font_size(10);
     ax3->y_axis().label_font_size(10);
@@ -237,7 +237,7 @@ namespace epidemic
     matplot::title("{/:Italic Vaccinated", "black");
     matplot::ylabel("");
     matplot::xtickformat("%g");
-    matplot::xtickangle(45);
+    matplot::xtickangle(0);
 
     ax4->font_size(10);
     ax4->y_axis().label_font_size(10);
