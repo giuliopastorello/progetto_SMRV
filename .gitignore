@@ -17,3 +17,4 @@ cmake_install.cmake
 cell_sfml
 infection_tty
 *.jpg
+*.pyg
