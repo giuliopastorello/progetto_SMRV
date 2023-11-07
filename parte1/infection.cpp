@@ -2,7 +2,7 @@
 
 namespace epidemic
 {
-  std::vector<State> Infection::states() const { return m_data; }
+  //std::vector<State> Infection::states() const { return m_data; }
 
   int Infection::s() const { return m_data.back().S; }
 
@@ -15,58 +15,58 @@ namespace epidemic
   State Infection::get_state(int day) const { return m_data[day]; };
 
   std::vector<int> Infection::get_S_vector() const{
-    int const N = Infection::states().size();
+    int const N = m_data.size();
     std::vector<int> result{};
     result.reserve(N);
 
     for (int i = 0; i < N; ++i)
     {
-      int num_s = Infection::states()[i].S;
+      int num_s = m_data[i].S;
       result.push_back(num_s);
     }
-    assert(Infection::states().size() == result.size());
+    assert(m_data.size() == result.size());
     return result;
   }
 
   std::vector<int> Infection::get_R_vector() const {
-    int const N = Infection::states().size();
+    int const N = m_data.size();
     std::vector<int> result{};
     result.reserve(N);
 
     for (int i = 0; i < N; ++i)
     {
-      int num_r = Infection::states()[i].R;
+      int num_r = m_data[i].R;
       result.push_back(num_r);
     }
-    assert(Infection::states().size() == result.size());
+    assert(m_data.size() == result.size());
     return result;
   }
 
   std::vector<int> Infection::get_V_vector() const {
-    int const N = Infection::states().size();
+    int const N = m_data.size();
     std::vector<int> result{};
     result.reserve(N);
 
     for (int i = 0; i < N; ++i)
     {
-      int num_v = Infection::states()[i].V;
+      int num_v = m_data[i].V;
       result.push_back(num_v);
     }
-    assert(Infection::states().size() == result.size());
+    assert(m_data.size() == result.size());
     return result;
   }
 
   std::vector<int> Infection::get_M_vector() const {
-    int const N = Infection::states().size();
+    int const N = m_data.size();
     std::vector<int> result{};
     result.reserve(N);
 
     for (int i = 0; i < N; ++i)
     {
-      int num_m = Infection::states()[i].M;
+      int num_m = m_data[i].M;
       result.push_back(num_m);
     }
-    assert(Infection::states().size() == result.size());
+    assert(m_data.size() == result.size());
     return result;
   }
 
@@ -177,7 +177,11 @@ namespace epidemic
     std::vector<int> R = Infection::get_R_vector();
     std::vector<int> V = Infection::get_V_vector();
 
-    auto f = matplot::figure(true);
+    auto f = matplot::figure();
+
+    f->position({0, 0, 800, 800});
+    f->size(800, 800);
+    f->draw();
 
     // S()
     auto ax1 = matplot::nexttile();
@@ -246,8 +250,8 @@ namespace epidemic
     matplot::sgtitle("HISTOGRAMS", "black");
     matplot::gcf()->title_font_size_multiplier(2.0);
 
-    matplot::show();
     matplot::save("infection.jpg");
-
+    
+    matplot::show();
   }
 }

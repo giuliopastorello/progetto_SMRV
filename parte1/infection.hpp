@@ -30,7 +30,8 @@ namespace epidemic {
            : m_time_indays{days},
              m_data{initial_state},
              m_N{N} {}
-             
+
+       //get      
        int s() const;
        int m() const;
        int r() const;
@@ -43,7 +44,7 @@ namespace epidemic {
 
        State get_state(int day) const;
    
-       std::vector<State> states() const;
+       //std::vector<State> states() const; non necessario
 
        void evolve(double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
        void RK4(double beta, double gamma, int no_vax, double vel_vax, double eff_vax);

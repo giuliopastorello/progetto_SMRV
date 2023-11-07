@@ -48,5 +48,7 @@ int main() {
   } else {
     throw std::runtime_error{"Enter either '0' or '1'"};
   }
+
+  return 0;
   
 }
