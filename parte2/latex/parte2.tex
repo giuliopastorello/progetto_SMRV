@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{svg}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts} 
+\usepackage{graphicx}
+\usepackage[a4paper,  total={6.75in, 10in}]{geometry}
+\usepackage[utf8]{inputenc}
+
+\title{Animazione di una pandemia con un automa cellulare}
+\author{Giulio Pastorello, Federico Gnudi}
+\date{Novembre 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Il Modello}
+
+\hspace{\parindent}L'ispirazione principale per la seconda parte del progetto è 
+stata il \textit{Game of Life} di Conway. Questo è il più famoso esempio di 
+\textit{automa cellulare}: un insieme di celle posizionate in una griglia di forma 
+predefinita, in cui lo stato di ogni cella varia all'avanzare del tempo e 
+soddisfando alcune condizioni che dipendono dallo stato delle celle limitrofe. \\
+Per simulare una pandemia  in una popolazione si è usato un modello simile a 
+quello della prima parte. Le celle possono assumere quattro stati: 
+\begin{itemize}
+    \item Healthy (sani)
+    \item Infected (malati)
+    \item Healed (guariti)
+    \item Dead (morti)
+\end{itemize}
+Gli individui della popolazione possono evolvere solo in una precisa direzione: \\
+$manca schemnino$
+Un soggetto sano può contrarre il virus e diventare infetto, mentre un infetto
+può sopravvivere alla malattia e guarire oppure morire. I passaggi di stati 
+vengono regolati da parametri probabilistici che cercano di dare una simulazione
+realistica della pandemia. \\
+\end{document}
