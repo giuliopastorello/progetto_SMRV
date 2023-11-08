@@ -91,12 +91,25 @@ namespace epidemic
     if (gamma >= 1 || gamma <= 0) {
       throw std::runtime_error{"unacceptable value, gamma in ]0,1[."};
     }
+    if (no_vax < 0) {
+      throw std::runtime_error{"no vax people can't be negative."};
+    }
+    if (no_vax > m_N){
+       throw std::runtime_error{"no vax must be less than total people"};
+    }
+    if (vel_vax >= 1 || vel_vax <= 0) {
+      throw std::runtime_error{"unacceptable value, vel_vax in ]0,1[."};
+    }
+    if (eff_vax >= 1 || eff_vax<= 0) {
+      throw std::runtime_error{"unacceptable value, eff_vax in ]0,1[."};
+    }
     
     double const h = 1;
 
     State support;
 
     for (int i = 1; i < m_time_indays; ++i) {
+      
       double delV = vel_vax * (v() / eff_vax) *
                     (1 - v() / (eff_vax * (m_N - no_vax)));
 
@@ -110,23 +123,48 @@ namespace epidemic
       support.R = round(r() + h * delR);
       support.M = round(m() - h * (delV + delS + delR));
 
+      //while (!(support.S + support.M + support.R + support.V == m_N)){
+          if (support.S + support.M + support.R + support.V < m_N) {
+              ++support.S;
+          }
+          if (support.S + support.M + support.R + support.V > m_N) {
+              --support.S;
+          }
+      //}
+
+      assert(support.M + support.R + support.S + support.V == m_N);
+
+      assert(no_vax < m_N);
+
       m_data.push_back(support);
     }
   }
 
   void Infection::RK4(double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
+    if (beta >= 1 || beta <= 0) {
+      throw std::runtime_error{"unacceptable value, beta in ]0,1[."};
+    }
+    if (gamma >= 1 || gamma <= 0) {
+      throw std::runtime_error{"unacceptable value, gamma in ]0,1[."};
+    }
+    if (no_vax < 0) {
+      throw std::runtime_error{"no vax people can't be negative."};
+    }
+    if (no_vax > m_N){
+       throw std::runtime_error{"no vax must be less than total people"};
+    }
+    if (vel_vax >= 1 || vel_vax <= 0) {
+      throw std::runtime_error{"unacceptable value, vel_vax in ]0,1[."};
+    }
+    if (eff_vax >= 1 || eff_vax<= 0) {
+      throw std::runtime_error{"unacceptable value, eff_vax in ]0,1[."};
+    }
 
     float const h = 1; // step size
 
     State support;
 
     for (int i = 1; i < m_time_indays; ++i) {
-      if (beta >= 1 || beta <= 0) {
-        throw std::runtime_error{"unacceptable value, beta in ]0,1[."};
-      }
-      if (gamma >= 1 || gamma <= 0) {
-        throw std::runtime_error{"unacceptable value, gamma in ]0,1[."};
-      }
 
       double a1 = vel_vax * (v() / eff_vax) * (1 - v() / (eff_vax * (m_N - no_vax)));
       double b1 = -beta * s() * m() / m_N - a1;
@@ -152,6 +190,19 @@ namespace epidemic
       support.S = round(s() + (h / 6) * (b1  + 2 * b2  + 2 * b3 + b4));
       support.R = round(r() + (h / 6) * (c1  + 2 * c2  + 2 * c3 + c4));
       support.M = round(m() + (h / 6) * (d1  + 2 * d2  + 2 * d3 + d4));
+
+     // while (!(support.S + support.M + support.R + support.V == m_N)){
+          if (support.S + support.M + support.R + support.V < m_N) {
+              ++support.S;
+          }
+          if (support.S + support.M + support.R + support.V > m_N) {
+              --support.S;
+          }
+     //}
+
+      assert(support.M + support.R + support.S + support.V == m_N);
+
+      assert(no_vax < m_N);
 
       m_data.push_back(support);
     }
