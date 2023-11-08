@@ -17,8 +17,8 @@ namespace epidemic
                   << std::string(floor(width / 2) - 1, ' ') << termcolor::green << 'V' << termcolor::reset << std::string(floor(width) - 2, ' ')
                   << '|' << '\n';
 
-        for (int i = 0; i < infection.get_days(); i++)
-        {
+        for (int i = 0; i < infection.get_days(); i++) {
+            
             std::cout << '|' << std::string(2, ' ') << i + 1 << ')' << std::string(4 - std::log10(i + 1.5), ' ')
                       << infection.get_state(i).S
                       << std::string(width - count_digit(infection.get_state(i).S), ' ') << infection.get_state(i).M

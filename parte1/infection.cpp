@@ -28,13 +28,12 @@ namespace epidemic
 
   State Infection::get_state(int day) const { return m_data[day]; };
 
-  std::vector<int> Infection::get_S_vector() const{
+  std::vector<int> Infection::get_S_vector() const {
     int const N = m_data.size();
     std::vector<int> result{};
     result.reserve(N);
 
-    for (int i = 0; i < N; ++i)
-    {
+    for (int i = 0; i < N; ++i) {
       int num_s = m_data[i].S;
       result.push_back(num_s);
     }
@@ -47,8 +46,7 @@ namespace epidemic
     std::vector<int> result{};
     result.reserve(N);
 
-    for (int i = 0; i < N; ++i)
-    {
+    for (int i = 0; i < N; ++i) {
       int num_r = m_data[i].R;
       result.push_back(num_r);
     }
@@ -61,8 +59,7 @@ namespace epidemic
     std::vector<int> result{};
     result.reserve(N);
 
-    for (int i = 0; i < N; ++i)
-    {
+    for (int i = 0; i < N; ++i) {
       int num_v = m_data[i].V;
       result.push_back(num_v);
     }
@@ -75,8 +72,7 @@ namespace epidemic
     std::vector<int> result{};
     result.reserve(N);
 
-    for (int i = 0; i < N; ++i)
-    {
+    for (int i = 0; i < N; ++i) {
       int num_m = m_data[i].M;
       result.push_back(num_m);
     }
@@ -110,11 +106,9 @@ namespace epidemic
 
     for (int i = 1; i < m_time_indays; ++i) {
       
-      double delV = vel_vax * (v() / eff_vax) *
-                    (1 - v() / (eff_vax * (m_N - no_vax)));
+      double delV = vel_vax * (v() / eff_vax) * (1 - v() / (eff_vax * (m_N - no_vax)));
 
-      double delS = -beta * (s() / m_N) * m() - vel_vax * (v() / eff_vax) *
-                            (1 - v() / (eff_vax * (m_N - no_vax)));
+      double delS = (-beta * (s() / m_N) * m()) - delV;
 
       double delR = gamma * m();
 

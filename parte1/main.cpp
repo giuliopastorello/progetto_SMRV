@@ -4,8 +4,8 @@
 int main() {
 
   int people = 4459000; // abitanti emilia romagna
-  int M_t0 = 23321;
-  int V_t0 = 400007;
+  int M_t0 = 20321;
+  int V_t0 = 420400;
   int R_t0 = 320000;
   int S_t0 = people - M_t0 - V_t0 - R_t0;
 
@@ -13,8 +13,8 @@ int main() {
   double beta = 0.5; 
   double gamma = 0.3;
   int no_vax = 118292;   // eta
-  double vel_vax = 0.04;  // mu
-  double eff_vax = 0.700; // xi
+  double vel_vax = 0.035;  // mu
+  double eff_vax = 0.600; // xi
 
   //ingresso parametri
   std::string answer = "no";
@@ -25,7 +25,7 @@ int main() {
     std::cin >> duration;
     std::cout << "Number of susceptibles: " << '\t';
     std::cin >> S_t0;
-    std::cout << "Number of removed: " << '\t';
+    std::cout << "Number of recovered: " << '\t';
     std::cin >> R_t0;
     std::cout << "Number of vaccinated: " << '\t';
     std::cin >> V_t0;
