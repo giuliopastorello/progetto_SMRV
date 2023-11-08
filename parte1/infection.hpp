@@ -36,6 +36,8 @@ namespace epidemic {
        int m() const;
        int r() const;
        int v() const;
+
+       int get_days() const;
    
        std::vector<int> get_S_vector() const;
        std::vector<int> get_M_vector() const;
@@ -48,14 +50,8 @@ namespace epidemic {
 
        void evolve(double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
        void RK4(double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
-       
-       void print() const;
-   
-       void graph();
   };
-
-  int count_digit(int n);
-
+  
 }//namespace epidemic
 
 #endif
