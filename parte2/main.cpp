@@ -5,10 +5,10 @@
 #include "world.hpp"
 
 int main() {
-  int grid_dimension = 70;  
-  int cell_size = 10;         
-  int num_s = 1500;           
-  int num_i = 700;            
+  int grid_dimension = 100;  
+  int cell_size = 8;         
+  int num_s = 4000;           
+  int num_i = 1000;            
   double beta = 0.5; //*20*beta*n infetti vicini        
   double gamma = 0.09;//100*gamma
   double alfa = 0.05;        
