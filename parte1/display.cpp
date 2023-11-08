@@ -1,20 +1,20 @@
 #include "display.hpp"
 namespace epidemic
 {
-    int count_digit(int n)
-    {
+    int count_digit(int n) {
         return std::log10(n) + 1;
     }
 
-    void print(Infection const &infection) 
-    {
+    void print(Infection const &infection) {
+
+        system("clear");
         int const N = infection.get_state(0).S + infection.get_state(0).M + infection.get_state(0).R + infection.get_state(0).V;
         int const width = std::log10(N) + 4;
 
-        std::cout << '|' << " day   " << std::string(floor(width / 2) - 1, ' ') << 'S' << std::string(floor(width / 2) - 1, ' ')
-                  << std::string(floor(width / 2) - 1, ' ') << 'M' << std::string(floor(width / 2) - 1, ' ')
-                  << std::string(floor(width / 2) - 1, ' ') << 'R' << std::string(floor(width / 2) - 1, ' ')
-                  << std::string(floor(width / 2) - 1, ' ') << 'V' << std::string(floor(width) - 2, ' ')
+        std::cout << '|' << termcolor::bright_cyan << " day   " << termcolor::reset << std::string(floor(width / 2) - 1, ' ') << termcolor::bright_blue << 'S' << termcolor::reset << std::string(floor(width / 2) - 1, ' ')
+                  << std::string(floor(width / 2) - 1, ' ') << termcolor::red << 'M' << termcolor::reset << std::string(floor(width / 2) - 1, ' ')
+                  << std::string(floor(width / 2) - 1, ' ') << termcolor::bright_yellow << 'R' << termcolor::reset << std::string(floor(width / 2) - 1, ' ')
+                  << std::string(floor(width / 2) - 1, ' ') << termcolor::green << 'V' << termcolor::reset << std::string(floor(width) - 2, ' ')
                   << '|' << '\n';
 
         for (int i = 0; i < infection.get_days(); i++)
@@ -31,8 +31,7 @@ namespace epidemic
         }
     }
 
-    void graph(Infection const &infection)
-    {
+    void graph(Infection const &infection) {
 
         std::vector<int> S = infection.get_S_vector();
         std::vector<int> M = infection.get_M_vector();

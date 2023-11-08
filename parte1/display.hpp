@@ -2,6 +2,7 @@
 #define DISPLAY_HPP
 
 #include "infection.hpp"
+#include "../include/termcolor.hpp"
 
 namespace epidemic
 {

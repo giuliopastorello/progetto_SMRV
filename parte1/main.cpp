@@ -3,12 +3,13 @@
 
 int main() {
 
-  int const people = 4459000; // abitanti emilia romagna
+  int people = 4459000; // abitanti emilia romagna
   int M_t0 = 23321;
   int V_t0 = 400007;
   int R_t0 = 320000;
   int S_t0 = people - M_t0 - V_t0 - R_t0;
-  int duration = 50;
+
+  int duration = 100;
   double beta = 0.5; 
   double gamma = 0.3;
   int no_vax = 118292;   // eta
@@ -46,22 +47,22 @@ int main() {
   }
     
   epidemic::State init{S_t0, M_t0, R_t0, V_t0};
-  epidemic::Infection Emilia_Romagna1{duration, init};
+  epidemic::Infection first_epidemic{duration, init};
 
   int method;
   std::cout << "Numerical method (Euler -> press'0' / RK4 -> press '1'):" << '\t';
   std::cin >> method;
 
   if (method == 0) {
-    Emilia_Romagna1.evolve(beta, gamma, no_vax, vel_vax, eff_vax);
-    epidemic::print(Emilia_Romagna1);
-    epidemic::graph(Emilia_Romagna1);
+    first_epidemic.evolve(beta, gamma, no_vax, vel_vax, eff_vax);
+    epidemic::print(first_epidemic);
+    epidemic::graph(first_epidemic);
 
   } else if (method == 1) {
-    Emilia_Romagna1.RK4(beta, gamma, no_vax, vel_vax, eff_vax);
-    epidemic::print(Emilia_Romagna1);
-    epidemic::graph(Emilia_Romagna1);
-    
+    first_epidemic.RK4(beta, gamma, no_vax, vel_vax, eff_vax);
+    epidemic::print(first_epidemic);
+    epidemic::graph(first_epidemic);
+
   } else {
     throw std::runtime_error{"Enter either '0' or '1'"};
   }

@@ -160,7 +160,7 @@ namespace epidemic
       throw std::runtime_error{"unacceptable value, eff_vax in ]0,1[."};
     }
 
-    float const h = 1; // step size
+    double const h = 1; // step size
 
     State support;
 
