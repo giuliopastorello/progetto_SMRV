@@ -6,8 +6,8 @@
 int main() {
 
   int const people = 4459000; // abitanti emilia romagna
-  int const M_t0 = 12321;
-  int const V_t0 = 600447;
+  int const M_t0 = 23321;
+  int const V_t0 = 400007;
   int const R_t0 = 320000;
   int const S_t0 = people - M_t0 - V_t0 - R_t0;
   int duration = 50;
@@ -21,15 +21,12 @@ int main() {
   std::cin >> duration;
   std::cout << "Beta (infectiousness) in ]0,1[: " << '\t';
   std::cin >> beta;
-  if (beta >= 1 || beta <= 0)
-    throw std::runtime_error{"unacceptable value, beta in ]0,1[."};
+ 
   std::cout << "Gamma (inverse of healing time in days) in ]0,1[: " << '\t';
   std::cin >> gamma;
-  if (gamma >= 1 || gamma <= 0)
-    throw std::runtime_error{"unacceptable value, gamma in ]0,1[."};
-
+  
   epidemic::State init{S_t0, M_t0, R_t0, V_t0};
-  epidemic::Infection Emilia_Romagna1{duration, init, people};
+  epidemic::Infection Emilia_Romagna1{duration, init};
 
   int method;
   std::cout << "Numerical method (Euler -> press'0' / RK4 -> press '1'):" << '\t';

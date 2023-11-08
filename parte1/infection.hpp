@@ -26,11 +26,8 @@ namespace epidemic {
 
     public:
 
-       Infection(int days, State const &initial_state, int N)
-           : m_time_indays{days},
-             m_data{initial_state},
-             m_N{N} {}
-
+       Infection(int days, State const &initial_state);
+           
        //get      
        int s() const;
        int m() const;

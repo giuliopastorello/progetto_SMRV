@@ -4,6 +4,18 @@ namespace epidemic
 {
   //std::vector<State> Infection::states() const { return m_data; }
 
+  Infection::Infection(int days, State const &initial_state)
+         : m_time_indays{days},
+           m_data{initial_state},
+           m_N{initial_state.M + initial_state.R + initial_state.S + initial_state.V}  {
+              if(initial_state.M < 1) {
+                throw std::runtime_error{"There must be at least one infected"};
+              }
+              if(initial_state.S < 1) {
+                throw std::runtime_error{"There must be at least one susceptible"};
+              }
+           }
+
   int Infection::s() const { return m_data.back().S; }
 
   int Infection::m() const { return m_data.back().M; }
@@ -73,7 +85,13 @@ namespace epidemic
   }
 
   void Infection::evolve(double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
-
+    if (beta >= 1 || beta <= 0) {
+      throw std::runtime_error{"unacceptable value, beta in ]0,1[."};
+    }
+    if (gamma >= 1 || gamma <= 0) {
+      throw std::runtime_error{"unacceptable value, gamma in ]0,1[."};
+    }
+    
     double const h = 1;
 
     State support;
@@ -103,12 +121,12 @@ namespace epidemic
     State support;
 
     for (int i = 1; i < m_time_indays; ++i) {
-      //  if (s() + m() + r() + v() < m_N) {
-      //    ++analysis.back().S;
-      //  }
-      //  if (s() + m() + r() + v() > m_N) {
-      //    --analysis.back().S;
-      //  }
+      if (beta >= 1 || beta <= 0) {
+        throw std::runtime_error{"unacceptable value, beta in ]0,1[."};
+      }
+      if (gamma >= 1 || gamma <= 0) {
+        throw std::runtime_error{"unacceptable value, gamma in ]0,1[."};
+      }
 
       double a1 = vel_vax * (v() / eff_vax) * (1 - v() / (eff_vax * (m_N - no_vax)));
       double b1 = -beta * s() * m() / m_N - a1;
