@@ -35,7 +35,11 @@ namespace epidemic {
        int r() const;
        int v() const;
 
+       int get_N() const;
        int get_days() const;
+
+       //set
+       void set_laststate(State const &state);
    
        std::vector<int> get_S_vector() const;
        std::vector<int> get_M_vector() const;
@@ -46,9 +50,11 @@ namespace epidemic {
    
        //std::vector<State> states() const; non necessario
 
-       void evolve(double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
-       void RK4(double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
   };
+
+  void evolve(Infection &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
+
+  void RK4(Infection &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
   
 }//namespace epidemic
 
