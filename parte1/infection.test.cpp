@@ -41,7 +41,7 @@ TEST_CASE("testing virus") {
        CHECK(prova.v() == V_t0);
     }
   
-    SUBCASE("testing evolve") {
+    SUBCASE("testing RK4") {
        int const people = 4459000;  
        int const M_t0 = 12321;
        int const V_t0 = 600437;
@@ -56,7 +56,7 @@ TEST_CASE("testing virus") {
        State init{S_t0, M_t0, R_t0, V_t0};
 
        Infection prova{duration, init};
-       prova = evolve(prova, beta, gamma, no_vax, vel_vax, eff_vax);
+       prova = RK4(prova, beta, gamma, no_vax, vel_vax, eff_vax);
 
        CHECK(prova.get_state(0).M < prova.get_state(1).M);
        CHECK(prova.get_state(0).V < prova.get_state(1).V);
