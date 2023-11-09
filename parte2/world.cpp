@@ -26,6 +26,11 @@ namespace VirusGame{
        }
     }
 
+    World::World(World const &world) {
+      m_side = world.m_side;
+      m_field = world.m_field;
+    }
+
     Cell World::Get_cell(int r, int c) const{
         auto i = (r + m_side) % m_side;
         auto j = (c + m_side) % m_side;
@@ -160,14 +165,14 @@ namespace VirusGame{
         }
     } //metodo che prende una griglia creata e genera random infetti e suscettibili
 
-    World evolve(World &now, double beta, double gamma, double alfa){
+    World evolve(World const &now, double beta, double gamma, double alfa){
        if (beta < 0 || beta > 1 || gamma < 0 || gamma > 1 || alfa < 0 || alfa > 1) {
          throw std::runtime_error("Probability parameters must be between 0 and 1");
        }
 
        int const N = now.side();
 
-       World next{now};//copio la griglia attuale
+       World next(now);//copio la griglia attuale
 
        std::random_device r{};
        std::default_random_engine eng{r()};

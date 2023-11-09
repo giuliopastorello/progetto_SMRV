@@ -31,6 +31,8 @@ class World {
    Cell Get_cell(int r,int c) const;
    
    World(int a); //costruttore celle vuote
+   World(World const &world);
+   World &operator=(World const &other) = default;
    
 };//class world
 
@@ -46,7 +48,7 @@ bool death_condition(double alfa); //metodo per stabilire se muore
 
 bool move_condition(World const &World, int r, int c);//metodo che verifica se la cella si può spostare
 
-World evolve(World &World, double beta, double gamma, double alfa);
+World evolve(World const &World, double beta, double gamma, double alfa);
 
 void worldDisplay(World const &World);//metodo per graficare su terminale
 
