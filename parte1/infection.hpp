@@ -28,8 +28,8 @@ namespace epidemic {
     public:
 
        Infection(int days, State const &initial_state);
-
        Infection(Infection const &infection);//costruttore copia
+       Infection &operator=(Infection const &other) = default;
            
        //get      
        int s() const;
@@ -46,6 +46,7 @@ namespace epidemic {
        int get_days() const;
 
        State get_state(int day) const;
+       State get_laststate() const;
 
        //set
        void set_laststate(State const &state);

@@ -8,6 +8,9 @@ namespace epidemic
          : m_time_indays{days},
            m_data{initial_state},
            m_N{initial_state.M + initial_state.R + initial_state.S + initial_state.V}  {
+              if(days < 10) {
+                throw std::runtime_error{"Virus must last at least 10 days"};
+              }
               if(initial_state.M < 1) {
                 throw std::runtime_error{"There must be at least one infected"};
               }
@@ -39,6 +42,8 @@ namespace epidemic
   int Infection::get_days() const {return m_time_indays; }
 
   State Infection::get_state(int day) const { return m_data[day]; };
+
+  State Infection::get_laststate() const { return m_data.back();}
 
   std::vector<int> Infection::get_S_vector() const {
     int const N = m_data.size();
