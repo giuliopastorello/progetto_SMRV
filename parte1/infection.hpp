@@ -23,11 +23,13 @@ namespace epidemic {
 
     int m_time_indays; // durata analisi dati
     std::vector<State> m_data; // stato iniziale giorno:0
-    int const m_N; // abitanti
+    int m_N; // abitanti
 
     public:
 
        Infection(int days, State const &initial_state);
+
+       Infection(Infection const &infection);//costruttore copia
            
        //get      
        int s() const;
@@ -52,9 +54,9 @@ namespace epidemic {
 
   };
 
-  void evolve(Infection &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
+  Infection evolve(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
 
-  void RK4(Infection &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
+  Infection RK4(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
   
 }//namespace epidemic
 

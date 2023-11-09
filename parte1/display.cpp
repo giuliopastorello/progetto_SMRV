@@ -13,8 +13,8 @@ namespace epidemic
 
         std::cout << '|' << termcolor::bright_cyan << " day   " << termcolor::reset << std::string(floor(width / 2) - 1, ' ') << termcolor::bright_blue << 'S' << termcolor::reset << std::string(floor(width / 2) - 1, ' ')
                   << std::string(floor(width / 2) - 1, ' ') << termcolor::red << 'M' << termcolor::reset << std::string(floor(width / 2) - 1, ' ')
-                  << std::string(floor(width / 2) - 1, ' ') << termcolor::bright_yellow << 'R' << termcolor::reset << std::string(floor(width / 2) - 1, ' ')
-                  << std::string(floor(width / 2) - 1, ' ') << termcolor::green << 'V' << termcolor::reset << std::string(floor(width) - 2, ' ')
+                  << std::string(floor(width / 2) - 1, ' ') << termcolor::green << 'R' << termcolor::reset << std::string(floor(width / 2) - 1, ' ')
+                  << std::string(floor(width / 2) - 1, ' ') << termcolor::yellow << 'V' << termcolor::reset << std::string(floor(width) - 2, ' ')
                   << '|' << '\n';
 
         for (int i = 0; i < infection.get_days(); i++) {
