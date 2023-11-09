@@ -24,6 +24,12 @@ namespace epidemic
 
   int Infection::v() const { return m_data.back().V; }
 
+  int Infection::get_N() const { return m_N; }
+
+  void Infection::set_laststate(State const &state) {
+      m_data.push_back(state);
+  }
+
   int Infection::get_days() const {return m_time_indays; }
 
   State Infection::get_state(int day) const { return m_data[day]; };
@@ -80,7 +86,7 @@ namespace epidemic
     return result;
   }
 
-  void Infection::evolve(double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
+  void evolve(Infection &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
     if (beta >= 1 || beta <= 0) {
       throw std::runtime_error{"unacceptable value, beta in ]0,1[."};
     }
@@ -90,13 +96,13 @@ namespace epidemic
     if (no_vax < 0) {
       throw std::runtime_error{"no vax people can't be negative."};
     }
-    if (no_vax > m_N){
+    if (no_vax > plague.get_N()){
        throw std::runtime_error{"no vax must be less than total people"};
     }
     if (vel_vax >= 1 || vel_vax <= 0) {
       throw std::runtime_error{"unacceptable value, vel_vax in ]0,1[."};
     }
-    if (eff_vax >= 1 || eff_vax<= 0) {
+    if (eff_vax >= 1 || eff_vax <= 0) {
       throw std::runtime_error{"unacceptable value, eff_vax in ]0,1[."};
     }
     
@@ -104,37 +110,39 @@ namespace epidemic
 
     State support;
 
-    for (int i = 1; i < m_time_indays; ++i) {
+    for (int i = 1; i < plague.get_days(); ++i) {
       
-      double delV = vel_vax * (v() / eff_vax) * (1 - v() / (eff_vax * (m_N - no_vax)));
+      double delV = vel_vax * (plague.v() / eff_vax) * 
+                    (1 - plague.v() / (eff_vax * (plague.get_N() - no_vax)));
 
-      double delS = (-beta * (s() / m_N) * m()) - delV;
+      double delS = (-beta * (plague.s() / plague.get_N()) * plague.m()) - delV;
 
-      double delR = gamma * m();
+      double delR = gamma * plague.m();
 
-      support.V = round(v() + h * delV);
-      support.S = round(s() + h * delS);
-      support.R = round(r() + h * delR);
-      support.M = round(m() - h * (delV + delS + delR));
+      support.V = round(plague.v() + h * delV);
+      support.S = round(plague.s() + h * delS);
+      support.R = round(plague.r() + h * delR);
+      support.M = round(plague.m() - h * (delV + delS + delR));
 
       //while (!(support.S + support.M + support.R + support.V == m_N)){
-          if (support.S + support.M + support.R + support.V < m_N) {
+          if (support.S + support.M + support.R + support.V < plague.get_N()) {
               ++support.S;
           }
-          if (support.S + support.M + support.R + support.V > m_N) {
+          if (support.S + support.M + support.R + support.V > plague.get_N()) {
               --support.S;
           }
       //}
 
-      assert(support.M + support.R + support.S + support.V == m_N);
+      assert(support.M + support.R + support.S + support.V == plague.get_N());
 
-      assert(no_vax < m_N);
+      assert(no_vax < plague.get_N());
 
-      m_data.push_back(support);
+      plague.set_laststate(support);
     }
+
   }
 
-  void Infection::RK4(double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
+  void RK4(Infection &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
     if (beta >= 1 || beta <= 0) {
       throw std::runtime_error{"unacceptable value, beta in ]0,1[."};
     }
@@ -144,7 +152,7 @@ namespace epidemic
     if (no_vax < 0) {
       throw std::runtime_error{"no vax people can't be negative."};
     }
-    if (no_vax > m_N){
+    if (no_vax > plague.get_N()){
        throw std::runtime_error{"no vax must be less than total people"};
     }
     if (vel_vax >= 1 || vel_vax <= 0) {
@@ -158,47 +166,47 @@ namespace epidemic
 
     State support;
 
-    for (int i = 1; i < m_time_indays; ++i) {
+    for (int i = 1; i < plague.get_days(); ++i) {
 
-      double a1 = vel_vax * (v() / eff_vax) * (1 - v() / (eff_vax * (m_N - no_vax)));
-      double b1 = -beta * s() * m() / m_N - a1;
-      double c1 = gamma * m();
+      double a1 = vel_vax * (plague.v() / eff_vax) * (1 - plague.v() / (eff_vax * (plague.get_N() - no_vax)));
+      double b1 = -beta * plague.s() * plague.m() / plague.get_N() - a1;
+      double c1 = gamma * plague.m();
       double d1 = -a1 - b1 - c1;
 
-      double a2 = vel_vax * ((v() + a1 * h / 2) / eff_vax) * (1 - (v() + a1 * h / 2) / (eff_vax * (m_N - no_vax)));
-      double b2 = -beta * (s() + b1 * h / 2) * (m() + d1 * h / 2) / m_N - a2;
-      double c2 = gamma * (m() + d1 * h / 2);
+      double a2 = vel_vax * ((plague.v() + a1 * h / 2) / eff_vax) * (1 - (plague.v() + a1 * h / 2) / (eff_vax * (plague.get_N() - no_vax)));
+      double b2 = -beta * (plague.s() + b1 * h / 2) * (plague.m() + d1 * h / 2) / plague.get_N() - a2;
+      double c2 = gamma * (plague.m() + d1 * h / 2);
       double d2 = -a2 - b2 - c2;
 
-      double a3 = vel_vax * ((v() + a2 * h / 2) / eff_vax) * (1 - (v() + a2 * h / 2) / (eff_vax * (m_N - no_vax)));
-      double b3 = -beta * (s() + b2 * h / 2) * (m() + d2 * h / 2) / m_N - a3;
-      double c3 = gamma * (m() + d2 * h / 2);
+      double a3 = vel_vax * ((plague.v() + a2 * h / 2) / eff_vax) * (1 - (plague.v() + a2 * h / 2) / (eff_vax * (plague.get_N() - no_vax)));
+      double b3 = -beta * (plague.s() + b2 * h / 2) * (plague.m() + d2 * h / 2) / plague.get_N() - a3;
+      double c3 = gamma * (plague.m() + d2 * h / 2);
       double d3 = -a3 - b3 - c3;
 
-      double a4 = vel_vax * ((v() + a3 * h) / eff_vax) * (1 - (v() + a3 * h) / (eff_vax * (m_N - no_vax)));
-      double b4 = -beta * (s() + b3 * h) * (m() + d3 * h) / m_N - a4;
-      double c4 = gamma * (m() + d3 * h);
+      double a4 = vel_vax * ((plague.v() + a3 * h) / eff_vax) * (1 - (plague.v() + a3 * h) / (eff_vax * (plague.get_N() - no_vax)));
+      double b4 = -beta * (plague.s() + b3 * h) * (plague.m() + d3 * h) / plague.get_N() - a4;
+      double c4 = gamma * (plague.m() + d3 * h);
       double d4 = -a4 - b4 - c4;
 
-      support.V = round(v() + (h / 6) * (a1  + 2 * a2  + 2 * a3 + a4));
-      support.S = round(s() + (h / 6) * (b1  + 2 * b2  + 2 * b3 + b4));
-      support.R = round(r() + (h / 6) * (c1  + 2 * c2  + 2 * c3 + c4));
-      support.M = round(m() + (h / 6) * (d1  + 2 * d2  + 2 * d3 + d4));
+      support.V = round(plague.v() + (h / 6) * (a1  + 2 * a2  + 2 * a3 + a4));
+      support.S = round(plague.s() + (h / 6) * (b1  + 2 * b2  + 2 * b3 + b4));
+      support.R = round(plague.r() + (h / 6) * (c1  + 2 * c2  + 2 * c3 + c4));
+      support.M = round(plague.m() + (h / 6) * (d1  + 2 * d2  + 2 * d3 + d4));
 
      // while (!(support.S + support.M + support.R + support.V == m_N)){
-          if (support.S + support.M + support.R + support.V < m_N) {
+          if (support.S + support.M + support.R + support.V < plague.get_N()) {
               ++support.S;
           }
-          if (support.S + support.M + support.R + support.V > m_N) {
+          if (support.S + support.M + support.R + support.V > plague.get_N()) {
               --support.S;
           }
      //}
 
-      assert(support.M + support.R + support.S + support.V == m_N);
+      assert(support.M + support.R + support.S + support.V == plague.get_N());
 
-      assert(no_vax < m_N);
+      assert(no_vax < plague.get_N());
 
-      m_data.push_back(support);
+      plague.set_laststate(support);
     }
   }
 }
