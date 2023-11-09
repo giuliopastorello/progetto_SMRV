@@ -10,7 +10,7 @@ TEST_CASE("testing virus") {
   int const R_t0 = 320000;
   int const S_t0 = people - M_t0 - V_t0 - R_t0;
   epidemic::State init{S_t0, M_t0, R_t0, V_t0};
-  epidemic::Infection prova{100, init, people};
+  epidemic::Infection prova(100, init);
 }
 
 TEST_CASE("testing virus") {
@@ -20,7 +20,7 @@ TEST_CASE("testing virus") {
   int const R_t0 = 0;
   int const S_t0 = people - M_t0 - V_t0 - R_t0;
   epidemic::State init{S_t0, M_t0, R_t0, V_t0};
-  epidemic::Infection prova{100, init, people};
+  epidemic::Infection prova{100, init};
 }
 
 TEST_CASE("testing virus") {
@@ -30,7 +30,7 @@ TEST_CASE("testing virus") {
   int const R_t0 = 0;
   int const S_t0 = people - M_t0 - V_t0 - R_t0;
   epidemic::State init{S_t0, M_t0, R_t0, V_t0};
-  epidemic::Infection prova{100, init, people};
+  epidemic::Infection prova{100, init};
 }
 
 TEST_CASE("testing virus") {
@@ -40,5 +40,5 @@ TEST_CASE("testing virus") {
   int const R_t0 = 0;
   int const S_t0 = people - M_t0 - V_t0 - R_t0;
   epidemic::State init{S_t0, M_t0, R_t0, V_t0};
-  epidemic::Infection prova{100, init, people};
+  epidemic::Infection prova{100, init};
 }

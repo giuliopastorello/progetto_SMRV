@@ -2,7 +2,7 @@
 
 namespace epidemic
 {
-  //std::vector<State> Infection::states() const { return m_data; }
+  //std::vector<State> Infection::get_states() const { return m_data; }
 
   Infection::Infection(int days, State const &initial_state)
          : m_time_indays{days},
