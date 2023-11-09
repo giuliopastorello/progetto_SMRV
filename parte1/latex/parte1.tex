@@ -4,11 +4,12 @@
 \usepackage{amsmath}
 \usepackage{amsfonts} 
 \usepackage{graphicx}
+\usepackage{minted}
 \usepackage[a4paper,  total={6.75in, 10in}]{geometry}
 \usepackage[utf8]{inputenc}
 
 
-\title{swag di una pandemia con un modello SIRV}
+\title{Simulazione di una pandemia con un modello SMRV}
 \author{Giulio Pastorello, Federico Gnudi}
 \date{Novembre 2023}
 
@@ -44,7 +45,7 @@ S(t)+I(t)+R(t)+V(t)=N
 \end{equation}
 Questa è un'approssimazione ragionevole se si fa l'assunzione 
 che il numero totale di persone che muoiono a causa del virus 
-sia trascurabile rispetto alla popolazione totale.
+sia trascurabile rispetto alla popolazione totale. 
 \subsection{Parametri}
 Il modello descrive l'andamento della pandemia attraverso alcuni 
 parametri:
@@ -56,7 +57,7 @@ trasmissione a seguito di un contatto tra un suscettibile e un infetto.
 un'infezione, che corrisponde alla probabilità di guarigione o morte.
 \item $\eta \in \mathbb{N}, \eta < N$: il numero di persone non 
 vaccinabili, per motivi medici o personali.
-\item $\mu \in\ [0,1]$: rappresenta la velocità delle vaccinazioni.
+\item $\mu \in [0,1]$: rappresenta la velocità delle vaccinazioni.
 \item $\xi \in [0,1]$: rappresenta l'efficacia delle vaccinazioni. 
 Si usa come fattore moltiplicativo.
 \end{itemize}
@@ -140,13 +141,13 @@ metodo \textit{Runge-Kutta 4}, che è più complesso ma produce
 risultati migliori.
 
 \subsection{Il metodo di Eulero}
-Il metodo di Eulero è eseguito dalla funzione evolve() in 
-infection.cpp. Dato un probelma di Cauchy nella forma
+Il metodo di Eulero è eseguito dalla funzione \verb|evolve()| in 
+\verb|infection.cpp|. Dato un probelma di Cauchy nella forma
 \begin{equation} \label{eq::ODE} 
     \dot{\vec{x}} = f(t, \vec{x}), \qquad \vec{x}(t_0) = \vec{x_0}
 \end{equation}
-dove $f(t, \vec{x})$ rappresenta il campo vettoriale che descrive il 
-sistema di equazioni, con $\vec{x} \in \mathbb{R}^n$ variabile di stato, 
+con $f(t, \vec{x})$ campo vettoriale che descrive il sistema di 
+equazioni, $\vec{x} \in \mathbb{R}^n$ variabile di stato, 
 t variabile indipendente (tempo), e $\vec{x}(t_0) = \vec{x_0}$
 condizione iniziale, il \textit{metodo di Eulero} discretizza il 
 sistema nella seguente maniera:
@@ -178,7 +179,7 @@ Le equazioni risultanti sono i valori che stampiamo:
     \end{array}\right.
 \end{equation}
 Sfruttando il vincolo della popolazione totale costante espresso 
-dall'eq. (\ref{eq::pop}), si può "rimuovere una delle quattro 
+dall'eq. (\ref{eq::pop}), si può "rimuovere" una delle quattro 
 equazioni esprimendone il valore in funzione delle altre tre.
 Il risultato che otteniamo è il seguente:
 \begin{equation}\label{eq::ezEvolve}
@@ -200,7 +201,8 @@ iterazione da 4 a 3.
 \subsection{Runge-Kutta 4th Order}
 L'algoritmo alternativo usato per calcolare i valori delle variabili di 
 stato giorno-per-giorno è il Runge-Kutta del quarto ordine, abbreviato 
-spesso come RK o RK4, che è eseguito nella funzione rk() in rk.cpp.
+spesso come RK o RK4, che è eseguito nella funzione \verb|rk()| in 
+\verb|rk.cpp|.
 Come da nome, l'errore totale è dell'ordine di $O(h^4)$.
 Partendo da un'equazione generica nella forma dell' eq. (\ref{eq::ODE})
 l'approssimazione che viene fatta è la seguente: \\
@@ -242,4 +244,47 @@ i coefficienti $a_i, b_i, c_i,d_i, i \in \{1,2,3,4\}$, che sarebbero dunque
 vincolo, si riesce a esprimere uno dei quattro coefficienti in funzione 
 degli altri  tre, e quindi i valori da calcolare si riducono a 12 per ogni 
 giornata.\\
+\section{Il Codice}
+\hspace{\parindent} Per rendere più leggibile il codice si è deciso di
+dividerlo in più \textit{translation units}: \verb|infection.cpp|,
+\verb|display.cpp| e \verb|main.cpp|. Di seguito si dà una una breve 
+spiegazione del funzionamento e dei metodi implementati.
+\subsection{Infection}
+Per rendere il codice più leggibile si è scelto di raccogliere i metodi
+riguardanti l'evoluzione della pandemia all'interno del 
+\mint{C++}|namespace epidemic{.|
+Si è definita una struct \verb|State|: 
+\begin{minted}{C++}
+    struct State {
+        int S; 
+        int M; 
+        int R; 
+        int V; 
+      };
+\end{minted}
+che descrive i valori delle quattro variabili di stato in un dato giorno.
+Si è poi scritto la classe \verb|Infection|
+\begin{minted}{C++}
+    class Infection {
+
+    int m_time_indays; 
+    std::vector<State> m_data; 
+    int const m_N; 
+\end{minted}    
+che ha come membri privati la durata della simulazione, un vettore di 
+stati, che rappresenta l'evoluzione della pandemia, e la popolazione 
+totale.
+\subsection{display}
+In \verb|Infection.cpp| si sono raggruppati i metodi che, come da 
+nome, danno una rappresentazione dei risultati ottenuti.\\
+Il primo metodo è 
+\mint{C++}|void print(Infection const &infection){|
+che stampa sul terminale i risultati della simulazione e il valore 
+\verb|int| del giorno, avvalendosi della funzione 
+\mint{C++}|int count_digit(int n){|
+dichiarata sempre all'interno di \verb|display.cpp| che serve ad 
+impaginare in modo leggibile i valori stampati.
+Si è usata inoltre la libreria \verb|termcolor| che permette di 
+colorare quanto stampato su terminale per colorare i nomi delle 
+variabili.
 \end{document}
