@@ -1,7 +1,7 @@
 #include "infection.hpp"
 
-namespace epidemic
-{
+namespace epidemic {
+
   //std::vector<State> Infection::get_states() const { return m_data; }
 
   Infection::Infection(int days, State const &initial_state)
@@ -25,13 +25,13 @@ namespace epidemic
     m_data = infection.m_data;
   }
 
-  int Infection::s() const { return m_data.back().S; }
+  int Infection::get_S() const { return m_data.back().S; }
 
-  int Infection::m() const { return m_data.back().M; }
+  int Infection::get_M() const { return m_data.back().M; }
 
-  int Infection::r() const { return m_data.back().R; }
+  int Infection::get_R() const { return m_data.back().R; }
 
-  int Infection::v() const { return m_data.back().V; }
+  int Infection::get_V() const { return m_data.back().V; }
 
   int Infection::get_N() const { return m_N; }
 
@@ -126,20 +126,20 @@ namespace epidemic
 
     for (int i = 1; i < result.get_days(); ++i) {
       
-      double delV = vel_vax * result.v() / eff_vax * 
-                    (1 - result.v() / (eff_vax * (result.get_N() - no_vax)));
+      double delV = vel_vax * result.get_V() / eff_vax * 
+                    (1 - result.get_V() / (eff_vax * (result.get_N() - no_vax)));
 
-      double delS = (-beta * (result.s() / result.get_N()) * result.m() - vel_vax * result.v() / eff_vax * 
-                    (1 - result.v() / (eff_vax * (result.get_N() - no_vax))));
+      double delS = (-beta * (result.get_S() / result.get_N()) * result.get_M() - vel_vax * result.get_V() / eff_vax * 
+                    (1 - result.get_V() / (eff_vax * (result.get_N() - no_vax))));
 
-      double delR = gamma * result.m();
+      double delR = gamma * result.get_M();
 
-      double delM = beta * result.s() / result.get_N() * result.m() - gamma * result.m();
+      double delM = beta * result.get_S() / result.get_N() * result.get_M() - gamma * result.get_M();
 
-      support.V = round(result.v() + h * delV);
-      support.S = round(result.s() + h * delS);
-      support.R = round(result.r() + h * delR);
-      support.M = round(result.m() + h * delM);
+      support.V = round(result.get_V() + h * delV);
+      support.S = round(result.get_S() + h * delS);
+      support.R = round(result.get_R() + h * delR);
+      support.M = round(result.get_M() + h * delM);
 
       while (!(support.S + support.M + support.R + support.V == result.get_N())){
       if (support.S + support.M + support.R + support.V < result.get_N()) {
@@ -190,30 +190,30 @@ namespace epidemic
 
     for (int i = 1; i < result.get_days(); ++i) {
 
-      double a1 = vel_vax * (result.v() / eff_vax) * (1 - result.v() / (eff_vax * (result.get_N() - no_vax)));
-      double b1 = -beta * result.s() * result.m() / result.get_N() - a1;
-      double c1 = gamma * result.m();
+      double a1 = vel_vax * (result.get_V() / eff_vax) * (1 - result.get_V() / (eff_vax * (result.get_N() - no_vax)));
+      double b1 = -beta * result.get_S() * result.get_M() / result.get_N() - a1;
+      double c1 = gamma * result.get_M();
       double d1 = -a1 - b1 - c1;
 
-      double a2 = vel_vax * ((result.v() + a1 * h / 2) / eff_vax) * (1 - (result.v() + a1 * h / 2) / (eff_vax * (result.get_N() - no_vax)));
-      double b2 = -beta * (result.s() + b1 * h / 2) * (result.m() + d1 * h / 2) / result.get_N() - a2;
-      double c2 = gamma * (result.m() + d1 * h / 2);
+      double a2 = vel_vax * ((result.get_V() + a1 * h / 2) / eff_vax) * (1 - (result.get_V() + a1 * h / 2) / (eff_vax * (result.get_N() - no_vax)));
+      double b2 = -beta * (result.get_S() + b1 * h / 2) * (result.get_M() + d1 * h / 2) / result.get_N() - a2;
+      double c2 = gamma * (result.get_M() + d1 * h / 2);
       double d2 = -a2 - b2 - c2;
 
-      double a3 = vel_vax * ((result.v() + a2 * h / 2) / eff_vax) * (1 - (result.v() + a2 * h / 2) / (eff_vax * (result.get_N() - no_vax)));
-      double b3 = -beta * (result.s() + b2 * h / 2) * (result.m() + d2 * h / 2) / result.get_N() - a3;
-      double c3 = gamma * (result.m() + d2 * h / 2);
+      double a3 = vel_vax * ((result.get_V() + a2 * h / 2) / eff_vax) * (1 - (result.get_V() + a2 * h / 2) / (eff_vax * (result.get_N() - no_vax)));
+      double b3 = -beta * (result.get_S() + b2 * h / 2) * (result.get_M() + d2 * h / 2) / result.get_N() - a3;
+      double c3 = gamma * (result.get_M() + d2 * h / 2);
       double d3 = -a3 - b3 - c3;
 
-      double a4 = vel_vax * ((result.v() + a3 * h) / eff_vax) * (1 - (result.v() + a3 * h) / (eff_vax * (result.get_N() - no_vax)));
-      double b4 = -beta * (result.s() + b3 * h) * (result.m() + d3 * h) / result.get_N() - a4;
-      double c4 = gamma * (result.m() + d3 * h);
+      double a4 = vel_vax * ((result.get_V() + a3 * h) / eff_vax) * (1 - (result.get_V() + a3 * h) / (eff_vax * (result.get_N() - no_vax)));
+      double b4 = -beta * (result.get_S() + b3 * h) * (result.get_M() + d3 * h) / result.get_N() - a4;
+      double c4 = gamma * (result.get_M() + d3 * h);
       double d4 = -a4 - b4 - c4;
 
-      support.V = round(result.v() + (h / 6) * (a1  + 2 * a2  + 2 * a3 + a4));
-      support.S = round(result.s() + (h / 6) * (b1  + 2 * b2  + 2 * b3 + b4));
-      support.R = round(result.r() + (h / 6) * (c1  + 2 * c2  + 2 * c3 + c4));
-      support.M = round(result.m() + (h / 6) * (d1  + 2 * d2  + 2 * d3 + d4));
+      support.V = round(result.get_V() + (h / 6) * (a1  + 2 * a2  + 2 * a3 + a4));
+      support.S = round(result.get_S() + (h / 6) * (b1  + 2 * b2  + 2 * b3 + b4));
+      support.R = round(result.get_R() + (h / 6) * (c1  + 2 * c2  + 2 * c3 + c4));
+      support.M = round(result.get_M() + (h / 6) * (d1  + 2 * d2  + 2 * d3 + d4));
 
      // while (!(support.S + support.M + support.R + support.V == m_N)){
           if (support.S + support.M + support.R + support.V < result.get_N()) {
