@@ -7,16 +7,15 @@
 *.out
 *.synctex.gz
 *.o
-sfml-app
 _deps/
 CMakeFiles/
 MakeFile
 CMakeCache.txt
 CTestTestfile.cmake
 cmake_install.cmake
-cell_sfml
 infection_tty
 *.jpg
 *.pyg
 parte2/latex/_minted-parte2/
 Makefile
+virus_sfml
