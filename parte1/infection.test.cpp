@@ -47,6 +47,12 @@ TEST_CASE("testing virus") {
       CHECK_THROWS(euler(test, beta, gamma, -3, vel_vax, eff_vax));
       CHECK_THROWS(euler(test, beta, gamma, no_vax, 4, eff_vax));
       CHECK_THROWS(euler(test, beta, gamma, no_vax, vel_vax, 7));
+
+      CHECK_THROWS(rk4(test, -3, gamma, no_vax, vel_vax, eff_vax));
+      CHECK_THROWS(rk4(test, beta, -3, no_vax, vel_vax, eff_vax));
+      CHECK_THROWS(rk4(test, beta, gamma, -3, vel_vax, eff_vax));
+      CHECK_THROWS(rk4(test, beta, gamma, no_vax, 4, eff_vax));
+      CHECK_THROWS(rk4(test, beta, gamma, no_vax, vel_vax, 7));
    } 
  
     SUBCASE("testing vector state") {
@@ -62,6 +68,29 @@ TEST_CASE("testing virus") {
        CHECK(prova.get_S() == S_t0);
        CHECK(prova.get_R() == R_t0);
        CHECK(prova.get_V() == V_t0);
+    }
+
+    SUBCASE("testing euler"){
+       int const people = 4459000;  
+       int const M_t0 = 12321;
+       int const V_t0 = 600437;
+       int const R_t0 = 320000;
+       int const S_t0 = people - M_t0 - V_t0 - R_t0;
+       int duration = 100;
+       double beta = 0.5; 
+       double gamma = 0.3;
+       int no_vax = 118292;   
+       double vel_vax = 0.035;  
+       double eff_vax = 0.600;
+       State init{S_t0, M_t0, R_t0, V_t0};
+
+       Infection prova{duration, init};
+       prova = euler(prova, beta, gamma, no_vax, vel_vax, eff_vax);
+
+       CHECK(prova.get_state(0).M < prova.get_state(1).M);
+       CHECK(prova.get_state(0).V < prova.get_state(1).V);
+       CHECK(prova.get_state(0).R < prova.get_state(1).R);
+       CHECK(prova.get_state(0).S > prova.get_state(1).S);
     }
   
     SUBCASE("testing RK4") {
