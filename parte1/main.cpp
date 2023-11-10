@@ -54,12 +54,12 @@ int main() {
   std::cin >> method;
 
   if (method == 0) {
-    epidemic::print(evolve(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax));
-    epidemic::graph(evolve(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax));
+    epidemic::print(euler(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax));
+    epidemic::graph(euler(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax));
 
   } else if (method == 1) {
-    epidemic::print(RK4(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax));
-    epidemic::graph(RK4(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax));
+    epidemic::print(rk4(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax));
+    epidemic::graph(rk4(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax));
 
   } else {
     throw std::runtime_error{"Enter either '0' or '1'"};

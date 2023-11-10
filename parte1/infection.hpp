@@ -53,9 +53,9 @@ namespace epidemic {
        //std::vector<State> get_states() const; non necessario
   };
 
-  Infection evolve(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
+  Infection euler(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
 
-  Infection RK4(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
+  Infection rk4(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
   
 }//namespace epidemic
 

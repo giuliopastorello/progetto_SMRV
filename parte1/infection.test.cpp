@@ -26,6 +26,29 @@ TEST_CASE("testing virus") {
        CHECK_THROWS(Infection{days, initbad2});
     }
 
+    SUBCASE("testing euler/RK4 errors") {
+      int const people = 4459000;  // abitanti emilia romagna
+      int const M_t0 = 12321;
+      int const V_t0 = 600437;
+      int const R_t0 = 320000;
+      int const S_t0 = people - M_t0 - V_t0 - R_t0;
+      double beta = 0.5; 
+      double gamma = 0.3;
+      int no_vax = 118292;   
+      double vel_vax = 0.035;  
+      double eff_vax = 0.600;
+      int const days = 100;
+
+      State initgood{S_t0, M_t0, R_t0, V_t0};
+      Infection test(days, initgood);
+
+      CHECK_THROWS(euler(test, -3, gamma, no_vax, vel_vax, eff_vax));
+      CHECK_THROWS(euler(test, beta, -3, no_vax, vel_vax, eff_vax));
+      CHECK_THROWS(euler(test, beta, gamma, -3, vel_vax, eff_vax));
+      CHECK_THROWS(euler(test, beta, gamma, no_vax, 4, eff_vax));
+      CHECK_THROWS(euler(test, beta, gamma, no_vax, vel_vax, 7));
+   } 
+ 
     SUBCASE("testing vector state") {
        int const people = 44590;
        int const M_t0 = 110;
@@ -56,7 +79,7 @@ TEST_CASE("testing virus") {
        State init{S_t0, M_t0, R_t0, V_t0};
 
        Infection prova{duration, init};
-       prova = RK4(prova, beta, gamma, no_vax, vel_vax, eff_vax);
+       prova = rk4(prova, beta, gamma, no_vax, vel_vax, eff_vax);
 
        CHECK(prova.get_state(0).M < prova.get_state(1).M);
        CHECK(prova.get_state(0).V < prova.get_state(1).V);

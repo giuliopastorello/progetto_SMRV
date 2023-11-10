@@ -97,7 +97,7 @@ namespace epidemic {
     return result;
   }
 
-  Infection evolve(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
+  Infection euler(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
 
     if (beta >= 1 || beta <= 0) {
       throw std::runtime_error{"unacceptable value, beta in ]0,1[."};
@@ -161,7 +161,7 @@ namespace epidemic {
 
   }
 
-  Infection RK4(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
+  Infection rk4(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
 
     if (beta >= 1 || beta <= 0) {
       throw std::runtime_error{"unacceptable value, beta in ]0,1[."};
