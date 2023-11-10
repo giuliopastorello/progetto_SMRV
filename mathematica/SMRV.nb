@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     92292,       1867]
-NotebookOptionsPosition[     91582,       1846]
-NotebookOutlinePosition[     91973,       1862]
-CellTagsIndexPosition[     91930,       1859]
+NotebookDataLength[     92350,       1868]
+NotebookOptionsPosition[     91633,       1847]
+NotebookOutlinePosition[     92031,       1863]
+CellTagsIndexPosition[     91988,       1860]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1509,7 +1509,7 @@ Cell[BoxData[
  RowBox[{"\[IndentingNewLine]", 
   RowBox[{
    RowBox[{
-    RowBox[{"maxT", "=", "800"}], 
+    RowBox[{"maxT", "=", "100"}], 
     RowBox[{"(*", "giorni", "*)"}], ";", " ", 
     RowBox[{"P", "=", "4459000"}], ";"}], "\[IndentingNewLine]", 
    RowBox[{"Manipulate", "[", 
@@ -1720,20 +1720,20 @@ Cell[BoxData[
    3.8927135904870863`*^9}, {3.8927136226089773`*^9, 
    3.8927136628109303`*^9}, {3.8927138660056467`*^9, 3.892713872781389*^9}, {
    3.892718218786147*^9, 3.892718234328821*^9}, {3.892718755425124*^9, 
-   3.8927187561040363`*^9}, {3.892867871573316*^9, 3.892867876082901*^9}},
- CellLabel->"In[1]:=",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
+   3.8927187561040363`*^9}, {3.892867871573316*^9, 3.892867876082901*^9}, 
+   3.908597160360485*^9},
+ CellLabel->"In[3]:=",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
-    516126, $CellContext`\[Beta]$$ = 0., $CellContext`\[Gamma]$$ = 
-    0.07, $CellContext`\[Eta]$$ = 126900, $CellContext`\[Mu]$$ = 
-    0.022, $CellContext`\[Nu]$$ = 600437, $CellContext`\[Xi]$$ = 
-    0.47000000000000003`, $CellContext`\[Rho]$$ = 320000, Typeset`show$$ = 
-    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{{
+   DynamicModuleBox[{$CellContext`\[Alpha]$$ = 12321, $CellContext`\[Beta]$$ =
+     0.5, $CellContext`\[Gamma]$$ = 0.3, $CellContext`\[Eta]$$ = 
+    118292, $CellContext`\[Mu]$$ = 0.035, $CellContext`\[Nu]$$ = 
+    600437, $CellContext`\[Xi]$$ = 0.6, $CellContext`\[Rho]$$ = 320000, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`\[Beta]$$], 0.056, "prob contagio"}, 0, 1, 0.01}, {{
        Hold[$CellContext`\[Gamma]$$], 0.055, 
        "t \!\(\*SuperscriptBox[\(guarigione\), \(-1\)]\)"}, 0, 1, 0.01}, {{
@@ -1746,7 +1746,7 @@ Cell[BoxData[
        1, 0.001}, {{
        Hold[$CellContext`\[Xi]$$], 0.4, "efficacia vaccino"}, 0, 1, 0.01}, {{
        Hold[$CellContext`\[Rho]$$], 320000, "inizialmente immuni"}, 0, 
-      4459000, 1}}, Typeset`size$$ = {839., {250., 254.}}, Typeset`update$$ = 
+      4459000, 1}}, Typeset`size$$ = {889., {265., 270.}}, Typeset`update$$ = 
     0, Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
@@ -1840,12 +1840,13 @@ $CellContext`R, $CellContext`V}, {$CellContext`t, 0, $CellContext`maxT}];
    3.892713402853861*^9, 3.892713595638468*^9, {3.892713637413474*^9, 
    3.892713668712702*^9}, 3.8927138761259327`*^9, {3.892718227773929*^9, 
    3.892718236465494*^9}, 3.892718759218173*^9, 3.89286783259621*^9, 
-   3.8928678939395103`*^9, 3.9059169332758417`*^9},
- CellLabel->"Out[2]=",ExpressionUUID->"0a047e8b-ac8f-4d00-8929-ec064b50cb1a"]
+   3.8928678939395103`*^9, 3.9059169332758417`*^9, 3.908597065527783*^9, 
+   3.908597175967114*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"8964b8e4-a438-4d77-a755-e361dea93716"]
 }, Open  ]]
 },
 WindowSize->{1440, 847},
-WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowMargins->{{Automatic, -1440}, {-384, Automatic}},
 FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (May 11, 2021)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"e1669f4f-7d04-4958-8044-ec787807e8b9"
@@ -1866,8 +1867,8 @@ Cell[580, 22, 4587, 128, 166, "Input",ExpressionUUID->"20b6157e-7b32-436d-b9bc-0
 Cell[5170, 152, 70630, 1350, 118, "Output",ExpressionUUID->"776a9faf-49ad-4ca8-b40d-a0650ffc6d66"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[75837, 1507, 9532, 216, 362, "Input",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
-Cell[85372, 1725, 6194, 118, 652, "Output",ExpressionUUID->"0a047e8b-ac8f-4d00-8929-ec064b50cb1a"]
+Cell[75837, 1507, 9558, 217, 362, "Input",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
+Cell[85398, 1726, 6219, 118, 675, "Output",ExpressionUUID->"8964b8e4-a438-4d77-a755-e361dea93716"]
 }, Open  ]]
 }
 ]

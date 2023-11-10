@@ -89,12 +89,13 @@ descrivono la diffusione della pandemia sono quindi quattro:\\
 \frac{dV}{dt}(t)= \mu\frac{V(t)}{\xi}\left( 1-\frac{V(t)}{\xi(N-\eta)}\right)
 \end{equation}
 Una simulazione basata su dati rappresentativi dell'Emilia-Romagna
- è mostrata in figura (\ref{fig::SIRV}). 
- Si è usato: popolazione totale $N=4459000$, $\beta=0.05$, 
- $\gamma=0.02$, $I_0 = 530502$, $R_0 = 320000$, $V_0 = 600437$,
- non vaccinabili $\eta = 251042$, 
- velocità vaccinazioni $\mu = 0.05$, efficacia 
- vaccino $\xi= 0.83$.
+realizzata con Wolfram Mathematica è mostrata in figura 
+(\ref{fig::SIRV}). 
+Si è usato: popolazione totale $N=4459000$, $\beta=0.05$, 
+$\gamma=0.02$, $I_0 = 530502$, $R_0 = 320000$, $V_0 = 600437$,
+non vaccinabili $\eta = 251042$, 
+velocità vaccinazioni $\mu = 0.05$, efficacia 
+vaccino $\xi= 0.83$.
 
  \subsection{Curva Logistica}
 Per rappresentare la progressione della campagna vaccinale, 
@@ -168,30 +169,14 @@ Le equazioni risultanti sono i valori che stampiamo:
 \begin{equation}\label{eq::evolve}
     \left\{ \arraycolsep=1.4pt\def\arraystretch{2.2}
     \begin{array}{rcl}
-    S(t_{n+1}) & = & S(t_n) + h \left(-\beta \frac{S(t_n)}{N} I(t_n)
+    S(t_{n+1}) & = & S(t_n) + h \left(-\beta \frac{S(t_n)}{N} M(t_n)
             - \mu \frac{V(t_n)}{\xi} \left(
             1 - \frac{V(t_n)}{\xi (N - \eta)} \right) \right) \\
-    M(t_{n+1}) & = & M(t_n)+h\left(\beta \frac{S(t_n)}{N} I(t_n) 
+    M(t_{n+1}) & = & M(t_n)+h\left(\beta \frac{S(t_n)}{N} M(t_n) 
             - \gamma M(t_n)\right) \\
     R(t_{n+1}) & = & R(t_n) + h \gamma M(t_n) \\
     V(t_{n+1}) & = & V(t_n) +h \mu \frac{V(t_n)}{\xi} \left(
             1 - \frac{V(t_n)}{\xi (N - \eta)} \right) \\
-    \end{array}\right.
-\end{equation}
-Sfruttando il vincolo della popolazione totale costante espresso 
-dall'eq. (\ref{eq::pop}), si può "rimuovere" una delle quattro 
-equazioni esprimendone il valore in funzione delle altre tre.
-Il risultato che otteniamo è il seguente:
-\begin{equation}\label{eq::ezEvolve}
-    \left\{ \arraycolsep=1.4pt\def\arraystretch{2.2}
-    \begin{array}{rcl}
-    V(t_{n+1}) & = & V(t_n) +h \mu \frac{V(t_n)}{\xi} \left(
-        1 - \frac{V(t_n)}{\xi (N - \eta)} \right) \\
-    S(t_{n+1}) & = & S(t_n) + h \left(-\beta \frac{S(t_n)}{N} I(t_n)
-        - \Delta V \right) \\
-    R(t_{n+1}) & = & R(t_n) + h \gamma M(t_n) \\
-    M(t_{n+1}) & = & M(t_n) + h \left(-\Delta V - \Delta S - 
-        \Delta R\right) \\
     \end{array}\right.
 \end{equation}
 dove si è usata la notazione $\Delta X = X(t_{n+1})-X(t_n)$. Questo
@@ -308,6 +293,8 @@ i nomi delle variabili. \\
 Oltre a stampare i valori della simulazione su terminale si è voluto
 scrivere un metodo che facesse degli istogrammi per rappresentare i
 valori delle variabili giorno-per-giorno.
+Questa funzione è implementata dal metodo \verb|graph()|:
+\mint{C++}|void graph(Infection const &infection) {|
 Per questo si è usata la libreria \verb|matplotplusplus|, che è 
 basata su \verb|gnuplot|. al \textit{run-time} viene protto un 
 file contenente i quattro istogrammi che viene salvato 
