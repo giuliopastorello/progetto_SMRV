@@ -314,7 +314,7 @@ basata su \verb|gnuplot|. Al \textit{run-time} viene protto un
 file contenente i quattro istogrammi che viene salvato 
 automaticamente in formato .jpg e viene sovrascritto ogni volta che
 viene fatto girare di nuovo il programma.
-\subsubsection{main}
+\subsubsection{Main}
 Viene proposto all'utente di cambiare i valori di default di 
 parametri e valori iniziali, che sono stati scelti per essere 
 rappresentativi della situazione in Emilia-Romagna nel'estate del 
@@ -339,6 +339,39 @@ eseguibili: \verb|infection_tty| e \verb|infection.test|.
 Poiché la libreria \verb|matplotplusplus| dava alcuni problemi di
 linking su MacOS, si è deciso semplicemente di clonare la repository
 github della libreria all'interno del folder in cui viene implementata, 
-utilizzando poi il comando \verb|add_subdirectory(matplotplusplus)|
-su CMake.
+utilizzando il comando \verb|add_subdirectory(matplotplusplus)|
+di CMake.
+\subsection{Come compilare}
+Per il progetto è necessario avere:
+\begin{itemize}
+    \item \verb|cmake| versione 16 o superiore;
+    \item la libreria \verb|matplotplusplus|. Basta clonare la 
+    \href{https://github.com/alandefreitas/matplotplusplus}{repository 
+    github} della libreria all'interno del
+    folder \verb|parte1/|. 
+    \item la libreria \verb|gnuplot|. Seguire le istruzioni sul 
+    \href{http://www.gnuplot.info}{sito} della libreria.
+\end{itemize}
+\section{Appendice}
+\subsubsection{Git e Github}
+Durante la realizzazione del progetto è stato fondamentale l'uso di 
+Github per coordinare i lavori. Si lascia il 
+\href{https://github.com/giuliopastorello/progetto_SMRV}{link} alla 
+repository remota qualora potesse servire. Per usare il progetto senza
+clonare la libreria di plotting si può semplicemente clonare la 
+remote repository.
+\subsubsection{Nome del modello}
+Per testare se il modello avesse senso, prima di cominciare a scrivere
+il codice, si è usato Wolfram Mathematica per testare alcune 
+possibilità. Su Mathematica I è un carattere riservato, e quindi si 
+è dovuto usare un'altra lettere. La scelta della M per descrivere i 
+malati era ragionevole, e il nome è rimasto invariato anche quando
+si è scritto il programma presentato.
+\subsubsection{Risorse}
+\begin{itemize}
+    \item cmake: \href{https://cmake.org/}{https://cmake.org/}
+    \item matplotplusplus : \href{https://github.com/alandefreitas/matplotplusplus}{https://github.com/alandefreitas/matplotplusplus}
+    \item gnuplot: \href{http://www.gnuplot.info}{http://www.gnuplot.info}
+    \item github: \href{https://github.com/giuliopastorello/progetto_SMRV}{https://github.com/giuliopastorello/progettoSMRV}
+\end{itemize}    
 \end{document}
