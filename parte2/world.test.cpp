@@ -5,7 +5,7 @@
 
 TEST_CASE("Testing Virus") {
     
-  using namespace VirusGame;
+  using namespace Virus;
   int const grid_size = 5;
 
   SUBCASE("Testing Throws") {
@@ -21,9 +21,9 @@ TEST_CASE("Testing Virus") {
 
   SUBCASE("Testing infected_counter") {
     World world(grid_size);
-    world.Set_cell(Cell::Infected, 1, 0);
-    world.Set_cell(Cell::Infected, 2, 2);
-    world.Set_cell(Cell::Infected, 3, 2);
+    world.Set_cell(Cell::I, 1, 0);
+    world.Set_cell(Cell::I, 2, 2);
+    world.Set_cell(Cell::I, 3, 2);
 
     int const infected_around = infected_counter(world, 2, 1);
 

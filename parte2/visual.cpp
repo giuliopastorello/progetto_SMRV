@@ -1,6 +1,6 @@
 #include "visual.hpp"
 
-namespace VirusGame {
+namespace Virus {
 
 Display::Display(sf::RenderWindow &window) : m_window{window}{
   if (!m_font.loadFromFile("../include/INFECTION.ttf")) {
@@ -12,7 +12,7 @@ Display::Display(sf::RenderWindow &window) : m_window{window}{
 }
 
 void Display::draw(World const &world) {
-  int const N = world.side();
+  int const N = world.get_side();
 
   sf::Color Healedcolor(1, 180, 1); //red green blue
   sf::Color HealthyColor(1, 100, 255);
@@ -31,15 +31,15 @@ void Display::draw(World const &world) {
       rect.setPosition(c * cell_size.x, r * cell_size.y); //set posizione sulla finestra delle celle
 
       switch (world.Get_cell(r, c)) {
-        case Cell::Healthy:
+        case Cell::S:
           rect.setFillColor(HealthyColor);
           break;
 
-        case Cell::Infected:
+        case Cell::I:
           rect.setFillColor(InfectedColor);
           break;
 
-        case Cell::Healed:
+        case Cell::R:
           rect.setFillColor(Healedcolor);
           break;
 

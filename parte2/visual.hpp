@@ -5,7 +5,7 @@
 #include "world.hpp"
 #include <stdexcept>
 
-namespace VirusGame {
+namespace Virus {
 
 class Display {
   sf::RenderWindow &m_window;
