@@ -49,8 +49,7 @@ namespace epidemic {
 
        //set
        void set_laststate(State const &state);
-   
-       //std::vector<State> get_states() const; non necessario
+       
   };
 
   Infection euler(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax);
