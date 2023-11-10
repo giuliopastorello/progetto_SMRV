@@ -29,7 +29,6 @@ namespace epidemic
     }
 
     void graph(Infection const &infection) {
-
         std::vector<int> S = infection.get_S_vector();
         std::vector<int> M = infection.get_M_vector();
         std::vector<int> R = infection.get_R_vector();

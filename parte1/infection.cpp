@@ -2,14 +2,12 @@
 
 namespace epidemic {
 
-  //std::vector<State> Infection::get_states() const { return m_data; }
-
   Infection::Infection(int days, State const &initial_state)
          : m_time_indays{days},
            m_data{initial_state},
            m_N{initial_state.M + initial_state.R + initial_state.S + initial_state.V}  {
-              if(days < 10) {
-                throw std::runtime_error{"Virus must last at least 10 days"};
+              if(days <= 1) {
+                throw std::runtime_error{"Virus must last at least 1 day"};
               }
               if(initial_state.M < 1) {
                 throw std::runtime_error{"There must be at least one infected"};
@@ -100,28 +98,26 @@ namespace epidemic {
   Infection euler(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
 
     if (beta >= 1 || beta <= 0) {
-      throw std::runtime_error{"unacceptable value, beta in ]0,1[."};
+      throw std::runtime_error{"Unacceptable value, beta in ]0,1[."};
     }
     if (gamma >= 1 || gamma <= 0) {
-      throw std::runtime_error{"unacceptable value, gamma in ]0,1[."};
+      throw std::runtime_error{"Unacceptable value, gamma in ]0,1[."};
     }
     if (no_vax < 0) {
-      throw std::runtime_error{"no vax people can't be negative."};
+      throw std::runtime_error{"No vax people can't be negative."};
     }
     if (no_vax >= plague.get_N()){
-       throw std::runtime_error{"no vax must be less than total people"};
+       throw std::runtime_error{"No vax people must be less than total people"};
     }
     if (vel_vax >= 1 || vel_vax <= 0) {
-      throw std::runtime_error{"unacceptable value, vel_vax in ]0,1[."};
+      throw std::runtime_error{"Unacceptable value, vel_vax in ]0,1[."};
     }
     if (eff_vax >= 1 || eff_vax <= 0) {
-      throw std::runtime_error{"unacceptable value, eff_vax in ]0,1[."};
+      throw std::runtime_error{"Unacceptable value, eff_vax in ]0,1[."};
     }
     
     double const h = 1;
-
     State support;
-
     Infection result(plague);
 
     for (int i = 1; i < result.get_days(); ++i) {
@@ -142,50 +138,46 @@ namespace epidemic {
       support.M = round(result.get_M() + h * delM);
 
       while (!(support.S + support.M + support.R + support.V == result.get_N())){
-      if (support.S + support.M + support.R + support.V < result.get_N()) {
-          ++support.S;
-      }
-      if (support.S + support.M + support.R + support.V > result.get_N()) {
-          --support.S;
-      }
+         if (support.S + support.M + support.R + support.V < result.get_N()) {
+             ++support.S;
+         }
+         if (support.S + support.M + support.R + support.V > result.get_N()) {
+             --support.S;
+         }
       }
 
       assert(support.M + support.R + support.S + support.V == result.get_N());
-
       assert(no_vax < result.get_N());
 
       result.set_laststate(support);
     }
 
     return result;
-
   }
 
   Infection rk4(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
 
     if (beta >= 1 || beta <= 0) {
-      throw std::runtime_error{"unacceptable value, beta in ]0,1[."};
+      throw std::runtime_error{"Unacceptable value, beta in ]0,1[."};
     }
     if (gamma >= 1 || gamma <= 0) {
-      throw std::runtime_error{"unacceptable value, gamma in ]0,1[."};
+      throw std::runtime_error{"Unacceptable value, gamma in ]0,1[."};
     }
     if (no_vax < 0) {
-      throw std::runtime_error{"no vax people can't be negative."};
+      throw std::runtime_error{"No vax people can't be negative."};
     }
     if (no_vax >= plague.get_N()){
-       throw std::runtime_error{"no vax must be less than total people"};
+       throw std::runtime_error{"No vax must be less than total people"};
     }
     if (vel_vax >= 1 || vel_vax <= 0) {
-      throw std::runtime_error{"unacceptable value, vel_vax in ]0,1[."};
+      throw std::runtime_error{"Unacceptable value, vel_vax in ]0,1[."};
     }
     if (eff_vax >= 1 || eff_vax<= 0) {
-      throw std::runtime_error{"unacceptable value, eff_vax in ]0,1[."};
+      throw std::runtime_error{"Unacceptable value, eff_vax in ]0,1[."};
     }
 
     double const h = 1;
-
     State support;
-
     Infection result(plague);
 
     for (int i = 1; i < result.get_days(); ++i) {
@@ -225,12 +217,11 @@ namespace epidemic {
       }
 
       assert(support.M + support.R + support.S + support.V == result.get_N());
-
       assert(no_vax < result.get_N());
 
       result.set_laststate(support);
     }
-
     return result;
   }
+
 }
