@@ -31,10 +31,10 @@ namespace epidemic {
        Infection &operator=(Infection const &other) = default;
            
        //get      
-       int s() const;
-       int m() const;
-       int r() const;
-       int v() const;
+       int get_S() const;
+       int get_M() const;
+       int get_R() const;
+       int get_V() const;
 
        std::vector<int> get_S_vector() const;
        std::vector<int> get_M_vector() const;
