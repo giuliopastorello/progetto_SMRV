@@ -245,15 +245,17 @@ vincolo, si riesce a esprimere uno dei quattro coefficienti in funzione
 degli altri  tre, e quindi i valori da calcolare si riducono a 12 per ogni 
 giornata.\\
 \section{Il Codice}
-\hspace{\parindent} Per rendere più leggibile il codice si è deciso di
+\hspace{\parindent} PERCHè SI è deciso di
 dividerlo in più \textit{translation units}: \verb|infection.cpp|,
 \verb|display.cpp| e \verb|main.cpp|. Di seguito si dà una una breve 
 spiegazione del funzionamento e dei metodi implementati.
 \subsection{Infection}
+\subsubsection{La classe}
 Per rendere il codice più leggibile si è scelto di raccogliere i metodi
 riguardanti l'evoluzione della pandemia all'interno del 
 \mint{C++}|namespace epidemic{.|
-Si è definita una struct \verb|State|: 
+All'interno di \verb|infection.h| si è definita una struct 
+\verb|State|: 
 \begin{minted}{C++}
     struct State {
         int S; 
@@ -263,7 +265,7 @@ Si è definita una struct \verb|State|:
       };
 \end{minted}
 che descrive i valori delle quattro variabili di stato in un dato giorno.
-Si è poi scritto la classe \verb|Infection|
+Si è poi scritta la classe \verb|Infection|
 \begin{minted}{C++}
     class Infection {
 
@@ -274,17 +276,54 @@ Si è poi scritto la classe \verb|Infection|
 che ha come membri privati la durata della simulazione, un vettore di 
 stati, che rappresenta l'evoluzione della pandemia, e la popolazione 
 totale.
-\subsection{display}
-In \verb|Infection.cpp| si sono raggruppati i metodi che, come da 
+\subsubsection{Evoluzione}
+Come anticipato sopra, si può scegliere fra due diversi metodi 
+numerici per discretizzare le equazioni del modello.\\
+Il primo è il metodo di Eulero, implementato dal metodo 
+\verb|evolve()|:
+\begin{minted}{C++}
+    Infection evolve(Infection const &plague, double beta, 
+    double gamma, int no_vax, double vel_vax, double eff_vax) {
+\end{minted}
+COME FUNZIONA?\\
+L'altra opzione è il metodo Runge-Kutta in \verb|RK4()|:
+\begin{minted}{C++}
+    Infection RK4(Infection const &plague, double beta, 
+    double gamma, int no_vax, double vel_vax, double eff_vax) {
+\end{minted}
+COME FUNZIONA?
+\subsection{Display}
+In \verb|display.cpp| si sono raggruppati i metodi che, come da 
 nome, danno una rappresentazione dei risultati ottenuti.\\
 Il primo metodo è 
 \mint{C++}|void print(Infection const &infection){|
 che stampa sul terminale i risultati della simulazione e il valore 
 \verb|int| del giorno, avvalendosi della funzione 
 \mint{C++}|int count_digit(int n){|
-dichiarata sempre all'interno di \verb|display.cpp| che serve ad 
+dichiarata sempre all'interno di \verb|display.cpp|, che serve ad 
 impaginare in modo leggibile i valori stampati.
 Si è usata inoltre la libreria \verb|termcolor| che permette di 
-colorare quanto stampato su terminale per colorare i nomi delle 
-variabili.
+colorare quanto stampato su terminale per distinguere meglio
+i nomi delle variabili. \\
+Oltre a stampare i valori della simulazione su terminale si è voluto
+scrivere un metodo che facesse degli istogrammi per rappresentare i
+valori delle variabili giorno-per-giorno.
+Per questo si è usata la libreria \verb|matplotplusplus|, che è 
+basata su \verb|gnuplot|. al \textit{run-time} viene protto un 
+file contenente i quattro istogrammi che viene salvato 
+automaticamente in formato .jpg e viene sovrascritto ogni volta che
+viene fatto girare di nuovo il programma.
+\section{Compilazione}
+\hspace{parindent} Per costruire il programma si è deciso di usare 
+\verb|cmake|, nel folder \verb|parte1/| è incluso il 
+\verb|CMakeLists.txt| che permette di costruire il progetto 
+(caricando la libreria di plotting).
+Per compilare serve fare la build con \verb|cmake .|, poi 
+\verb|cmake --build .|. Una volta fatto questo vengono prodotti due
+eseguibili: \verb|infection_tty| e \verb|infection.test|.
+Poiché la libreria \verb|matplotplusplus| dava alcuni problemi di
+linking su MacOS, si è deciso semplicemente di clonare la repository
+github della libreria all'interno del folder in cui viene implementata, 
+utilizzando poi il comando \verb|add_subdirectory(matplotplusplus)|
+su CMake.
 \end{document}
