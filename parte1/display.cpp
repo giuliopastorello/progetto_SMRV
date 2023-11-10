@@ -25,9 +25,6 @@ namespace epidemic
                       << std::string(width - count_digit(infection.get_state(i).M), ' ') << infection.get_state(i).R
                       << std::string(width - count_digit(infection.get_state(i).R), ' ') << infection.get_state(i).V
                       << std::string(width - count_digit(infection.get_state(i).V), ' ') << '|' << '\n';
-            //<< '+' << std::string(width - 1, '-') << '+'
-            //<< std::string(width - 1, '-') << '+' << std::string(width - 1, '-')
-            //<< '+' << std::string(width, '-') << '+' << '\n';
         }
     }
 
@@ -43,7 +40,7 @@ namespace epidemic
         f->position({0, 0, 800, 800});
         f->size(800, 800);
 
-        // S()
+        // S
         auto ax1 = matplot::nexttile();
         matplot::bar(ax1, S, 0.3)->face_color("blue");
         matplot::title("{/:Italic Susceptible", "blue");
@@ -59,7 +56,7 @@ namespace epidemic
         matplot::grid(true);
         ax1->minor_grid(true);
 
-        // Infected
+        // I
         auto ax2 = matplot::nexttile();
         matplot::bar(ax2, M, 0.3)->face_color("red");
         matplot::title("{/:Italic Infected", "red");
@@ -75,7 +72,7 @@ namespace epidemic
         matplot::grid(true);
         ax2->minor_grid(true);
 
-        // Recovered
+        // R
         auto ax3 = matplot::nexttile();
         matplot::bar(ax3, R, 0.3)->face_color("green");
         matplot::title("{/:Italic Recovered", "green");
@@ -91,7 +88,7 @@ namespace epidemic
         matplot::grid(true);
         ax3->minor_grid(true);
 
-        // Dead
+        // V
         auto ax4 = matplot::nexttile();
         matplot::bar(ax4, V, 0.3)->face_color("black");
         matplot::title("{/:Italic Vaccinated", "black");
