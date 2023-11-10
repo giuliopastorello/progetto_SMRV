@@ -1,6 +1,6 @@
 #include "display.hpp"
-namespace epidemic
-{
+namespace epidemic {
+
     int count_digit(int n) {
         return std::log10(n) + 1;
     }
@@ -37,7 +37,7 @@ namespace epidemic
         auto f = matplot::figure();
 
         f->position({0, 0, 800, 800});
-        f->size(800, 800);
+        f->size(1000, 800);
 
         // S
         auto ax1 = matplot::nexttile();
