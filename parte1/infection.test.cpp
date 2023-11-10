@@ -92,6 +92,10 @@ TEST_CASE("testing virus") {
        CHECK(prova.get_state(0).V < prova.get_state(1).V);
        CHECK(prova.get_state(0).R < prova.get_state(1).R);
        CHECK(prova.get_state(0).S > prova.get_state(1).S);
+       CHECK(prova.get_state(1).M < prova.get_state(2).M);
+       CHECK(prova.get_state(1).V < prova.get_state(2).V);
+       CHECK(prova.get_state(1).R < prova.get_state(2).R);
+       CHECK(prova.get_state(1).S > prova.get_state(2).S);
     }
   
     SUBCASE("testing RK4") {
@@ -115,6 +119,10 @@ TEST_CASE("testing virus") {
        CHECK(prova.get_state(0).V < prova.get_state(1).V);
        CHECK(prova.get_state(0).R < prova.get_state(1).R);
        CHECK(prova.get_state(0).S > prova.get_state(1).S);
+       CHECK(prova.get_state(1).M < prova.get_state(2).M);
+       CHECK(prova.get_state(1).V < prova.get_state(2).V);
+       CHECK(prova.get_state(1).R < prova.get_state(2).R);
+       CHECK(prova.get_state(1).S > prova.get_state(2).S);
     }
     
     

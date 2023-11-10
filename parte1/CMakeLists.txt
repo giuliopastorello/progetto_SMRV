@@ -14,6 +14,6 @@ target_compile_options(infection_tty PRIVATE -Wall -Wextra -g -fsanitize=address
 target_link_libraries(infection_tty PUBLIC matplot -fsanitize=address) #-fsanitize=address
 
 add_executable(infection.test infection.cpp infection.test.cpp)
-target_compile_options(infection.test PRIVATE -Wall -Wextra -g  -fsanitize=address ) #-fsanitize=address 
+target_compile_options(infection.test PRIVATE -Wall -Wextra -g -fsanitize=address -std=c++17) #-fsanitize=address 
 target_link_options(infection.test PRIVATE -fsanitize=address) #-fsanitize=address
 add_test(NAME infection.test COMMAND infection.test)
