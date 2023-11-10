@@ -2,6 +2,7 @@
 #define DISPLAY_HPP
 
 #include "infection.hpp"
+#include <matplot/matplot.h>
 #include "../include/termcolor.hpp"
 
 namespace epidemic

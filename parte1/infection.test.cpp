@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
-#include "doctest.h"
+#include "../include/doctest.h"
 #include "infection.hpp"
 
 TEST_CASE("testing virus") {

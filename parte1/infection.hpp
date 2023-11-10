@@ -7,7 +7,6 @@
 #include <vector>
 #include <cmath>
 #include <cassert>
-#include <matplot/matplot.h>
 #include <stdexcept>
 
 namespace epidemic {
