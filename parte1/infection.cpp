@@ -155,7 +155,6 @@ namespace epidemic {
     }
 
     return result;
-
   }
 
   Infection rk4(Infection const &plague, double beta, double gamma, int no_vax, double vel_vax, double eff_vax) {
@@ -226,7 +225,7 @@ namespace epidemic {
 
       result.set_laststate(support);
     }
-
     return result;
   }
+  
 }
