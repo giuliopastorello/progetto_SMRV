@@ -117,9 +117,7 @@ namespace epidemic {
     }
     
     double const h = 1;
-
     State support;
-
     Infection result(plague);
 
     for (int i = 1; i < result.get_days(); ++i) {
@@ -179,9 +177,7 @@ namespace epidemic {
     }
 
     double const h = 1;
-
     State support;
-
     Infection result(plague);
 
     for (int i = 1; i < result.get_days(); ++i) {
@@ -227,5 +223,5 @@ namespace epidemic {
     }
     return result;
   }
-  
+
 }
