@@ -4,10 +4,10 @@
 #include "infection.hpp"
 
 TEST_CASE("testing virus") {
-    using namespace epidemic; //tutto da testare, mai compilato ancora
+    using namespace epidemic;
 
     SUBCASE("testing constructor errors") {
-       int const people = 4459000;  // abitanti emilia romagna
+       int const people = 4459000;
        int const M_t0 = 12321;
        int const V_t0 = 600437;
        int const R_t0 = 320000;
@@ -27,7 +27,7 @@ TEST_CASE("testing virus") {
     }
 
     SUBCASE("testing euler/RK4 errors") {
-      int const people = 4459000;  // abitanti emilia romagna
+      int const people = 4459000;
       int const M_t0 = 12321;
       int const V_t0 = 600437;
       int const R_t0 = 320000;
