@@ -42,7 +42,7 @@ int main() {
     std::cout << "Number of no vax people (< S): " << '\t';
     std::cin >> no_vax;
     if (no_vax > S_t0 + R_t0 + V_t0 + M_t0){
-       throw std::runtime_error{"no vax must be less than total people"};
+       throw std::runtime_error{"No vax must be less than total people"};
     }
   }
     
