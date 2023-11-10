@@ -108,7 +108,7 @@ namespace epidemic {
     if (no_vax < 0) {
       throw std::runtime_error{"no vax people can't be negative."};
     }
-    if (no_vax > plague.get_N()){
+    if (no_vax >= plague.get_N()){
        throw std::runtime_error{"no vax must be less than total people"};
     }
     if (vel_vax >= 1 || vel_vax <= 0) {
