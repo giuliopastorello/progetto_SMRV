@@ -19,3 +19,5 @@ infection_tty
 parte2/latex/_minted-parte2/
 Makefile
 virus_sfml
+infection.test
+virus.test
