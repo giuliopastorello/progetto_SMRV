@@ -172,7 +172,7 @@ namespace epidemic {
     if (no_vax < 0) {
       throw std::runtime_error{"no vax people can't be negative."};
     }
-    if (no_vax > plague.get_N()){
+    if (no_vax >= plague.get_N()){
        throw std::runtime_error{"no vax must be less than total people"};
     }
     if (vel_vax >= 1 || vel_vax <= 0) {
@@ -182,7 +182,7 @@ namespace epidemic {
       throw std::runtime_error{"unacceptable value, eff_vax in ]0,1[."};
     }
 
-    double const h = 1; // step size
+    double const h = 1;
 
     State support;
 
@@ -215,14 +215,14 @@ namespace epidemic {
       support.R = round(result.get_R() + (h / 6) * (c1  + 2 * c2  + 2 * c3 + c4));
       support.M = round(result.get_M() + (h / 6) * (d1  + 2 * d2  + 2 * d3 + d4));
 
-     // while (!(support.S + support.M + support.R + support.V == m_N)){
+      while (!(support.S + support.M + support.R + support.V == result.get_N())){
           if (support.S + support.M + support.R + support.V < result.get_N()) {
               ++support.S;
           }
           if (support.S + support.M + support.R + support.V > result.get_N()) {
               --support.S;
           }
-     //}
+      }
 
       assert(support.M + support.R + support.S + support.V == result.get_N());
 

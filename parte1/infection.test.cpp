@@ -51,6 +51,7 @@ TEST_CASE("testing virus") {
       CHECK_THROWS(rk4(test, -3, gamma, no_vax, vel_vax, eff_vax));
       CHECK_THROWS(rk4(test, beta, -3, no_vax, vel_vax, eff_vax));
       CHECK_THROWS(rk4(test, beta, gamma, -3, vel_vax, eff_vax));
+      CHECK_THROWS(rk4(test, beta, gamma, 4459000, vel_vax, eff_vax));
       CHECK_THROWS(rk4(test, beta, gamma, no_vax, 4, eff_vax));
       CHECK_THROWS(rk4(test, beta, gamma, no_vax, vel_vax, 7));
    } 
