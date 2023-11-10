@@ -107,7 +107,7 @@ namespace epidemic {
         matplot::gcf()->title_font_size_multiplier(2.0);
 
         matplot::show();
-        matplot::save("infection.jpg");
+        matplot::save("infection.png");
 
         matplot::wait();
     }

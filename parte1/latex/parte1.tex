@@ -90,14 +90,14 @@ descrivono la diffusione della pandemia sono quindi quattro:\\
 \begin{equation}\label{eq::V}
 \frac{dV}{dt}(t)= \mu\frac{V(t)}{\xi}\left( 1-\frac{V(t)}{\xi(N-\eta)}\right)
 \end{equation}
-Una simulazione basata su dati rappresentativi dell'Emilia-Romagna
+Una simulazione basata su dati comparabili con l'Emilia-Romagna nel 2021
 realizzata con Wolfram Mathematica è mostrata in figura 
 (\ref{fig::SIRV}). 
 Si è usato: popolazione totale $N=4459000$, $\beta=0.05$, 
 $\gamma=0.02$, $M_0 = 530502$, $R_0 = 320000$, $V_0 = 600437$,
 non vaccinabili $\eta = 251042$, 
 velocità vaccinazioni $\mu = 0.05$, efficacia 
-vaccino $\xi= 0.83$.
+vaccino $\xi= 0.69$.
 
 \subsection{Curva Logistica}
 Per rappresentare la progressione della campagna vaccinale, 
@@ -119,9 +119,9 @@ andamento possibile della curva dei vaccinati.\\
 \centering
 \begin{minipage}[t]{.4\paperwidth}
     \hspace{-10pt}
-    \includegraphics[width=\textwidth]{SIRV.png}
+    \includegraphics[width=\textwidth]{SMRV.png}
     \caption{\textit{Comportamento del modello SIRV con dati 
-    rappresentativi dell'Emilia-Romagna}}
+    comparabili all'Emilia-Romagna}}
     \label{fig::SIRV}
     \end{minipage}%
 \hfill %
@@ -323,7 +323,14 @@ pre-impostata a 100 giorni.
 Una volta fatta questa scelta, l'utente può scegliere quale metodo 
 numerico usare per la simulazione. A questo punto vengono stampati 
 su terminale i valori delle quattro variabili giorno-per-giorno e 
-viene prodotto il file .jpg con gli istogrammi.
+viene prodotto il file .png con gli istogrammi. In figura \ref{fig::mpp}
+un esempio di un file salvato.
+\begin{figure} 
+    \centering
+    \includegraphics[width=0.4\paperwidth]{infection.png}
+    \caption{\textit{Grafici prodotti con i valori di default.}}
+    \label{fig::mpp}
+\end{figure}
 \section{Compilazione}
 \hspace{\parindent} Per costruire il programma si è deciso di usare 
 \verb|cmake|, nel folder \verb|parte1/| è incluso il 
@@ -338,9 +345,13 @@ Una volta fatto questo vengono prodotti due
 eseguibili: \verb|infection_tty| e \verb|infection.test|.
 Poiché la libreria \verb|matplotplusplus| dava alcuni problemi di
 linking su MacOS, si è deciso semplicemente di clonare la repository
-github della libreria all'interno del folder in cui viene implementata, 
+github della libreria all'interno del folder in cui viene implementata 
+(\verb|parte1|), 
 utilizzando il comando \verb|add_subdirectory(matplotplusplus)|
-di CMake.
+di CMake. La libreria citata non viene fornita nel assieme al codice
+presentato ma viene fornito il link per clonare la sua repository.
+Alternativamente si può clonare la repository del progetto dove è già
+presente \verb|parte1/matplotplusplus|.
 \subsection{Come compilare}
 Per il progetto è necessario avere:
 \begin{itemize}
@@ -353,14 +364,14 @@ Per il progetto è necessario avere:
     \href{http://www.gnuplot.info}{sito} della libreria.
 \end{itemize}
 \section{Appendici}
-\subsubsection{Git e Github}
+\subsection{Git e Github}
 Durante la realizzazione del progetto è stato fondamentale l'uso di 
 Github per coordinare i lavori. Si lascia il 
 \href{https://github.com/giuliopastorello/progetto_SMRV}{link} alla 
 repository remota qualora potesse servire. Per usare il progetto senza
 clonare la libreria di plotting si può semplicemente clonare la 
 remote repository.
-\subsubsection{Nome del modello}
+\subsection{Nome del modello}
 Per testare se il modello avesse senso, prima di cominciare a scrivere
 il codice, si è usato Wolfram Mathematica per testare alcune 
 possibilità. Su Mathematica I è un carattere riservato, e quindi si 
@@ -369,7 +380,7 @@ malati era ragionevole, e il nome è rimasto invariato anche quando
 si è scritto il programma presentato. Per completezza si è deciso di 
 lasciare un folder \verb|mathematica/| contenente i file .nb con i 
 primi calcoli del modello.
-\subsubsection{Risorse}
+\subsection{Risorse}
 \begin{itemize}
     \item cmake: \href{https://cmake.org/}{https://cmake.org/}
     \item matplotplusplus : \href{https://github.com/alandefreitas/matplotplusplus}{https://github.com/alandefreitas/matplotplusplus}
