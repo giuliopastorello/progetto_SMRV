@@ -35,10 +35,10 @@ TEST_CASE("testing virus") {
        State init{S_t0, M_t0, R_t0, V_t0};
        Infection prova{100, init};
 
-       CHECK(prova.m() == M_t0);
-       CHECK(prova.s() == S_t0);
-       CHECK(prova.r() == R_t0);
-       CHECK(prova.v() == V_t0);
+       CHECK(prova.get_M() == M_t0);
+       CHECK(prova.get_S() == S_t0);
+       CHECK(prova.get_R() == R_t0);
+       CHECK(prova.get_V() == V_t0);
     }
   
     SUBCASE("testing RK4") {
