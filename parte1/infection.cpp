@@ -6,7 +6,7 @@ namespace epidemic {
          : m_time_indays{days},
            m_data{initial_state},
            m_N{initial_state.M + initial_state.R + initial_state.S + initial_state.V}  {
-              if(days =< 1) {
+              if(days <= 1) {
                 throw std::runtime_error{"Virus must last at least 1 day"};
               }
               if(initial_state.M < 1) {
