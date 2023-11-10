@@ -19,6 +19,26 @@ TEST_CASE("Testing Virus") {
     CHECK_THROWS(initial_random(world2, 10, 0));
   }
 
+  SUBCASE("testing move condition"){
+    World world(grid_size);
+    world.Set_cell(Cell::I, 0, 0);
+    world.Set_cell(Cell::I, 1, 0);
+    world.Set_cell(Cell::I, 0, 1);
+    world.Set_cell(Cell::I, 2, 2);
+    world.Set_cell(Cell::I, 2, 1);
+    world.Set_cell(Cell::I, 1, 2);
+    world.Set_cell(Cell::I, 2, 0);
+    world.Set_cell(Cell::I, 0, 2);
+    world.Set_cell(Cell::S, 1, 1);
+
+    CHECK(move_condition(world, 1, 1) == false);
+    CHECK(move_condition(world, 2, 2) == true);
+
+    world.Set_cell(Cell::Dead, 3 ,3);
+
+    CHECK(move_condition(world, 3, 3) == false);
+  }
+
   SUBCASE("Testing infected_counter") {
     World world(grid_size);
     world.Set_cell(Cell::I, 1, 0);
