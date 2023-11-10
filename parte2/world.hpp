@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "../include/termcolor.hpp"
-#include <algorithm> //contiene metodo count per ricerca nei vettori
+#include <algorithm>
 #include <cassert>
 #include <cmath>
 #include <random>

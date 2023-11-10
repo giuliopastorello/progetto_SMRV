@@ -12,22 +12,22 @@
 namespace epidemic {
  
   struct State {
-    int S; // suscettibili
-    int M; // rimossi
-    int R; // malati
-    int V; // vaccinati
+    int S;
+    int M;
+    int R;
+    int V;
   };
 
   class Infection {
 
-    int m_time_indays; // durata analisi dati
-    std::vector<State> m_data; // stato iniziale giorno:0
-    int m_N; // abitanti
+    int m_time_indays;  // duration
+    std::vector<State> m_data; 
+    int m_N;
 
     public:
 
        Infection(int days, State const &initial_state);
-       Infection(Infection const &infection);//costruttore copia
+       Infection(Infection const &infection);
        Infection &operator=(Infection const &other) = default;
            
        //get      
