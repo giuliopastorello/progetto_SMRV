@@ -126,26 +126,29 @@ namespace epidemic
 
     for (int i = 1; i < result.get_days(); ++i) {
       
-      double delV = vel_vax * (result.v() / eff_vax) * 
+      double delV = vel_vax * result.v() / eff_vax * 
                     (1 - result.v() / (eff_vax * (result.get_N() - no_vax)));
 
-      double delS = (-beta * (result.s() / result.get_N()) * result.m()) - delV;
+      double delS = (-beta * (result.s() / result.get_N()) * result.m() - vel_vax * result.v() / eff_vax * 
+                    (1 - result.v() / (eff_vax * (result.get_N() - no_vax))));
 
       double delR = gamma * result.m();
+
+      double delM = beta * result.s() / result.get_N() * result.m() - gamma * result.m();
 
       support.V = round(result.v() + h * delV);
       support.S = round(result.s() + h * delS);
       support.R = round(result.r() + h * delR);
-      support.M = round(result.m() - h * (delV + delS + delR));
+      support.M = round(result.m() + h * delM);
 
-      //while (!(support.S + support.M + support.R + support.V == m_N)){
-          if (support.S + support.M + support.R + support.V < result.get_N()) {
-              ++support.S;
-          }
-          if (support.S + support.M + support.R + support.V > result.get_N()) {
-              --support.S;
-          }
-      //}
+      while (!(support.S + support.M + support.R + support.V == result.get_N())){
+      if (support.S + support.M + support.R + support.V < result.get_N()) {
+          ++support.S;
+      }
+      if (support.S + support.M + support.R + support.V > result.get_N()) {
+          --support.S;
+      }
+      }
 
       assert(support.M + support.R + support.S + support.V == result.get_N());
 
