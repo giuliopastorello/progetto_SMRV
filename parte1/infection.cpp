@@ -134,7 +134,7 @@ namespace epidemic {
 
       double delR = gamma * result.get_M();
 
-      double delM = beta * result.get_S() / result.get_N() * result.get_M() - gamma * result.get_M();
+      double delM  = beta * result.get_S() / result.get_N() * result.get_M() - gamma * result.get_M();
 
       support.V = round(result.get_V() + h * delV);
       support.S = round(result.get_S() + h * delS);

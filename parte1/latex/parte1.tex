@@ -24,16 +24,16 @@ di usare un modello SIR al quale è stata aggiunta un quarta
 equazione per rappresentare i vaccinati.\\
 Le equazioni che descrivono l'evoluzione della pandemia sono quindi:
 \begin{itemize}
-\item $S(t)$: "Susceptible". Descrive il numero delle persone non 
+\item $S(t)$: "Suscettibili". Descrive il numero delle persone non 
 malate che non hanno mai contratto l'infezione.
-\item $I(t)$: "Infected". Il numero di persone che ad un dato tempo 
+\item $M(t)$: "Malati". Il numero di persone che ad un dato tempo 
 t sono malate. 
-\item $R(t)$: "Removed". Una volta che una persona è stata 
+\item $R(t)$: "Rimossi". Una volta che una persona è stata 
 contagiata, dopo un certo intervallo di tempo viene \textit{rimossa}, 
 ovvero guarisce o muore. Si assume che, una volta guariti, 
 i soggetti diventino immuni. L'unica possibilità di transizione da 
 uno stato all'altro è quindi: $S\xrightarrow{}I\xrightarrow{}R$.
-\item $V(t)$: "Vaccinated". Questa equazione è un'aggiunta al modello 
+\item $V(t)$: "Vaccinati". Questa equazione è un'aggiunta al modello 
 SIR "standard", che prevede solo le prime tre equazioni. 
 Anche in questo caso si fa l'assunzione che una persona vaccinata 
 non possa più ammalarsi.
@@ -41,7 +41,7 @@ non possa più ammalarsi.
 Il vincolo fondamentale del modello è che la popolazione totale 
 sia costante:
 \begin{equation}\label{eq::pop}
-S(t)+I(t)+R(t)+V(t)=N
+S(t)+M(t)+R(t)+V(t)=N
 \end{equation}
 Questa è un'approssimazione ragionevole se si fa l'assunzione 
 che il numero totale di persone che muoiono a causa del virus 
@@ -56,7 +56,9 @@ trasmissione a seguito di un contatto tra un suscettibile e un infetto.
 \item $\gamma \in [0,1]$: è l'inverso della durata media di 
 un'infezione, che corrisponde alla probabilità di guarigione o morte.
 \item $\eta \in \mathbb{N}, \eta < N$: il numero di persone non 
-vaccinabili, per motivi medici o personali.
+vaccinabili, per motivi medici o personali. Nel caso in cui 
+$\eta = N$ semplicemente si ha il modello SIR, però a causa della 
+forma dell'equazione scelta, il valore $N$ non è accettabile.
 \item $\mu \in [0,1]$: rappresenta la velocità delle vaccinazioni.
 \item $\xi \in [0,1]$: rappresenta l'efficacia delle vaccinazioni. 
 Si usa come fattore moltiplicativo.
@@ -66,24 +68,24 @@ Si usa come fattore moltiplicativo.
 Per studiare la diffusione del virus vengono anche usati come 
 condizioni iniziali i seguenti termini:
 \begin{itemize}
-\item $I_0 \in \mathbb{N}, I_0 < N$: malati al tempo $t = 0$.
-\item $V_0 \in \mathbb{N}, V_0 < N $: vaccinati al tempo $t = 0$.
-\item $R_0 \in \mathbb{N}, R_0 < N $: rimossi al tempo $t = 0$.
+\item $S_0 \in \mathbb{N}$: suscettibili al tempo $t = 0$.
+\item $M_0 \in \mathbb{N}$: malati al tempo $t = 0$.
+\item $R_0 \in \mathbb{N}$: rimossi al tempo $t = 0$.
+\item $V_0 \in \mathbb{N}$: vaccinati al tempo $t = 0$.
 \end{itemize}
-Ovviamente si avrà che il numero di suscettibili dall'inizio della 
-simulazione ($t = 0$) $S_0$ sarà: \\
-$$S_0 = N - I_0 - V_0 - R_0$$.\\
+Ovviamente si avrà che la popolazione totale sarà: 
+$$N = S_0 + M_0 + R_0 + V_0$$.\\
 \subsection{Equazioni}
 Usando i parametri descritti sopra, le equazioni differenziali che 
 descrivono la diffusione della pandemia sono quindi quattro:\\
 \begin{equation} \label{eq::S}
-\frac{dS}{dt}(t)= -\beta \frac{S(t)}{N}I(t) - \frac{dV}{dt}(t)
+\frac{dS}{dt}(t)= -\beta \frac{S(t)}{N}M(t) - \frac{dV}{dt}(t)
 \end{equation}
-\begin{equation}\label{eq::I}
-\frac{dI}{dt}(t)= \beta \frac{S(t)}{N}I(t) - \gamma I(t)
+\begin{equation}\label{eq::M}
+\frac{dM}{dt}(t)= \beta \frac{S(t)}{N}M(t) - \gamma I(t)
 \end{equation}
 \begin{equation}\label{eq::R}
-\frac{dR}{dt}(t)= \gamma I(t)
+\frac{dR}{dt}(t)= \gamma M(t)
 \end{equation}
 \begin{equation}\label{eq::V}
 \frac{dV}{dt}(t)= \mu\frac{V(t)}{\xi}\left( 1-\frac{V(t)}{\xi(N-\eta)}\right)
@@ -92,12 +94,12 @@ Una simulazione basata su dati rappresentativi dell'Emilia-Romagna
 realizzata con Wolfram Mathematica è mostrata in figura 
 (\ref{fig::SIRV}). 
 Si è usato: popolazione totale $N=4459000$, $\beta=0.05$, 
-$\gamma=0.02$, $I_0 = 530502$, $R_0 = 320000$, $V_0 = 600437$,
+$\gamma=0.02$, $M_0 = 530502$, $R_0 = 320000$, $V_0 = 600437$,
 non vaccinabili $\eta = 251042$, 
 velocità vaccinazioni $\mu = 0.05$, efficacia 
 vaccino $\xi= 0.83$.
 
- \subsection{Curva Logistica}
+\subsection{Curva Logistica}
 Per rappresentare la progressione della campagna vaccinale, 
 nell'equazione (\ref{eq::V}) si è scelto di usare un'equazione 
 logistica generalizzata: $f'(x)=f(x)(1-f(x))$,
@@ -142,7 +144,7 @@ metodo \textit{Runge-Kutta 4}, che è più complesso ma produce
 risultati migliori.
 
 \subsection{Il metodo di Eulero}
-Il metodo di Eulero è eseguito dalla funzione \verb|evolve()| in 
+Il metodo di Eulero è eseguito dalla funzione \verb|euler()| in 
 \verb|infection.cpp|. Dato un probelma di Cauchy nella forma
 \begin{equation} \label{eq::ODE} 
     \dot{\vec{x}} = f(t, \vec{x}), \qquad \vec{x}(t_0) = \vec{x_0}
@@ -166,12 +168,11 @@ discretizzazione assume quindi la forma:
     \vec{x}(t_{n+1})=\vec{x}(t_n) + h f(\vec{x}(t_n))
 \end{equation}
 Le equazioni risultanti sono i valori che stampiamo:
-\begin{equation}\label{eq::evolve}
+\begin{equation}\label{eq::euler}
     \left\{ \arraycolsep=1.4pt\def\arraystretch{2.2}
     \begin{array}{rcl}
     S(t_{n+1}) & = & S(t_n) + h \left(-\beta \frac{S(t_n)}{N} M(t_n)
-            - \mu \frac{V(t_n)}{\xi} \left(
-            1 - \frac{V(t_n)}{\xi (N - \eta)} \right) \right) \\
+            -\Delta V \right) \\
     M(t_{n+1}) & = & M(t_n)+h\left(\beta \frac{S(t_n)}{N} M(t_n) 
             - \gamma M(t_n)\right) \\
     R(t_{n+1}) & = & R(t_n) + h \gamma M(t_n) \\
@@ -179,9 +180,7 @@ Le equazioni risultanti sono i valori che stampiamo:
             1 - \frac{V(t_n)}{\xi (N - \eta)} \right) \\
     \end{array}\right.
 \end{equation}
-dove si è usata la notazione $\Delta X = X(t_{n+1})-X(t_n)$. Questo
-permette di ridurre il numero di valori da calcolare per ogni 
-iterazione da 4 a 3.
+dove si è usata la notazione $\Delta V = V(t_{n+1})-V(t_n)$. 
 
 \subsection{Runge-Kutta 4th Order}
 L'algoritmo alternativo usato per calcolare i valori delle variabili di 
@@ -225,13 +224,13 @@ dalle seguenti espressioni:
 Scegliendo lo step size $h=1$(giorno), si otterranno i valori delle 
 quattro variabili di ogni giorno. Ad ogni iterazione vengono ri-calcolati
 i coefficienti $a_i, b_i, c_i,d_i, i \in \{1,2,3,4\}$, che sarebbero dunque
-16 valori per ogni giornata. Usando lo stesso ragionamento di prima sul 
-vincolo, si riesce a esprimere uno dei quattro coefficienti in funzione 
-degli altri  tre, e quindi i valori da calcolare si riducono a 12 per ogni 
-giornata.\\
+16 valori per ogni giornata. Sfruttando il fatto che c'è un vincolo sulla
+popolazione totale, si riesce a esprimere uno dei quattro coefficienti 
+in funzione degli altri  tre, e quindi i valori da calcolare si riducono 
+a 12 per ogni giornata.\\
 \section{Il Codice}
-\hspace{\parindent} PERCHè SI è deciso di
-dividerlo in più \textit{translation units}: \verb|infection.cpp|,
+\hspace{\parindent} Si è diviso il codice in più 
+\textit{translation units}: \verb|infection.cpp|,
 \verb|display.cpp| e \verb|main.cpp|. Di seguito si dà una una breve 
 spiegazione del funzionamento e dei metodi implementati.
 \subsection{Infection}
@@ -256,7 +255,7 @@ Si è poi scritta la classe \verb|Infection|
 
     int m_time_indays; 
     std::vector<State> m_data; 
-    int const m_N; 
+    int m_N; 
 \end{minted}    
 che ha come membri privati la durata della simulazione, un vettore di 
 stati, che rappresenta l'evoluzione della pandemia, e la popolazione 
@@ -265,9 +264,9 @@ totale.
 Come anticipato sopra, si può scegliere fra due diversi metodi 
 numerici per discretizzare le equazioni del modello.\\
 Il primo è il metodo di Eulero, implementato dal metodo 
-\verb|evolve()|:
+\verb|euler()|:
 \begin{minted}{C++}
-    Infection evolve(Infection const &plague, double beta, 
+    Infection euler(Infection const &plague, double beta, 
     double gamma, int no_vax, double vel_vax, double eff_vax) {
 \end{minted}
 COME FUNZIONA?\\
