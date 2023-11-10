@@ -10,6 +10,11 @@ set(CMAKE_CXX_EXTENSIONS        OFF)
 find_package(SFML COMPONENTS graphics REQUIRED)
 
 add_executable(cell_sfml visual.cpp world.cpp main.cpp)
-target_compile_options(cell_sfml PRIVATE -Wall -Wextra -g -fsanitize=address -std=c++17)
+target_compile_options(cell_sfml PRIVATE -Wall -Wextra -g) #-fsanitize=address -std=c++17)
 target_link_libraries(cell_sfml PRIVATE sfml-graphics)
-target_link_options(cell_sfml PRIVATE -fsanitize=address) 
+target_link_options(cell_sfml PRIVATE)# -fsanitize=address) 
+
+add_executable(cell.test world.cpp world.test.cpp)
+target_compile_options(cell.test PRIVATE -Wall -Wextra -g) #-fsanitize=address 
+target_link_options(cell.test PRIVATE) #-fsanitize=address)
+add_test(NAME cell.test COMMAND cell.test)
