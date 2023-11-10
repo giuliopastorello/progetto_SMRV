@@ -54,12 +54,10 @@ int main() {
   std::cin >> method;
 
   if (method == 0) {
-    //evolve(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax);
     epidemic::print(evolve(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax));
     epidemic::graph(evolve(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax));
 
   } else if (method == 1) {
-    //RK4(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax);
     epidemic::print(RK4(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax));
     epidemic::graph(RK4(first_epidemic, beta, gamma, no_vax, vel_vax, eff_vax));
 
