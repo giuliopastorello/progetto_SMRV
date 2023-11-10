@@ -269,14 +269,29 @@ Il primo è il metodo di Eulero, implementato dal metodo
     Infection euler(Infection const &plague, double beta, 
     double gamma, int no_vax, double vel_vax, double eff_vax) {
 \end{minted}
-COME FUNZIONA?\\
-L'altra opzione è il metodo Runge-Kutta in \verb|RK4()|:
+Come descritto sopra, nel metodo evolve non si riesce a sfruttare
+il vincolo della popolazione totale, in quanto la precisione troppo
+bassa produce risultati troppo lontani dalla soluzione ideale.
+Si calcolano le 4 pendenze per ogni giornata, e poi tramite un 
+assert
+\mint{C++}|assert(support.M + support.R + support.S + support.V == result.get_N());|
+ci si assicura che la popolazione totale resti costante, aggiungendo
+o sottraendo al numero dei suscettibili in caso contrario.
+questa scelta è stata fatta poiché in una simulazione realistica
+il numero dei suscettibili sarà sempre molto maggiore degli altri.\\
+L'altra opzione proposta è il metodo Runge-Kutta in \verb|RK4()|:
 \begin{minted}{C++}
     Infection RK4(Infection const &plague, double beta, 
     double gamma, int no_vax, double vel_vax, double eff_vax) {
 \end{minted}
-COME FUNZIONA?
-\subsection{Display}
+Qui invece si è potuta sfruttare l'esistenza di un integrale primo
+per semplificare i calcoli. Si è infatti verificato che i risultati 
+prodotti calcolando tutte e quattro le pendenze o solamente tre erano
+pressoché identici (per simulazioni con numeri realistici).
+Anche in questo metodo viene sempre controllato che N resti 
+costante e in caso contrario vengono aggiunti/rimossi suscettibili 
+finché la condizione non è soddisfatta.
+\subsubsection{Display}
 In \verb|display.cpp| si sono raggruppati i metodi che, come da 
 nome, danno una rappresentazione dei risultati ottenuti.\\
 Il primo metodo è 
@@ -284,7 +299,7 @@ Il primo metodo è
 che stampa sul terminale i risultati della simulazione e il valore 
 \verb|int| del giorno, avvalendosi della funzione 
 \mint{C++}|int count_digit(int n){|
-dichiarata sempre all'interno di \verb|display.cpp|, che serve ad 
+dichiarata sempre all'interno di \verb|display.hpp|, che serve ad 
 impaginare in modo leggibile i valori stampati.
 Si è usata inoltre la libreria \verb|termcolor| che permette di 
 colorare quanto stampato su terminale per distinguere meglio
@@ -295,17 +310,31 @@ valori delle variabili giorno-per-giorno.
 Questa funzione è implementata dal metodo \verb|graph()|:
 \mint{C++}|void graph(Infection const &infection) {|
 Per questo si è usata la libreria \verb|matplotplusplus|, che è 
-basata su \verb|gnuplot|. al \textit{run-time} viene protto un 
+basata su \verb|gnuplot|. Al \textit{run-time} viene protto un 
 file contenente i quattro istogrammi che viene salvato 
 automaticamente in formato .jpg e viene sovrascritto ogni volta che
 viene fatto girare di nuovo il programma.
+\subsubsection{main}
+Viene proposto all'utente di cambiare i valori di default di 
+parametri e valori iniziali, che sono stati scelti per essere 
+rappresentativi della situazione in Emilia-Romagna nel'estate del 
+2021. Si può anche cambiare la durata della simulazione, 
+pre-impostata a 100 giorni.
+Una volta fatta questa scelta, l'utente può scegliere quale metodo 
+numerico usare per la simulazione. A questo punto vengono stampati 
+su terminale i valori delle quattro variabili giorno-per-giorno e 
+viene prodotto il file .jpg con gli istogrammi.
 \section{Compilazione}
 \hspace{\parindent} Per costruire il programma si è deciso di usare 
 \verb|cmake|, nel folder \verb|parte1/| è incluso il 
 \verb|CMakeLists.txt| che permette di costruire il progetto 
-(caricando la libreria di plotting).
-Per compilare serve fare la build con \verb|cmake .|, poi 
-\verb|cmake --build .|. Una volta fatto questo vengono prodotti due
+(caricando la libreria di plotting).\\
+Per compilare serve fare la build con :
+\begin{minted}{C++}
+    cmake .  
+    cmake --build .
+\end{minted} 
+Una volta fatto questo vengono prodotti due
 eseguibili: \verb|infection_tty| e \verb|infection.test|.
 Poiché la libreria \verb|matplotplusplus| dava alcuni problemi di
 linking su MacOS, si è deciso semplicemente di clonare la repository

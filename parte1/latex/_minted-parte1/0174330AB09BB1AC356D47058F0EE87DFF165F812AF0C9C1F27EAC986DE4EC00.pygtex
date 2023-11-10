@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }\PYG{n}{cmake}\PYG{+w}{ }\PYG{p}{.}
+\PYG{+w}{    }\PYG{n}{cmake}\PYG{+w}{ }\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{n}{build}\PYG{+w}{ }\PYG{p}{.}
+\end{Verbatim}
