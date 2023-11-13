@@ -16,6 +16,7 @@ cmake_install.cmake
 infection_tty
 *.jpg
 *.pyg
+parte1/latex/_minted-parte1/
 parte2/latex/_minted-parte2/
 Makefile
 virus_sfml

@@ -1,3 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{count\PYGZus{}digit}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{)\PYGZob{}}
-\end{Verbatim}
