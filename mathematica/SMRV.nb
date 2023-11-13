@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     92350,       1868]
-NotebookOptionsPosition[     91633,       1847]
-NotebookOutlinePosition[     92031,       1863]
-CellTagsIndexPosition[     91988,       1860]
+NotebookDataLength[     99718,       2020]
+NotebookOptionsPosition[     98664,       1994]
+NotebookOutlinePosition[     99062,       2010]
+CellTagsIndexPosition[     99019,       2007]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1617,20 +1617,26 @@ Cell[BoxData[
              RowBox[{"Thickness", "[", "0.007", "]"}]}], "}"}], ",", 
            RowBox[{"{", 
             RowBox[{"Orange", ",", 
-             RowBox[{"Thickness", "[", "0.007", "]"}]}], "}"}]}], "}"}]}]}], 
-       "]"}]}], ",", "\[IndentingNewLine]", 
+             RowBox[{"Thickness", "[", "0.007", "]"}]}], "}"}]}], "}"}]}], 
+        ",", " ", 
+        RowBox[{"PlotLegends", "->", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<S(t)\>\"", ",", " ", "\"\<M(t)\>\"", ",", " ", "\"\<R(t)\>\"", 
+           ",", "\"\<V(t)\>\""}], "}"}]}]}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
      RowBox[{"{", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"\[Beta]", ",", "0.056", ",", "\"\<prob contagio\>\""}], 
-        "}"}], ",", "0", ",", "1", ",", "0.01", ",", 
+        RowBox[{"\[Beta]", ",", "0.05", ",", "\"\<prob contagio\>\""}], "}"}],
+        ",", "0", ",", "1", ",", "0.01", ",", 
        RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
      " ", "\[IndentingNewLine]", 
      RowBox[{"{", 
       RowBox[{
        RowBox[{"{", 
         RowBox[{
-        "\[Gamma]", ",", "0.055", ",", 
+        "\[Gamma]", ",", "0.02", ",", 
          "\"\<t \!\(\*SuperscriptBox[\(guarigione\), \(-1\)]\)\>\""}], "}"}], 
        ",", "0", ",", "1", ",", "0.01", ",", 
        RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
@@ -1638,14 +1644,14 @@ Cell[BoxData[
      RowBox[{"{", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"\[Alpha]", ",", "12321", ",", "\"\<malati a t0\>\""}], "}"}],
-        ",", "0", ",", "P", ",", "1", ",", 
+        RowBox[{"\[Alpha]", ",", "530502", ",", "\"\<malati a t0\>\""}], 
+        "}"}], ",", "0", ",", "P", ",", "1", ",", 
        RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
      "\[IndentingNewLine]", 
      RowBox[{"{", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"\[Eta]", ",", "250000", ",", "\"\<non vaccinabili\>\""}], 
+        RowBox[{"\[Eta]", ",", "251042", ",", "\"\<non vaccinabili\>\""}], 
         "}"}], ",", "0", ",", "1000000", ",", "1", ",", 
        RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
      "\[IndentingNewLine]", 
@@ -1660,7 +1666,7 @@ Cell[BoxData[
       RowBox[{
        RowBox[{"{", 
         RowBox[{
-        "\[Mu]", ",", " ", "0.005", ",", " ", 
+        "\[Mu]", ",", " ", "0.05", ",", " ", 
          "\"\<velocit\[AGrave] vaccinazioni\>\""}], "}"}], ",", "0", ",", "1",
         ",", "0.001", ",", 
        RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
@@ -1668,7 +1674,7 @@ Cell[BoxData[
      RowBox[{"{", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"\[Xi]", ",", "0.4", 
+        RowBox[{"\[Xi]", ",", "0.83", 
          RowBox[{"(*", 
           RowBox[{
           "calcolato", " ", "con", " ", "media", " ", "pesata", " ", 
@@ -1721,40 +1727,47 @@ Cell[BoxData[
    3.8927136628109303`*^9}, {3.8927138660056467`*^9, 3.892713872781389*^9}, {
    3.892718218786147*^9, 3.892718234328821*^9}, {3.892718755425124*^9, 
    3.8927187561040363`*^9}, {3.892867871573316*^9, 3.892867876082901*^9}, 
-   3.908597160360485*^9},
- CellLabel->"In[3]:=",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
+   3.908597160360485*^9, {3.9086332282179117`*^9, 3.908633273984064*^9}, {
+   3.908633313876844*^9, 3.9086333496274157`*^9}, {3.908634789530724*^9, 
+   3.908634806493801*^9}, {3.908634953768602*^9, 3.90863497153041*^9}, {
+   3.9086350250875483`*^9, 3.908635120223565*^9}, {3.9086352720140533`*^9, 
+   3.9086353487941303`*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`\[Alpha]$$ = 12321, $CellContext`\[Beta]$$ =
-     0.5, $CellContext`\[Gamma]$$ = 0.3, $CellContext`\[Eta]$$ = 
-    118292, $CellContext`\[Mu]$$ = 0.035, $CellContext`\[Nu]$$ = 
-    600437, $CellContext`\[Xi]$$ = 0.6, $CellContext`\[Rho]$$ = 320000, 
-    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
-    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
-    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
-       Hold[$CellContext`\[Beta]$$], 0.056, "prob contagio"}, 0, 1, 0.01}, {{
-       Hold[$CellContext`\[Gamma]$$], 0.055, 
+   DynamicModuleBox[{$CellContext`\[Alpha]$$ = 
+    530502, $CellContext`\[Beta]$$ = 0.05, $CellContext`\[Gamma]$$ = 
+    0.02, $CellContext`\[Eta]$$ = 251042, $CellContext`\[Mu]$$ = 
+    0.05, $CellContext`\[Nu]$$ = 739869, $CellContext`\[Xi]$$ = 
+    0.6900000000000001, $CellContext`\[Rho]$$ = 320000, Typeset`show$$ = True,
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Beta]$$], 0.05, "prob contagio"}, 0, 1, 0.01}, {{
+       Hold[$CellContext`\[Gamma]$$], 0.02, 
        "t \!\(\*SuperscriptBox[\(guarigione\), \(-1\)]\)"}, 0, 1, 0.01}, {{
-       Hold[$CellContext`\[Alpha]$$], 12321, "malati a t0"}, 0, 4459000, 1}, {{
-       Hold[$CellContext`\[Eta]$$], 250000, "non vaccinabili"}, 0, 1000000, 
+       Hold[$CellContext`\[Alpha]$$], 530502, "malati a t0"}, 0, 4459000, 
+      1}, {{
+       Hold[$CellContext`\[Eta]$$], 251042, "non vaccinabili"}, 0, 1000000, 
       1}, {{
        Hold[$CellContext`\[Nu]$$], 600437, "vaccinati a t0"}, 0, 4459000, 
       1}, {{
-       Hold[$CellContext`\[Mu]$$], 0.005, "velocit\[AGrave] vaccinazioni"}, 0,
-       1, 0.001}, {{
-       Hold[$CellContext`\[Xi]$$], 0.4, "efficacia vaccino"}, 0, 1, 0.01}, {{
+       Hold[$CellContext`\[Mu]$$], 0.05, "velocit\[AGrave] vaccinazioni"}, 0, 
+      1, 0.001}, {{
+       Hold[$CellContext`\[Xi]$$], 0.83, "efficacia vaccino"}, 0, 1, 0.01}, {{
+      
        Hold[$CellContext`\[Rho]$$], 320000, "inizialmente immuni"}, 0, 
-      4459000, 1}}, Typeset`size$$ = {889., {265., 270.}}, Typeset`update$$ = 
+      4459000, 1}}, Typeset`size$$ = {921., {254., 258.}}, Typeset`update$$ = 
     0, Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, 
-      "Variables" :> {$CellContext`\[Alpha]$$ = 12321, $CellContext`\[Beta]$$ = 
-        0.056, $CellContext`\[Gamma]$$ = 0.055, $CellContext`\[Eta]$$ = 
-        250000, $CellContext`\[Mu]$$ = 0.005, $CellContext`\[Nu]$$ = 
-        600437, $CellContext`\[Xi]$$ = 0.4, $CellContext`\[Rho]$$ = 320000}, 
-      "ControllerVariables" :> {}, 
+      "Variables" :> {$CellContext`\[Alpha]$$ = 
+        530502, $CellContext`\[Beta]$$ = 0.05, $CellContext`\[Gamma]$$ = 
+        0.02, $CellContext`\[Eta]$$ = 251042, $CellContext`\[Mu]$$ = 
+        0.05, $CellContext`\[Nu]$$ = 600437, $CellContext`\[Xi]$$ = 
+        0.83, $CellContext`\[Rho]$$ = 320000}, "ControllerVariables" :> {}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -1779,6 +1792,125 @@ $CellContext`M[$CellContext`t], -
             1][$CellContext`R][$CellContext`t] - Derivative[
             1][$CellContext`M][$CellContext`t] == $CellContext`\[Mu]$$ \
 ($CellContext`V[$CellContext`t]/$CellContext`\[Xi]$$) (
+             1 - $CellContext`V[$CellContext`t]/($CellContext`\[Xi]$$ \
+($CellContext`P - $CellContext`\[Eta]$$))), $CellContext`R[
+            0] == $CellContext`\[Rho]$$, $CellContext`M[
+            0] == $CellContext`\[Alpha]$$, $CellContext`S[
+            0] == $CellContext`P - $CellContext`\[Alpha]$$ - $CellContext`\
+\[Rho]$$ - $CellContext`\[Nu]$$, $CellContext`V[
+            0] == $CellContext`\[Nu]$$}, {$CellContext`S, $CellContext`M, \
+$CellContext`R, $CellContext`V}, {$CellContext`t, 0, $CellContext`maxT}]; 
+       Plot[{
+          Evaluate[
+           ReplaceAll[
+            $CellContext`S[$CellContext`t], $CellContext`sol]], 
+          Evaluate[
+           ReplaceAll[
+            $CellContext`M[$CellContext`t], $CellContext`sol]], 
+          Evaluate[
+           ReplaceAll[
+            $CellContext`R[$CellContext`t], $CellContext`sol]], 
+          Evaluate[
+           ReplaceAll[
+            $CellContext`V[$CellContext`t], $CellContext`sol]]}, \
+{$CellContext`t, 0, $CellContext`maxT}, PlotRange -> All, PlotStyle -> {{Blue, 
+            Thickness[0.007]}, {Red, 
+            Thickness[0.007]}, {Yellow, 
+            Thickness[0.007]}, {Orange, 
+            Thickness[0.007]}}, 
+         PlotLegends -> {"S(t)", "M(t)", "R(t)", "V(t)"}]), 
+      "Specifications" :> {{{$CellContext`\[Beta]$$, 0.05, "prob contagio"}, 
+         0, 1, 0.01, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Gamma]$$, 0.02, 
+          "t \!\(\*SuperscriptBox[\(guarigione\), \(-1\)]\)"}, 0, 1, 0.01, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`\[Alpha]$$, 530502, "malati a t0"}, 0, 
+         4459000, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Eta]$$, 251042, "non vaccinabili"}, 0, 
+         1000000, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Nu]$$, 600437, "vaccinati a t0"}, 0, 
+         4459000, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Mu]$$, 0.05, 
+          "velocit\[AGrave] vaccinazioni"}, 0, 1, 0.001, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Xi]$$, 0.83, "efficacia vaccino"}, 0, 1,
+          0.01, Appearance -> 
+         "Labeled"}, {{$CellContext`\[Rho]$$, 320000, "inizialmente immuni"}, 
+         0, 4459000, 1, Appearance -> "Labeled"}}, 
+      "Options" :> {ContentSize -> {940, 600}}, "DefaultOptions" :> {}],
+     ImageSizeCache->{1311., {314., 319.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9086332822514133`*^9, 3.908634810096456*^9, 
+  3.9086349747908*^9, 3.908635049195135*^9, 3.908635122764648*^9, 
+  3.90863535123416*^9},
+ CellLabel->"Out[14]=",ExpressionUUID->"7e5c277c-46fe-4d4e-9246-207d68ff2c65"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Alpha]$$ = 12321, $CellContext`\[Beta]$$ =
+     0.5, $CellContext`\[Gamma]$$ = 0.3, $CellContext`\[Eta]$$ = 
+    118292, $CellContext`\[Mu]$$ = 0.035, $CellContext`\[Nu]$$ = 
+    600437, $CellContext`\[Xi]$$ = 0.6, $CellContext`\[Rho]$$ = 320000, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Beta]$$], 0.056, "prob contagio"}, 0, 1, 0.01}, {{
+       Hold[$CellContext`\[Gamma]$$], 0.055, 
+       "t \!\(\*SuperscriptBox[\(guarigione\), \(-1\)]\)"}, 0, 1, 0.01}, {{
+       Hold[$CellContext`\[Alpha]$$], 12321, "malati a t0"}, 0, 4459000, 1}, {{
+       Hold[$CellContext`\[Eta]$$], 250000, "non vaccinabili"}, 0, 1000000, 
+      1}, {{
+       Hold[$CellContext`\[Nu]$$], 600437, "vaccinati a t0"}, 0, 4459000, 
+      1}, {{
+       Hold[$CellContext`\[Mu]$$], 0.005, "velocit\[AGrave] vaccinazioni"}, 0,
+       1, 0.001}, {{
+       Hold[$CellContext`\[Xi]$$], 0.4, "efficacia vaccino"}, 0, 1, 0.01}, {{
+       Hold[$CellContext`\[Rho]$$], 320000, "inizialmente immuni"}, 0, 
+      4459000, 1}}, Typeset`size$$ = {899., {268., 273.}}, Typeset`update$$ = 
+    0, Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[Alpha]$$ = 12321, $CellContext`\[Beta]$$ = 
+        0.056, $CellContext`\[Gamma]$$ = 0.055, $CellContext`\[Eta]$$ = 
+        250000, $CellContext`\[Mu]$$ = 0.005, $CellContext`\[Nu]$$ = 
+        600437, $CellContext`\[Xi]$$ = 0.4, $CellContext`\[Rho]$$ = 320000}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`sol = 
+        NDSolve[{
+          Derivative[
+            1][$CellContext`S][$CellContext`t] == ((-$CellContext`\[Beta]$$) \
+($CellContext`S[$CellContext`t]/$CellContext`P)) \
+$CellContext`M[$CellContext`t] - Derivative[
+            1][$CellContext`V][$CellContext`t], 
+           Derivative[
+            1][$CellContext`M][$CellContext`t] == ($CellContext`\[Beta]$$ \
+($CellContext`S[$CellContext`t]/$CellContext`P)) \
+$CellContext`M[$CellContext`t] - $CellContext`\[Gamma]$$ \
+$CellContext`M[$CellContext`t], 
+           Derivative[
+            1][$CellContext`R][$CellContext`t] == $CellContext`\[Gamma]$$ \
+$CellContext`M[$CellContext`t], -
+             Derivative[1][$CellContext`S][$CellContext`t] - Derivative[
+            1][$CellContext`R][$CellContext`t] - Derivative[
+            1][$CellContext`M][$CellContext`t] == ($CellContext`\[Mu]$$ \
+($CellContext`V[$CellContext`t]/$CellContext`\[Xi]$$)) (
              1 - $CellContext`V[$CellContext`t]/($CellContext`\[Xi]$$ \
 ($CellContext`P - $CellContext`\[Eta]$$))), $CellContext`R[
             0] == $CellContext`\[Rho]$$, $CellContext`M[
@@ -1833,16 +1965,31 @@ $CellContext`R, $CellContext`V}, {$CellContext`t, 0, $CellContext`maxT}];
     UntrackedVariables:>{Typeset`size$$}], "Manipulate",
    Deployed->True,
    StripOnInput->False],
-  Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{
-  3.8889097453142633`*^9, 3.892098197587294*^9, 3.892712876911742*^9, 
-   3.892712980271397*^9, {3.89271301841984*^9, 3.8927130409821672`*^9}, 
-   3.892713402853861*^9, 3.892713595638468*^9, {3.892713637413474*^9, 
-   3.892713668712702*^9}, 3.8927138761259327`*^9, {3.892718227773929*^9, 
-   3.892718236465494*^9}, 3.892718759218173*^9, 3.89286783259621*^9, 
-   3.8928678939395103`*^9, 3.9059169332758417`*^9, 3.908597065527783*^9, 
-   3.908597175967114*^9},
- CellLabel->"Out[4]=",ExpressionUUID->"8964b8e4-a438-4d77-a755-e361dea93716"]
+  Manipulate`InterpretManipulate[1]]], "Input",
+ CellChangeTimes->{3.9086331632563257`*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"8964b8e4-a438-4d77-a755-e361dea93716"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "NDSolve", "ndnl", 
+   "\"Endpoint \\!\\(\\*RowBox[{\\\"maxT\\\"}]\\) in \\!\\(\\*RowBox[{\\\"{\\\
+\", RowBox[{\\\"t\\\", \\\",\\\", \\\"0.`\\\", \\\",\\\", \\\"maxT\\\"}], \
+\\\"}\\\"}]\\) is not a real number.\"", 2, 1, 1, 20042081987114631928, 
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.9086329488815002`*^9},
+ CellLabel->"",ExpressionUUID->"3a5b293c-b4d3-4e37-8134-333c7cfab53b"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot", "plln", 
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"maxT\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"t\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"maxT\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\
+\"", 2, 1, 2, 20042081987114631928, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.908632949049308*^9},
+ CellLabel->"",ExpressionUUID->"7105a552-3d6b-4ddc-b92e-c00137049336"]
 }, Open  ]]
 },
 WindowSize->{1440, 847},
@@ -1867,8 +2014,13 @@ Cell[580, 22, 4587, 128, 166, "Input",ExpressionUUID->"20b6157e-7b32-436d-b9bc-0
 Cell[5170, 152, 70630, 1350, 118, "Output",ExpressionUUID->"776a9faf-49ad-4ca8-b40d-a0650ffc6d66"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[75837, 1507, 9558, 217, 362, "Input",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
-Cell[85398, 1726, 6219, 118, 675, "Output",ExpressionUUID->"8964b8e4-a438-4d77-a755-e361dea93716"]
+Cell[75837, 1507, 10079, 227, 362, "Input",ExpressionUUID->"c0ae8cfa-9310-4ed3-9e68-f23dda53ed68"],
+Cell[85919, 1736, 5992, 117, 675, "Output",ExpressionUUID->"7e5c277c-46fe-4d4e-9246-207d68ff2c65"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[91948, 1858, 5789, 111, 648, InheritFromParent,ExpressionUUID->"8964b8e4-a438-4d77-a755-e361dea93716"],
+Cell[97740, 1971, 447, 9, 28, "Message",ExpressionUUID->"3a5b293c-b4d3-4e37-8134-333c7cfab53b"],
+Cell[98190, 1982, 458, 9, 28, "Message",ExpressionUUID->"7105a552-3d6b-4ddc-b92e-c00137049336"]
 }, Open  ]]
 }
 ]

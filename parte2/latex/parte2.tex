@@ -27,23 +27,28 @@ soddisfando alcune regole che dipendono dallo stato delle celle limitrofe. \\
 Per simulare una pandemia  in una popolazione si è usato un modello simile a 
 quello della prima parte. Le celle possono assumere quattro stati: 
 \begin{itemize}
-    \item Healthy (sani)
-    \item Infected (malati)
-    \item Healed (guariti)
+    \item S (sani)
+    \item I (malati)
+    \item R (guariti)
     \item Dead (morti)
 \end{itemize}
 Gli individui della popolazione possono evolvere solo in una precisa direzione: \\
-$$manca schemnino$$
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\paperwidth]{virus.drawio.png}
+    \caption{\textit{Schema delle regole di evoluzione.}}
+    \label{fig::virus}
+\end{figure}
 Un soggetto sano può contrarre il virus e diventare infetto, mentre un infetto
 può sopravvivere alla malattia e guarire oppure morire. I passaggi di stato 
 vengono regolati da parametri probabilistici che cercano di dare una simulazione
 realistica della pandemia. \\
 $\beta$ è il tasso di contagio che regola la probabilità di infezione; $\gamma$ è 
 il tasso di rimozione per regolare la probabilità con la quale un infetto cambia 
-stato da Infected a Dead o Healed; $\alpha$ dà la probabilità di morte una volta 
+stato da I a Dead o R; $\alpha$ dà la probabilità di morte una volta 
 che l'individuo è stato rimosso, dunque $1-\alpha$ corrisponde alla probabilità di 
 cura. \\
-Dunque il modello presenta similitudini con il Game of life, tuttavia presenta una 
+Il modello presenta similitudini con il Game of life, tuttavia presenta una 
 sostanziale differenza: gli individui nel nostro modello saranno liberi di spostarsi 
 lungo la griglia, mentre nel modello guida sono statici e cambiano il loro stato 
 vivo/morto in base al numero di celle vicine vive e morte. 
@@ -60,7 +65,7 @@ Entriamo ora più in dettaglio sulla classe World e sul file world.cpp.
 
 \begin{enumerate}
     \item \textbf{Definizione delle celle e metodo costruttore}\\
-    \mint{C++}|enum class Cell {Dead, Empty, Healed, Infected, Dead}|
+    \mint{C++}|enum class Cell {Dead, Empty, S, I, R };|
     Per definire lo stato delle celle abbiamo utilizzato un enum class Cell che 
     comprende tutti gli stati possibili delle celle. \\
     Le celle potranno quindi assumere 5 stati possibili. 4 di essi sono già stati 
@@ -68,7 +73,7 @@ Entriamo ora più in dettaglio sulla classe World e sul file world.cpp.
     celle libere in cui gli individui possono spostarsi. \\
     La classe World presenta 2 attributi privati che sono \verb|m_side|, che 
     corrisponde alla dimensione del lato della griglia, e \verb|m_field| che 
-    rappresenta la griglia in quanto vector di Cell. Il metodo costruttore world 
+    rappresenta la griglia in quanto vector di Cell. Il metodo costruttore \verb|World| 
     prende un intero a, che inizializza \verb|m_side|, e crea \verb|m_field| vettore 
     di Cell di dimensione $a*a$ con tutte celle Empty. 
     \mint{C++}|World::World(int a):m_side{a}, m_field(a*a, Cell::Empty){|
@@ -102,7 +107,7 @@ Entriamo ora più in dettaglio sulla classe World e sul file world.cpp.
     \mint{C++}|Cell Get_cell(int r, int c) const;|
     \item \textbf{Metodo initial$\_$random}\\
     \mint{C++}|void initial_random(World &world, int num_healthy, int num_infected)|
-    Il metodo \verb|initial_random| genera casualmente nella griglia Healthy e Infected 
+    Il metodo \verb|initial_random| genera casualmente nella griglia S e I 
     iniziali prendendo in ingresso un oggetto di tipo World e 2 interi. Questa 
     operazione viene realizzata attraverso cicli for in cui vengono generate casualmente 
     le posizioni degli individui che vanno posizionati. 
@@ -111,7 +116,7 @@ Entriamo ora più in dettaglio sulla classe World e sul file world.cpp.
     Abbiamo tenuto la possibilità di riempire tutta la griglia poiché la simulazione 
     può avvenire anche se è un caso limite di poco interesse. 
     \item \textbf{Metodo infected$\_$counter} \\
-    \mint{C++}|int infected_counter(World cont &world, int r, int c);|
+    \mint{C++}|int infected_counter(World const &world, int r, int c);|
     Questo metodo si occupa semplicemente di contare il numero di infetti intorno ad 
     una determinata cella (r, c) e restituire tale numero. \\
     Tale metodo verrà ovviamente invocato solamente su celle sane poiché il numero di 
@@ -136,15 +141,15 @@ Entriamo ora più in dettaglio sulla classe World e sul file world.cpp.
         e 100 con il prodotto $100 *\gamma$. 
         Se il numero generato è minore del prodotto allora restituisce vero e quindi 
         l'infetto su cui è stato chiamato il metodo deve essere rimosso, ovvero 
-        abbandona lo stato Infected per guarire o morire secondo quanto stabilito dal 
+        abbandona lo stato I per guarire o morire secondo quanto stabilito dal 
         prossimo metodo. 
         \item \verb|death_condition| è analogo al metodo prima, prende in ingresso un 
         parametro double $\alpha$. 
         Restituisce vero nel caso in cui il numero generato casualmente fra 0 e 100 
         è minore del prodotto $100 * \alpha$. Se restituisce vero l'individuo muore, 
-        mentre se restituisce falso l'individuo sopravvive diventando Healed. 
-        \item Come ultimo metodo bool troviamo \verb|virus_conition| che semplicemente 
-        prende in ingresso un oggetto world e restituisce vero se il numero di Infected 
+        mentre se restituisce falso l'individuo sopravvive diventando R. 
+        \item Come ultimo metodo bool troviamo \verb|virus_condition| che semplicemente 
+        prende in ingresso un oggetto world e restituisce vero se il numero di I 
         è maggiore di zero. 
         Quest'ultimo metodo serve per capire se la pandemia può ancora svilupparsi. 
     \end{itemize}
@@ -152,7 +157,7 @@ Entriamo ora più in dettaglio sulla classe World e sul file world.cpp.
     fra 0 e 1) si può regolare quanto la malattia è contagiosa $(\beta)$, quanto il 
     virus dura in media $(\gamma)$ e quanto il virus sia letale $(\alpha)$. 
     \item \textbf{Metodo evolve}\\
-    \mint{C++}|World evolve(World &now,double beta, double gamma, double alpha){|
+    \mint{C++}|World evolve(World const &now,double beta, double gamma, double alpha){|
     Il metodo evolve è il fulcro del programma e si occupa di generare un nuovo oggetto 
     World a partire da uno di partenza in ingresso e dai parametri di probabilità 
     $\beta, \gamma, \alpha$.\\ 
@@ -186,5 +191,41 @@ di SFML per ottenere 2 metodi in particolare che si occupano di disegnare la gri
 \verb|(draw)| e di disegnare scritte \verb|(show_message)|. I metodi presentati vengono 
 poi utilizzati nel main.cpp. 
 \section{Compilazione}
-
+\hspace{\parindent} Per costruire il programma si è deciso di usare 
+\verb|cmake|, nel folder \verb|parte2/| è incluso il 
+\verb|CMakeLists.txt| che permette di costruire il progetto 
+(caricando la libreria SFML).\\
+Per compilare serve fare la build con :
+\begin{minted}{C++}
+    cmake .  
+    cmake --build .
+\end{minted} 
+Una volta fatto questo vengono prodotti due
+eseguibili: \verb|virus_tty| e \verb|virus.test|. Oltre al file di test che viene
+eseguito col CMake (\verb|virus.test.cpp|), viene consegnato anche un altro
+file, \verb|virustest.cpp|, che era sstato usando nelle fasi preliminari del
+progetto, prima di scrivere le funzioni che usano SFML. I test in questo file
+non sono più utili per il funzionamento del programma ma vengono lasciati per 
+completezza.
+\subsection{Come compilare}
+Per il progetto è necessario avere:
+\begin{itemize}
+    \item \verb|cmake| versione 16 o superiore;
+    \item la libreria \verb|SFML|. Questa si scarica dal 
+    \href{https://www.sfml-dev.org/}{suo sito}.
+\end{itemize}
+\section{Appendici}
+\subsection{Git e Github}
+Durante la realizzazione del progetto è stato fondamentale l'uso di 
+Github per coordinare i lavori. Si lascia il 
+\href{https://github.com/giuliopastorello/progetto_SMRV}{link} alla 
+repository remota qualora potesse servire. Per usare il progetto senza
+clonare la libreria di plotting si può semplicemente clonare la 
+remote repository.
+\subsection{Risorse}
+\begin{itemize}
+    \item cmake: \href{https://cmake.org/}{https://cmake.org/}
+    \item SFML: \href{https://www.sfml-dev.org/}{https://www.sfml-dev.org/}
+    \item github: \href{https://github.com/giuliopastorello/progetto_SMRV}{https://github.com/giuliopastorello/progettoSMRV}
+\end{itemize}   
 \end{document}
